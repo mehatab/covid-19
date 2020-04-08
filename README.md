@@ -6,7 +6,7 @@ This application displays the latest updates based on numbers from https://www.c
 <p align="center">
   <img src="screenshots/screenshot_1.jpg" width="250" title="COVID-19 Info">
   <img src="screenshots/screenshot_2.jpg" width="250" title="COVID-19 Info">
-  <img src="screenshots/screenshot_3.jpg" width="250" title="COVID-19 Info">
+  <img src="screenshots/screenshot_5.jpg" width="250" title="COVID-19 Info">
   <img src="screenshots/screenshot_4.jpg" width="250" title="COVID-19 Info">
 </p>
 
