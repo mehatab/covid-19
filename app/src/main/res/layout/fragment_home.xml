@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="info.covid.utils.DateExtensionsKt" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="viewModel"
+            type="info.covid.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:theme="@style/MaterialToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:menu="@menu/home_toolbar"
+                    app:title="@string/app_name" />
+
+                <ProgressBar
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="0dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/_8sdp"
+                    android:visibility="@{viewModel.refreshing ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/toolbar"
+                    app:layout_constraintRight_toRightOf="@id/toolbar"
+                    app:layout_constraintTop_toTopOf="@id/toolbar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinator"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/background"
+            android:fitsSystemWindows="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/coordinator_app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/today_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/today"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/last_update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/_25sdp"
+                        android:text="@{DateExtensionsKt.relativeTime(viewModel.today.lastupdatedtime)}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintLeft_toLeftOf="@id/today_label"
+                        app:layout_constraintTop_toBottomOf="@id/today_label" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/t_confirmed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@{viewModel.today.deltaconfirmed}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/last_update"
+                        app:layout_constraintWidth_percent="0.33" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/t_recovered"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@{viewModel.today.deltarecovered}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@id/t_confirmed"
+                        app:layout_constraintTop_toBottomOf="@id/last_update"
+                        app:layout_constraintWidth_percent="0.33" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/t_deaths"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@{viewModel.today.deltadeaths}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@id/t_recovered"
+                        app:layout_constraintTop_toBottomOf="@id/last_update"
+                        app:layout_constraintWidth_percent="0.33" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/confirm_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:text="Confirmed"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintLeft_toLeftOf="@id/t_confirmed"
+                        app:layout_constraintRight_toRightOf="@id/t_confirmed"
+                        app:layout_constraintTop_toBottomOf="@id/t_confirmed" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:text="Recovered"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintLeft_toLeftOf="@id/t_recovered"
+                        app:layout_constraintRight_toRightOf="@id/t_recovered"
+                        app:layout_constraintTop_toBottomOf="@id/t_recovered" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:text="Deaths"
+                        android:textSize="@dimen/_8ssp"
+                        app:layout_constraintLeft_toLeftOf="@id/t_deaths"
+                        app:layout_constraintRight_toRightOf="@id/t_deaths"
+                        app:layout_constraintTop_toBottomOf="@id/t_deaths" />
+
+
+                    <View
+                        android:id="@+id/today_divider"
+                        style="@style/Divider"
+                        android:layout_width="match_parent"
+                        app:layout_constraintTop_toBottomOf="@id/confirm_label" />
+
+                    <View
+                        android:id="@+id/center"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="1dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/today_divider" />
+
+                    <info.covid.customview.rings.Rings
+                        android:id="@+id/rings"
+                        firstText="@{viewModel.deaths}"
+                        overAllText="@{viewModel.confirmed}"
+                        secondText="@{viewModel.recovered}"
+                        thiredText="@{viewModel.active}"
+                        android:layout_width="@dimen/_110sdp"
+                        android:layout_height="@dimen/_110sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        app:layout_constraintRight_toLeftOf="@id/center"
+                        app:layout_constraintTop_toBottomOf="@id/today_divider"
+                        app:rings_inner_first_color="#a6acb1"
+                        app:rings_inner_second_color="#7eca8f"
+                        app:rings_inner_third_color="#66afff"
+                        app:rings_overall_color="#ff6a88"
+                        app:rings_text_size="@dimen/_8ssp"
+                        app:rings_unfinished_color="@color/divider" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/confirmed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:drawableStart="@drawable/dot"
+                        android:drawableLeft="@drawable/dot"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="@{Html.fromHtml(@string/confirm_count(viewModel.confirmed))}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_11ssp"
+                        app:drawableTint="#ff6a88"
+                        app:layout_constraintLeft_toRightOf="@id/center"
+                        app:layout_constraintTop_toTopOf="@id/rings" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/active"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:drawableStart="@drawable/dot"
+                        android:drawableLeft="@drawable/dot"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="@{Html.fromHtml(@string/active_count(viewModel.active))}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_11ssp"
+                        app:drawableTint="#66afff"
+                        app:layout_constraintLeft_toRightOf="@id/center"
+                        app:layout_constraintTop_toBottomOf="@id/confirmed" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/recovered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:drawableStart="@drawable/dot"
+                        android:drawableLeft="@drawable/dot"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="@{Html.fromHtml(@string/recovered_count(viewModel.recovered))}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_11ssp"
+                        app:drawableTint="#1CDA35"
+                        app:layout_constraintLeft_toRightOf="@id/center"
+                        app:layout_constraintTop_toBottomOf="@id/active" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/deaths"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:drawableStart="@drawable/dot"
+                        android:drawableLeft="@drawable/dot"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="@{Html.fromHtml(@string/death_count(viewModel.deaths))}"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_11ssp"
+                        app:drawableTint="#a6acb1"
+                        app:layout_constraintLeft_toRightOf="@id/center"
+                        app:layout_constraintTop_toBottomOf="@id/recovered" />
+
+
+                    <View
+                        android:id="@+id/ring_divider"
+                        style="@style/Divider"
+                        android:layout_width="match_parent"
+                        app:layout_constraintTop_toBottomOf="@id/rings" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/chart_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/daily"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:drawableRightCompat="@drawable/ic_down_arrow"
+                        app:drawableTint="?android:attr/textColorPrimary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ring_divider" />
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/filters"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        app:checkedChip="@id/days_30"
+                        app:layout_constraintBottom_toBottomOf="@id/chart_type"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/chart_type"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/days_30"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_30_days" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/all"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="All" />
+
+                    </com.google.android.material.chip.ChipGroup>
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/daily_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_180sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        app:layout_constraintTop_toBottomOf="@id/chart_type" />
+
+                    <View
+                        android:id="@+id/daily_chart_divider"
+                        style="@style/Divider"
+                        android:layout_width="match_parent"
+                        app:layout_constraintTop_toBottomOf="@id/daily_chart" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/state_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_10sdp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@id/daily_chart_divider" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- IF YOU WANT TO KEEP "Choose Item" always on top of the RecyclerView, put this TextView here
+                 <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="bottom"
+                      android:text="choose item" />
+                -->
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingTop="@dimen/_16sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_60sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

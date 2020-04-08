@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="info.covid.utils.ExtensionsKt" />
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="viewModel"
+            type="info.covid.models.State" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_8sdp"
+        android:background="@drawable/state_item_bg"
+        android:padding="@dimen/_8sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/state_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.state}"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/confirmed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{Html.fromHtml(@string/confirm_count(ExtensionsKt.toNumber(viewModel.confirmed)))}"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintTop_toBottomOf="@id/state_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/recovered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{Html.fromHtml(@string/recovered_count(ExtensionsKt.toNumber(viewModel.recovered)))}"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintTop_toBottomOf="@id/confirmed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/deaths"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{Html.fromHtml(@string/death_count(ExtensionsKt.toNumber(viewModel.deaths)))}"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintTop_toBottomOf="@id/recovered" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

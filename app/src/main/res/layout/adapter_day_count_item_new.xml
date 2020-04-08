@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.Html" />
+
+        <import type="android.view.View" />
+
+        <import type="info.covid.utils.DateExtensionsKt" />
+
+        <import type="info.covid.utils.ExtensionsKt" />
+
+        <variable
+            name="adapterPosition"
+            type="Integer" />
+
+        <variable
+            name="total"
+            type="Integer" />
+
+        <variable
+            name="maxCount"
+            type="Integer" />
+
+        <variable
+            name="viewModel"
+            type="info.covid.database.enities.CovidDayInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/top_line"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/_30sdp"
+            android:background="@drawable/dot_line"
+            android:visibility="@{adapterPosition == 1 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintLeft_toLeftOf="@id/month"
+            app:layout_constraintRight_toRightOf="@id/month"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{DateExtensionsKt.day(viewModel.date)}"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/month"
+            app:layout_constraintRight_toRightOf="@id/month"
+            app:layout_constraintTop_toBottomOf="@id/top_line" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{DateExtensionsKt.month(viewModel.date)}"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/circle" />
+
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_4sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:progress="@{ExtensionsKt.percentage(maxCount, viewModel.dailyconfirmed)}"
+            android:id="@+id/progress"
+            android:progressDrawable="@drawable/progressbar_rounded_corner"
+            app:layout_constraintBottom_toBottomOf="@id/month"
+            app:layout_constraintLeft_toRightOf="@id/month"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/circle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="@{Html.fromHtml(@string/day_confirm_count(ExtensionsKt.toNumber(viewModel.totalconfirmed), ExtensionsKt.toNumber(viewModel.dailyconfirmed)))}"
+            app:layout_constraintLeft_toLeftOf="@id/progress"
+            app:layout_constraintTop_toBottomOf="@id/progress" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/deaths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Html.fromHtml(@string/day_death_count(ExtensionsKt.toNumber(viewModel.totaldeceased),ExtensionsKt.toNumber(viewModel.dailydeceased)))}"
+            app:layout_constraintLeft_toLeftOf="@id/progress"
+            app:layout_constraintTop_toBottomOf="@id/confirmed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/recovered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Html.fromHtml(@string/day_recovered_count(ExtensionsKt.toNumber(viewModel.totalrecovered), ExtensionsKt.toNumber(viewModel.dailyrecovered)))}"
+            app:layout_constraintLeft_toLeftOf="@id/progress"
+            app:layout_constraintTop_toBottomOf="@id/deaths" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@drawable/dot_line"
+            android:visibility="@{adapterPosition == total ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/month"
+            app:layout_constraintRight_toRightOf="@id/month"
+            app:layout_constraintTop_toBottomOf="@id/month" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

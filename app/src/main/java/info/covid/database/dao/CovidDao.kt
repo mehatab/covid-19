@@ -1,0 +1,38 @@
+package info.covid.database.dao
+
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import info.covid.database.enities.CovidDayInfo
+import info.covid.models.KeyValues
+import info.covid.models.State
+
+@Dao
+interface CovidDao {
+
+  @Query("SELECT * FROM COVID_INFO_DAY")
+  fun getInfo() : LiveData<List<CovidDayInfo>>
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insert(result: List<CovidDayInfo>)
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insert(entry: CovidDayInfo)
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insert(entry: KeyValues)
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insertStateWise(result: List<State>)
+
+  @Query("SELECT * FROM STATE_WISE where state = 'Total'")
+  fun getTotalCount() : LiveData<List<State>>
+
+  @Query("SELECT * FROM STATE_WISE where state != 'Total'")
+  fun getStates() : LiveData<List<State>>
+
+  @Query("SELECT * FROM STATE_WISE where state = 'Total'")
+  fun getToday() : LiveData<List<State>>
+}
