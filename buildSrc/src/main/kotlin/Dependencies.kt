@@ -23,12 +23,13 @@ object Versions {
 
     const val dime = "1.0.6"
 
-    const val fragnav = "3.2.0"
     const val lifecycle = "2.1.0"
     const val MPAndroidChart = "v3.1.0"
     const val AnyChart = "1.1.2"
     const val room = "2.2.5"
     const val multidex = "1.0.3"
+
+    const val nav_version = "2.2.1"
 }
 
 object Deps {
@@ -46,7 +47,8 @@ object Deps {
 
     const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.liveData}"
 
-    const val fragnav = "com.ncapdevi:frag-nav:${Versions.fragnav}"
+    const val navigation = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+    const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
 
     const val MPAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.MPAndroidChart}"
     const val AnyChart = "com.github.AnyChart:AnyChart-Android:${Versions.AnyChart}"

@@ -27,15 +27,12 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: RVAdapter<CovidDayInfo>
     private lateinit var stateAdapter: RVAdapter<CovidDayInfo>
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
-        requireActivity().setTitle(R.string.app_name)
         binding.viewModel = viewModel
         adapter = RVAdapter(R.layout.adapter_day_count_item_new)
         stateAdapter = RVAdapter(R.layout.adapter_state_item)
@@ -54,13 +51,15 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.stateDataList.observe(viewLifecycleOwner, Observer {
-            stateAdapter.setList(it.removeFirst())
+            stateAdapter.setList(it)
         })
 
         viewModel.dayList.observe(viewLifecycleOwner, Observer {
             adapter.setList(it.reversed(), it.maxWith(Comparator { o1, o2 ->
                 o1.dailyconfirmed.toNumber().compareTo(o2.dailyconfirmed.toNumber())
             })?.dailyconfirmed.toNumber())
+
+            binding.rv.scrollToPosition(0)
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer {
@@ -75,6 +74,13 @@ class HomeFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.home_toolbar, menu)
+        val refresh = menu.findItem(R.id.refresh)
+
+        viewModel.refreshing.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                refresh.setActionView(R.layout.action_view_progress)
+            } else refresh.actionView = null
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -92,11 +98,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.chartType.setOnClickListener {
-            showFilterMenu()
+            showChartTypeMenu()
         }
     }
 
-    private fun showFilterMenu() {
+    private fun showChartTypeMenu() {
         val popupMenu = PopupMenu(context, binding.chartType)
         popupMenu.menuInflater.inflate(R.menu.chart_type, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener {
@@ -178,9 +184,5 @@ class HomeFragment : Fragment() {
         }
     }
 
-    companion object {
-        fun newInstance(bundle: Bundle? = Bundle()) = HomeFragment().apply {
-            arguments = bundle
-        }
-    }
+
 }

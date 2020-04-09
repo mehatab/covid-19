@@ -22,7 +22,6 @@ class InfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentInfoBinding.inflate(inflater)
-        requireActivity().setTitle(R.string.info)
 
         binding.whatsapp.setOnClickListener {
             openLink("https://api.whatsapp.com/send?phone=41225017655&text=hi")
@@ -39,11 +38,5 @@ class InfoFragment : Fragment() {
         val browserIntent =
             Intent(Intent.ACTION_VIEW, Uri.parse(link))
         startActivity(browserIntent)
-    }
-
-    companion object {
-        fun newInstance(bundle: Bundle? = Bundle()) = InfoFragment().apply {
-            arguments = bundle
-        }
     }
 }

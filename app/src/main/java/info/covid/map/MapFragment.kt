@@ -31,7 +31,6 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMapBinding.inflate(inflater)
-        requireActivity().setTitle(R.string.map)
         return binding.root
     }
 
@@ -154,12 +153,6 @@ class MapFragment : Fragment() {
     internal inner class LabelDataEntry(enabled: Boolean?) : DataEntry() {
         init {
             setValue("enabled", enabled)
-        }
-    }
-
-    companion object {
-        fun newInstance(bundle: Bundle? = Bundle()) = MapFragment().apply {
-            arguments = bundle
         }
     }
 

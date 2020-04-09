@@ -279,9 +279,6 @@
                     android:id="@+id/daily_chart"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_180sdp"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
                     app:layout_constraintTop_toBottomOf="@id/chart_type" />
 
                 <View

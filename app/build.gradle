@@ -74,7 +74,8 @@ dependencies {
     implementation Deps.sdp
     implementation Deps.ssp
 
-    implementation Deps.fragnav
+    implementation Deps.navigation
+    implementation Deps.navigation_ui
 
     implementation Deps.MPAndroidChart
     implementation Deps.AnyChart

@@ -38,7 +38,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val active = ObservableField(0)
 
 
-    val refreshing = ObservableField(false)
+    val refreshing = MutableLiveData(false)
     val error = MutableLiveData<String>()
 
     var confirmedList: ArrayList<Entry> = ArrayList()
@@ -137,7 +137,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getDate() {
         viewModelScope.launch(Dispatchers.IO) {
-            refreshing.set(true)
+            refreshing.postValue(true)
             repository.getData({ resp ->
 
                 viewModelScope.launch(Dispatchers.IO) {
@@ -174,9 +174,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     }
                 }
 
-                refreshing.set(false)
+                refreshing.postValue(false)
             }, {
-                refreshing.set(false)
+                refreshing.postValue(false)
                 error.postValue(it)
             })
         }
