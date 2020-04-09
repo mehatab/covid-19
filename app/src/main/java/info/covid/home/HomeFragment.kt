@@ -1,22 +1,20 @@
 package info.covid.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.PopupMenu
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import info.covid.R
 import info.covid.common.RVAdapter
 import info.covid.database.enities.CovidDayInfo
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import android.widget.PopupMenu
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.LineDataSet
-import info.covid.R
 import info.covid.databinding.FragmentHomeBinding
 import info.covid.utils.MyXAxisValueFormatter
 import info.covid.utils.removeFirst
@@ -29,12 +27,15 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: RVAdapter<CovidDayInfo>
     private lateinit var stateAdapter: RVAdapter<CovidDayInfo>
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
+        requireActivity().setTitle(R.string.app_name)
         binding.viewModel = viewModel
         adapter = RVAdapter(R.layout.adapter_day_count_item_new)
         stateAdapter = RVAdapter(R.layout.adapter_state_item)
@@ -60,8 +61,6 @@ class HomeFragment : Fragment() {
             adapter.setList(it.reversed(), it.maxWith(Comparator { o1, o2 ->
                 o1.dailyconfirmed.toNumber().compareTo(o2.dailyconfirmed.toNumber())
             })?.dailyconfirmed.toNumber())
-
-            binding.rv.scrollToPosition(0)
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer {
@@ -69,25 +68,26 @@ class HomeFragment : Fragment() {
         })
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
 
-    private fun initListeners() {
-        binding.toolbar.setOnMenuItemClickListener {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_toolbar, menu)
+    }
 
-            when (it.itemId) {
-                R.id.refresh -> {
-                    viewModel.getDate()
-                }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.refresh -> {
+                viewModel.getDate()
             }
-
-            return@setOnMenuItemClickListener true
         }
+        return true
+    }
 
-        binding.filters.setOnCheckedChangeListener { group, checkedId ->
+    private fun initListeners() {
+        binding.filters.setOnCheckedChangeListener { _, checkedId ->
             viewModel.allTime.postValue(checkedId == R.id.all)
         }
 
@@ -117,12 +117,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpChart() {
-        binding.dailyChart.legend.textColor =
-            ContextCompat.getColor(requireActivity(), R.color.textColorPrimary)
-        binding.dailyChart.xAxis.textColor =
-            ContextCompat.getColor(requireActivity(), R.color.textColorPrimary)
-        binding.dailyChart.axisLeft.textColor =
-            ContextCompat.getColor(requireActivity(), R.color.textColorPrimary)
+        binding.dailyChart.legend.textColor = getColor(requireContext(), R.color.textColorPrimary)
+        binding.dailyChart.xAxis.textColor = getColor(requireContext(), R.color.textColorPrimary)
+        binding.dailyChart.axisLeft.textColor = getColor(requireContext(), R.color.textColorPrimary)
         binding.dailyChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         binding.dailyChart.description = null
         binding.dailyChart.axisRight.isEnabled = false
@@ -140,10 +137,11 @@ class HomeFragment : Fragment() {
                     if (isCumulative) viewModel.confirmedList else viewModel.dailyConfirmedList,
                     getString(R.string.confirmed)
                 ).apply {
-                    color = ContextCompat.getColor(requireContext(), R.color.confirmed)
+                    color = getColor(requireContext(), R.color.confirmed)
                     setDrawCircles(false)
                     lineWidth = 4f
                     mode = LineDataSet.Mode.CUBIC_BEZIER
+                    cubicIntensity = 0.10f
                 })
 
             add(
@@ -151,10 +149,11 @@ class HomeFragment : Fragment() {
                     if (isCumulative) viewModel.recoveredList else viewModel.dailyRecoveredList,
                     getString(R.string.recovered)
                 ).apply {
-                    color = ContextCompat.getColor(requireContext(), R.color.recovered)
+                    color = getColor(requireContext(), R.color.recovered)
                     setDrawCircles(false)
                     lineWidth = 4f
                     mode = LineDataSet.Mode.CUBIC_BEZIER
+                    cubicIntensity = 0.10f
                 })
 
             add(
@@ -162,10 +161,11 @@ class HomeFragment : Fragment() {
                     if (isCumulative) viewModel.deceasedList else viewModel.dailyDeceasedList,
                     getString(R.string.deaths)
                 ).apply {
-                    color = ContextCompat.getColor(requireContext(), R.color.deaths)
+                    color = getColor(requireContext(), R.color.deaths)
                     setDrawCircles(false)
                     lineWidth = 4f
                     mode = LineDataSet.Mode.CUBIC_BEZIER
+                    cubicIntensity = 0.10f
                 })
         }
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import info.covid.databinding.FragmentInfoBinding
 import android.content.Intent
 import android.net.Uri
+import info.covid.R
 import java.lang.Exception
 
 
@@ -21,6 +22,7 @@ class InfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentInfoBinding.inflate(inflater)
+        requireActivity().setTitle(R.string.info)
 
         binding.whatsapp.setOnClickListener {
             openLink("https://api.whatsapp.com/send?phone=41225017655&text=hi")

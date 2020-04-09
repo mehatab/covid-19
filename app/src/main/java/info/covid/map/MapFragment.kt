@@ -1,22 +1,17 @@
 package info.covid.map
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.core.map.series.Choropleth
-import com.anychart.enums.Align
 import com.anychart.enums.SelectionMode
 import com.anychart.enums.SidePosition
-import com.anychart.graphics.vector.text.FontStyle
 import com.anychart.scales.LinearColor
 import info.covid.R
 import info.covid.databinding.FragmentMapBinding
@@ -36,6 +31,7 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMapBinding.inflate(inflater)
+        requireActivity().setTitle(R.string.map)
         return binding.root
     }
 

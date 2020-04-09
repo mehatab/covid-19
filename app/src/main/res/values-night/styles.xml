@@ -1,16 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">?colorSurface</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorSurface">@color/colorSurface</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-    </style>
-
-    <style name="MaterialToolbar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
         <item name="iconTint">@color/textColorPrimary</item>
     </style>
+
 </resources>
