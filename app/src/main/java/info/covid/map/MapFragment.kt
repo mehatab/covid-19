@@ -26,157 +26,158 @@ import kotlin.collections.ArrayList
 
 
 class MapFragment : Fragment() {
-  private lateinit var binding: FragmentMapBinding
-  private val viewModel by viewModels<MapViewModel>()
-  private lateinit var series: Choropleth
+    private lateinit var binding: FragmentMapBinding
+    private val viewModel by viewModels<MapViewModel>()
+    private lateinit var series: Choropleth
 
-  override fun onCreateView(
-          inflater: LayoutInflater,
-          container: ViewGroup?,
-          savedInstanceState: Bundle?
-  ): View? {
-    binding = FragmentMapBinding.inflate(inflater)
-    return binding.root
-  }
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    binding.anyChartView.setProgressBar(binding.progressBar)
-
-    val map = AnyChart.map()
-    map.geoData("anychart.maps.india")
-
-    map.background().fill(getBackgroundColor())
-
-    map.colorRange().apply {
-      enabled(true)
-              .colorLineSize(10)
-              .stroke("#B9B9B9")
-              .labels("{ 'padding': 3 }")
-              .labels("{ 'size': 7 }")
-
-      ticks()
-              .enabled(true)
-              .stroke("#B9B9B9")
-              .position(SidePosition.OUTSIDE)
-              .length(10)
-
-      minorTicks()
-              .enabled(true)
-              .stroke("#B9B9B9")
-              .position("outside")
-              .length(5)
-
-      orientation("top")
-
-      padding(30, 0, 0, 0)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentMapBinding.inflate(inflater)
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.anyChartView.setBackgroundColor(getBackgroundColor())
+        binding.anyChartView.setProgressBar(binding.progressBar)
 
-    map.interactivity().selectionMode(SelectionMode.NONE)
+        val map = AnyChart.map()
+        map.geoData("anychart.maps.india")
 
-    map.padding(10, 10, 80, 10)
+        map.background().fill(getBackgroundColor())
 
-    series = map.choropleth(getData())
+        map.colorRange().apply {
+            enabled(true)
+                .colorLineSize(10)
+                .stroke("#B9B9B9")
+                .labels("{ 'padding': 3 }")
+                .labels("{ 'size': 7 }")
 
-    val linearColor = LinearColor.instantiate()
+            ticks()
+                .enabled(true)
+                .stroke("#B9B9B9")
+                .position(SidePosition.OUTSIDE)
+                .length(10)
 
-    linearColor.colors(arrayOf("#c2e9fb", "#81d4fa", "#01579b", "#002746"))
-    series.colorScale(linearColor)
+            minorTicks()
+                .enabled(true)
+                .stroke("#B9B9B9")
+                .position("outside")
+                .length(5)
 
-    series.hovered().apply {
-      fill("#f48fb1")
-      stroke("#f99fb9")
-    }
+            orientation("top")
 
-    series.selected().apply {
-      fill("#c2185b")
-      stroke("#c2185b")
-    }
-
-    series.labels().apply {
-      enabled(true)
-      fontSize(11)
-      fontColor(getString(R.string.label_color))
-      format("{%Value}")
-    }
+            padding(30, 0, 0, 0)
+        }
 
 
-    series.tooltip()
+        map.interactivity().selectionMode(SelectionMode.NONE)
+
+        map.padding(10, 10, 80, 10)
+
+        series = map.choropleth(getData())
+
+        val linearColor = LinearColor.instantiate()
+
+        linearColor.colors(arrayOf("#c2e9fb", "#81d4fa", "#01579b", "#002746"))
+        series.colorScale(linearColor)
+
+        series.hovered().apply {
+            fill("#f48fb1")
+            stroke("#f99fb9")
+        }
+
+        series.selected().apply {
+            fill("#c2185b")
+            stroke("#c2185b")
+        }
+
+        series.labels().apply {
+            enabled(true)
+            fontSize(11)
+            fontColor(getString(R.string.label_color))
+            format("{%Value}")
+        }
+
+
+        series.tooltip()
             .useHtml(true)
             .format(
-                    ("function() {\n" +
-                            "  return '<span style=\"font-size: 13px\">' + this.value + ' Confirmed</span>';\n" +
-                            "}")
+                ("function() {\n" +
+                        "  return '<span style=\"font-size: 13px\">' + this.value + ' Confirmed</span>';\n" +
+                        "}")
             )
 
-    binding.anyChartView.addScript("file:///android_asset/india.js")
-    binding.anyChartView.addScript("file:///android_asset/proj4.js")
-    binding.anyChartView.setChart(map)
+        binding.anyChartView.addScript("file:///android_asset/india.js")
+        binding.anyChartView.addScript("file:///android_asset/proj4.js")
+        binding.anyChartView.setChart(map)
 
-    viewModel.states.observe(viewLifecycleOwner, Observer {
+        viewModel.states.observe(viewLifecycleOwner, Observer {
 
-      val list = arrayListOf<DataEntry>()
+            val list = arrayListOf<DataEntry>()
 
-      it.forEach {
-        list.add(
-                CustomDataEntry(
+            it.forEach {
+                list.add(
+                    CustomDataEntry(
                         "IN." + Const.statesCodes[it.state ?: ""],
                         it.state ?: "",
                         it.confirmed.toNumber()
+                    )
                 )
-        )
-      }
+            }
 
-      series.data(list)
-    })
-  }
-
-
-  private fun getData(): List<DataEntry> {
-    val data = ArrayList<DataEntry>()
-    data.add(CustomDataEntry("IN.DUMYY", "DUMMY", 0))
-    return data
-  }
-
-  internal inner class CustomDataEntry : DataEntry {
-    constructor(id: String, name: String, value: Number) {
-      setValue("id", id)
-      setValue("name", name)
-      setValue("value", value)
+            series.data(list)
+        })
     }
 
-    constructor(id: String, name: String, value: Number, label: LabelDataEntry) {
-      setValue("id", id)
-      setValue("name", name)
-      setValue("value", value)
-      setValue("label", label)
-    }
-  }
 
-  internal inner class LabelDataEntry(enabled: Boolean?) : DataEntry() {
-    init {
-      setValue("enabled", enabled)
+    private fun getData(): List<DataEntry> {
+        val data = ArrayList<DataEntry>()
+        data.add(CustomDataEntry("IN.DUMYY", "DUMMY", 0))
+        return data
     }
-  }
 
-  companion object {
-    fun newInstance(bundle: Bundle? = Bundle()) = MapFragment().apply {
-      arguments = bundle
+    internal inner class CustomDataEntry : DataEntry {
+        constructor(id: String, name: String, value: Number) {
+            setValue("id", id)
+            setValue("name", name)
+            setValue("value", value)
+        }
+
+        constructor(id: String, name: String, value: Number, label: LabelDataEntry) {
+            setValue("id", id)
+            setValue("name", name)
+            setValue("value", value)
+            setValue("label", label)
+        }
     }
-  }
 
-  private fun getBackgroundColor(): String {
-      return getString(R.string.background)
-  }
-
-  private fun isUsingNightModeResources(): Boolean {
-    return when (resources.configuration.uiMode and
-            Configuration.UI_MODE_NIGHT_MASK) {
-      Configuration.UI_MODE_NIGHT_YES -> true
-      Configuration.UI_MODE_NIGHT_NO -> false
-      Configuration.UI_MODE_NIGHT_UNDEFINED -> false
-      else -> false
+    internal inner class LabelDataEntry(enabled: Boolean?) : DataEntry() {
+        init {
+            setValue("enabled", enabled)
+        }
     }
-  }
+
+    companion object {
+        fun newInstance(bundle: Bundle? = Bundle()) = MapFragment().apply {
+            arguments = bundle
+        }
+    }
+
+    private fun getBackgroundColor(): String {
+        return getString(R.string.background)
+    }
+
+    private fun isUsingNightModeResources(): Boolean {
+        return when (resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> true
+            Configuration.UI_MODE_NIGHT_NO -> false
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> false
+            else -> false
+        }
+    }
 }
