@@ -14,6 +14,7 @@ import info.covid.customview.DataPoint
 import info.covid.database.CovidDb
 import info.covid.database.enities.CovidDayInfo
 import info.covid.models.State
+import info.covid.utils.removeFirst
 import info.covid.utils.removeLast
 import info.covid.utils.toMilliseconds
 import info.covid.utils.toNumber
@@ -25,10 +26,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
-    val allTime = MutableLiveData(false)
+    private val dao by lazy { CovidDb.get(application).getCovidDao() }
     private var repository = HomeRepository()
-    private val dao = CovidDb.get(application).getCovidDao()
+
+    val allTime = MutableLiveData(false)
     val dayList = Transformations.switchMap(allTime) { return@switchMap dao.getInfo() }
+
     val confirmed = ObservableField(0)
     val deaths = ObservableField(0)
     val recovered = ObservableField(0)
@@ -47,10 +50,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     var dailyDeceasedList: ArrayList<Entry> = ArrayList()
     var dailyRecoveredList: ArrayList<Entry> = ArrayList()
 
-    val stateDataList = dao.getStates()
-
-    val todayData = Transformations.map(dao.getToday()) {
-        return@map if (!it.isNullOrEmpty()) {
+    val stateDataList = Transformations.map(dao.getStatesWithTotal()) {
+        if (!it.isNullOrEmpty()) {
             it.first().also { total ->
                 today.set(total)
                 confirmed.set(total.confirmed.toNumber())
@@ -58,7 +59,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 active.set(total.active.toNumber())
                 recovered.set(total.recovered.toNumber())
             }
-        } else null
+
+            return@map it.removeFirst()
+        } else return@map it
     }
 
     val today = ObservableField<State>()
@@ -143,7 +146,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                             val today = CovidDayInfo()
 
                             today.apply {
-                                val total = it.statewise?.first() //{ s -> s.state == "Total" }
+                                val total = it.statewise?.first()
 
                                 dailyconfirmed = total?.deltaconfirmed
                                 dailyrecovered = total?.deltarecovered

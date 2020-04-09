@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import info.covid.R
 import info.covid.databinding.FragmentHomeBinding
 import info.covid.utils.MyXAxisValueFormatter
+import info.covid.utils.removeFirst
 import info.covid.utils.toNumber
 
 
@@ -52,7 +53,7 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.stateDataList.observe(viewLifecycleOwner, Observer {
-            stateAdapter.setList(it)
+            stateAdapter.setList(it.removeFirst())
         })
 
         viewModel.dayList.observe(viewLifecycleOwner, Observer {
@@ -65,11 +66,6 @@ class HomeFragment : Fragment() {
 
         viewModel.error.observe(viewLifecycleOwner, Observer {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        })
-
-
-        viewModel.todayData.observe(viewLifecycleOwner, Observer { _ ->
-
         })
     }
 

@@ -2,7 +2,6 @@ package info.covid.utils
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import coil.api.load
 import info.covid.customview.RoundCornerProgressBar
 import info.covid.customview.rings.Rings
 
@@ -24,9 +23,4 @@ fun setFirstText(rings: Rings, death: Int = 0, recovered: Int = 0, active: Int =
 @BindingAdapter("progress")
 fun setProgress(progressBar: RoundCornerProgressBar, progress: Int? = 0) {
     progressBar.progress = progress?.toLong() ?: 0L
-}
-
-@BindingAdapter("imageUrl")
-fun loadImageUrl(imageView: ImageView, url: String?) {
-    imageView.load(url)
 }

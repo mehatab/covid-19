@@ -17,6 +17,14 @@ fun <T> List<T>.removeLast(): List<T> {
 }
 
 
+fun <T> List<T>.removeFirst(): List<T> {
+    return if (isNullOrEmpty()) this else {
+        (this as ArrayList<T>).removeAt(0)
+        return this
+    }
+}
+
+
 fun Int?.percentage(second: String? = null): Int {
     return if (this == null) {
         0
