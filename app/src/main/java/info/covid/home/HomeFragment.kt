@@ -11,7 +11,6 @@ import info.covid.common.RVAdapter
 import info.covid.database.enities.CovidDayInfo
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import android.graphics.Color
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -49,10 +48,7 @@ class HomeFragment : Fragment() {
 
     private fun subscribeToData() {
         viewModel.chartData.observe(viewLifecycleOwner, Observer {
-            if (binding.chartType.text == getString(R.string.cumulative))
-                setData()
-            else
-                setDailyData()
+            setData((binding.chartType.text == getString(R.string.cumulative)))
         })
 
         viewModel.stateDataList.observe(viewLifecycleOwner, Observer {
@@ -72,7 +68,7 @@ class HomeFragment : Fragment() {
         })
 
 
-        viewModel.todayData.observe(viewLifecycleOwner, Observer { resp ->
+        viewModel.todayData.observe(viewLifecycleOwner, Observer { _ ->
 
         })
     }
@@ -111,11 +107,11 @@ class HomeFragment : Fragment() {
             when (it.itemId) {
                 R.id.daily -> {
                     binding.chartType.setText(R.string.daily)
-                    setDailyData()
+                    setData(false)
                 }
                 R.id.cumulative -> {
                     binding.chartType.setText(R.string.cumulative)
-                    setData()
+                    setData(true)
                 }
             }
 
@@ -125,88 +121,65 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpChart() {
-        binding.dailyChart.legend.textColor =   ContextCompat.getColor(requireActivity(), R.color.textColorPrimary)
-        binding.dailyChart.xAxis.textColor = ContextCompat.getColor(requireActivity(), R.color.textColorPrimary)
-        binding.dailyChart.axisLeft.textColor = ContextCompat.getColor(requireActivity(), R.color.textColorPrimary)
+        binding.dailyChart.legend.textColor =
+            ContextCompat.getColor(requireActivity(), R.color.textColorPrimary)
+        binding.dailyChart.xAxis.textColor =
+            ContextCompat.getColor(requireActivity(), R.color.textColorPrimary)
+        binding.dailyChart.axisLeft.textColor =
+            ContextCompat.getColor(requireActivity(), R.color.textColorPrimary)
         binding.dailyChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         binding.dailyChart.description = null
         binding.dailyChart.axisRight.isEnabled = false
         binding.dailyChart.axisLeft.setDrawGridLines(false)
-        //  binding.lineChart.axisLeft.setDrawAxisLine(false)
         binding.dailyChart.xAxis.setDrawGridLines(false)
-        //  binding.lineChart.xAxis.setDrawAxisLine(false)
         binding.dailyChart.xAxis.valueFormatter = MyXAxisValueFormatter()
         binding.dailyChart.setExtraOffsets(0f, 0f, 0f, 15f)
     }
 
-    private fun setData() {
+
+    private fun setData(isCumulative: Boolean) {
         val lines = arrayListOf<ILineDataSet>().apply {
-            add(LineDataSet(viewModel.confirmedList, "Confirmed").apply {
-                color = Color.parseColor("#FF6A88")
-                setDrawCircles(false)
-                lineWidth = 4f
-                mode = LineDataSet.Mode.CUBIC_BEZIER
-            })
+            add(
+                LineDataSet(
+                    if (isCumulative) viewModel.confirmedList else viewModel.dailyConfirmedList,
+                    getString(R.string.confirmed)
+                ).apply {
+                    color = ContextCompat.getColor(requireContext(), R.color.confirmed)
+                    setDrawCircles(false)
+                    lineWidth = 4f
+                    mode = LineDataSet.Mode.CUBIC_BEZIER
+                })
 
-            add(LineDataSet(viewModel.recoveredList, "Recovered").apply {
-                color = Color.parseColor("#7ECA8F")
-                setDrawCircles(false)
-                lineWidth = 4f
-                mode = LineDataSet.Mode.CUBIC_BEZIER
-            })
+            add(
+                LineDataSet(
+                    if (isCumulative) viewModel.recoveredList else viewModel.dailyRecoveredList,
+                    getString(R.string.recovered)
+                ).apply {
+                    color = ContextCompat.getColor(requireContext(), R.color.recovered)
+                    setDrawCircles(false)
+                    lineWidth = 4f
+                    mode = LineDataSet.Mode.CUBIC_BEZIER
+                })
 
-            add(LineDataSet(viewModel.deceasedList, "Deaths").apply {
-                color = Color.parseColor("#A6ACB1")
-                setDrawCircles(false)
-                lineWidth = 4f
-                mode = LineDataSet.Mode.CUBIC_BEZIER
-            })
+            add(
+                LineDataSet(
+                    if (isCumulative) viewModel.deceasedList else viewModel.dailyDeceasedList,
+                    getString(R.string.deaths)
+                ).apply {
+                    color = ContextCompat.getColor(requireContext(), R.color.deaths)
+                    setDrawCircles(false)
+                    lineWidth = 4f
+                    mode = LineDataSet.Mode.CUBIC_BEZIER
+                })
         }
-
-        val data = LineData(lines)
-
-        data.setDrawValues(false)
 
         if (binding.dailyChart.data != null) {
             binding.dailyChart.clearValues()
         }
 
-        binding.dailyChart.data = data
-    }
-
-    private fun setDailyData() {
-        val lines = arrayListOf<ILineDataSet>().apply {
-            add(LineDataSet(viewModel.dailyConfirmedList, "Confirmed").apply {
-                color = Color.parseColor("#FF6A88")
-                setDrawCircles(false)
-                lineWidth = 4f
-                mode = LineDataSet.Mode.CUBIC_BEZIER
-            })
-
-            add(LineDataSet(viewModel.dailyRecoveredList, "Recovered").apply {
-                color = Color.parseColor("#7ECA8F")
-                setDrawCircles(false)
-                lineWidth = 4f
-                mode = LineDataSet.Mode.CUBIC_BEZIER
-            })
-
-            add(LineDataSet(viewModel.dailyDeceasedList, "Deaths").apply {
-                color = Color.parseColor("#A6ACB1")
-                setDrawCircles(false)
-                lineWidth = 4f
-                mode = LineDataSet.Mode.CUBIC_BEZIER
-            })
+        binding.dailyChart.data = LineData(lines).apply {
+            setDrawValues(false)
         }
-
-        val data = LineData(lines)
-
-        data.setDrawValues(false)
-
-        if (binding.dailyChart.data != null) {
-            binding.dailyChart.clearValues()
-        }
-
-        binding.dailyChart.data = data
     }
 
     companion object {

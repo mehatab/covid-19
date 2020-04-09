@@ -7,4 +7,10 @@
     <color name="colorSurface">#141419</color>
     <color name="divider">#36363E</color>
     <color name="textColorPrimary">#FFFFFF</color>
+
+
+    <color name="confirmed">#FF6A88</color>
+    <color name="recovered">#7ECA8F</color>
+    <color name="deaths">#a6acb1</color>
+    <color name="active">#66AFFF</color>
 </resources>

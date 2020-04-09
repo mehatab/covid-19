@@ -119,12 +119,12 @@ class MapFragment : Fragment() {
 
             val list = arrayListOf<DataEntry>()
 
-            it.forEach {
+            it.forEach { state ->
                 list.add(
                     CustomDataEntry(
-                        "IN." + Const.statesCodes[it.state ?: ""],
-                        it.state ?: "",
-                        it.confirmed.toNumber()
+                        "IN." + Const.statesCodes[state.state ?: ""],
+                        state.state ?: "",
+                        state.confirmed.toNumber()
                     )
                 )
             }
@@ -169,15 +169,5 @@ class MapFragment : Fragment() {
 
     private fun getBackgroundColor(): String {
         return getString(R.string.background)
-    }
-
-    private fun isUsingNightModeResources(): Boolean {
-        return when (resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> true
-            Configuration.UI_MODE_NIGHT_NO -> false
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> false
-            else -> false
-        }
     }
 }

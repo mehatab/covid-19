@@ -144,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:text="Confirmed"
+                        android:text="@string/confirmed"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintLeft_toLeftOf="@id/t_confirmed"
                         app:layout_constraintRight_toRightOf="@id/t_confirmed"
@@ -154,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:text="Recovered"
+                        android:text="@string/recovered"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintLeft_toLeftOf="@id/t_recovered"
                         app:layout_constraintRight_toRightOf="@id/t_recovered"
@@ -164,7 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:text="Deaths"
+                        android:text="@string/deaths"
                         android:textSize="@dimen/_8ssp"
                         app:layout_constraintLeft_toLeftOf="@id/t_deaths"
                         app:layout_constraintRight_toRightOf="@id/t_deaths"
@@ -196,10 +196,10 @@
                         android:layout_marginTop="@dimen/_15sdp"
                         app:layout_constraintRight_toLeftOf="@id/center"
                         app:layout_constraintTop_toBottomOf="@id/today_divider"
-                        app:rings_inner_first_color="#a6acb1"
-                        app:rings_inner_second_color="#7eca8f"
-                        app:rings_inner_third_color="#66afff"
-                        app:rings_overall_color="#ff6a88"
+                        app:rings_inner_first_color="@color/deaths"
+                        app:rings_inner_second_color="@color/recovered"
+                        app:rings_inner_third_color="@color/active"
+                        app:rings_overall_color="@color/confirmed"
                         app:rings_text_size="@dimen/_8ssp"
                         app:rings_unfinished_color="@color/divider" />
 
@@ -214,7 +214,7 @@
                         android:text="@{Html.fromHtml(@string/confirm_count(viewModel.confirmed))}"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textSize="@dimen/_11ssp"
-                        app:drawableTint="#ff6a88"
+                        app:drawableTint="@color/confirmed"
                         app:layout_constraintLeft_toRightOf="@id/center"
                         app:layout_constraintTop_toTopOf="@id/rings" />
 
@@ -230,7 +230,7 @@
                         android:text="@{Html.fromHtml(@string/active_count(viewModel.active))}"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textSize="@dimen/_11ssp"
-                        app:drawableTint="#66afff"
+                        app:drawableTint="@color/active"
                         app:layout_constraintLeft_toRightOf="@id/center"
                         app:layout_constraintTop_toBottomOf="@id/confirmed" />
 
@@ -245,7 +245,7 @@
                         android:text="@{Html.fromHtml(@string/recovered_count(viewModel.recovered))}"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textSize="@dimen/_11ssp"
-                        app:drawableTint="#1CDA35"
+                        app:drawableTint="@color/recovered"
                         app:layout_constraintLeft_toRightOf="@id/center"
                         app:layout_constraintTop_toBottomOf="@id/active" />
 
@@ -260,7 +260,7 @@
                         android:text="@{Html.fromHtml(@string/death_count(viewModel.deaths))}"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textSize="@dimen/_11ssp"
-                        app:drawableTint="#a6acb1"
+                        app:drawableTint="@color/deaths"
                         app:layout_constraintLeft_toRightOf="@id/center"
                         app:layout_constraintTop_toBottomOf="@id/recovered" />
 
@@ -312,7 +312,7 @@
                             style="@style/Widget.MaterialComponents.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="All" />
+                            android:text="@string/all" />
 
                     </com.google.android.material.chip.ChipGroup>
 
@@ -344,17 +344,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <!-- IF YOU WANT TO KEEP "Choose Item" always on top of the RecyclerView, put this TextView here
-                 <TextView
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="bottom"
-                      android:text="choose item" />
-                -->
-
-
             </com.google.android.material.appbar.AppBarLayout>
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
