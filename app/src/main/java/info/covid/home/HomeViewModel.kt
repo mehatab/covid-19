@@ -1,9 +1,6 @@
 package info.covid.home
 
 import android.app.Application
-import android.opengl.Visibility
-import android.util.Log
-import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -12,13 +9,11 @@ import androidx.lifecycle.viewModelScope
 import com.github.mikephil.charting.data.Entry
 import info.covid.database.CovidDb
 import info.covid.database.enities.CovidDayInfo
-import info.covid.models.State
+import info.covid.database.enities.State
 import info.covid.utils.removeFirst
-import info.covid.utils.removeLast
 import info.covid.utils.toMilliseconds
 import info.covid.utils.toNumber
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*

@@ -6,8 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import info.covid.database.enities.CovidDayInfo
-import info.covid.models.KeyValues
-import info.covid.models.State
+import info.covid.database.enities.KeyValues
+import info.covid.database.enities.State
 
 @Dao
 interface CovidDao {

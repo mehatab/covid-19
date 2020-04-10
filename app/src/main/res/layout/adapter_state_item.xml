@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="info.covid.models.State" />
+            type="info.covid.database.enities.State" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

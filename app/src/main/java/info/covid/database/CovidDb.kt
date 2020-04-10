@@ -9,8 +9,8 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import info.covid.database.dao.CovidDao
 import info.covid.database.enities.CovidDayInfo
-import info.covid.models.KeyValues
-import info.covid.models.State
+import info.covid.database.enities.KeyValues
+import info.covid.database.enities.State
 
 @Database(
     entities = [CovidDayInfo::class, State::class, KeyValues::class],

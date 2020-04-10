@@ -1,4 +1,4 @@
-package info.covid.models
+package info.covid.database.enities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
