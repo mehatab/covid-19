@@ -80,6 +80,8 @@ dependencies {
     implementation Deps.MPAndroidChart
     implementation Deps.AnyChart
 
+    implementation 'androidx.preference:preference:1.1.0'
+    
     implementation Deps.room
     kapt Deps.room_compiler
     implementation Deps.room_ktx

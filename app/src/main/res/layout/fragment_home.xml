@@ -278,7 +278,7 @@
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/daily_chart"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_180sdp"
+                    android:layout_height="@dimen/_190sdp"
                     app:layout_constraintTop_toBottomOf="@id/chart_type" />
 
                 <View
@@ -308,7 +308,7 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:paddingLeft="@dimen/_10sdp"
-            android:paddingTop="@dimen/_16sdp"
+            android:paddingTop="@dimen/_20sdp"
             android:paddingRight="@dimen/_10sdp"
             android:paddingBottom="@dimen/_60sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

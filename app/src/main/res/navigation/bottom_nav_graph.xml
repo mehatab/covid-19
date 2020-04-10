@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/about"
-        android:name="info.covid.info.InfoFragment"
+        android:name="info.covid.info.AboutFragment"
         android:label="@string/about"
         tools:layout="@layout/fragment_info" />
 

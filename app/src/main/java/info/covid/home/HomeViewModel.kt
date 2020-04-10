@@ -10,7 +10,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.github.mikephil.charting.data.Entry
-import info.covid.customview.DataPoint
 import info.covid.database.CovidDb
 import info.covid.database.enities.CovidDayInfo
 import info.covid.models.State

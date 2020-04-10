@@ -1,0 +1,99 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceScreen
+        android:title="@string/note"
+        app:icon="@drawable/ic_error"
+        app:singleLineTitle="false" />
+
+    <PreferenceScreen
+        android:title="@string/covid_info"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <PreferenceCategory app:title="@string/helpful_links">
+
+        <PreferenceScreen
+            android:title="@string/ministry_of_health"
+            app:icon="@drawable/ic_link">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://www.mohfw.gov.in/" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="@string/helpful_links_by_states"
+            app:icon="@drawable/ic_link">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="@string/who"
+            app:icon="@drawable/ic_link">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="@string/who_whatsapp"
+            app:icon="@drawable/ic_link">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://api.whatsapp.com/send?phone=41225017655&amp;text=hi" />
+
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/other">
+
+        <PreferenceScreen
+            android:title="@string/data_source"
+            app:icon="@drawable/ic_link">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://www.covid19india.org/" />
+
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/developer">
+
+        <PreferenceScreen
+            android:title="@string/twitter"
+            app:icon="@drawable/ic_twitter">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://twitter.com/ShaikhMehatab" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="@string/source_code"
+            app:icon="@drawable/ic_github">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/Mehatab/covid-19" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen app:enabled="false"/>
+        <PreferenceScreen app:enabled="false"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

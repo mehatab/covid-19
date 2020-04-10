@@ -1,8 +1,6 @@
 package info.covid.utils
 
-import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import info.covid.customview.RoundCornerProgressBar
 import info.covid.customview.rings.Rings
 
 @BindingAdapter(value = ["firstText", "secondText", "thiredText", "overAllText"], requireAll = false)
@@ -17,10 +15,4 @@ fun setFirstText(rings: Rings, death: Int = 0, recovered: Int = 0, active: Int =
     rings.setRingInnerThirdProgress(active * 100f / conf, true)
     rings.setRingOverallProgress(100f, true)
     rings.invalidate()
-}
-
-
-@BindingAdapter("progress")
-fun setProgress(progressBar: RoundCornerProgressBar, progress: Int? = 0) {
-    progressBar.progress = progress?.toLong() ?: 0L
 }

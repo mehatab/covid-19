@@ -25,10 +25,4 @@
 
     </declare-styleable>
 
-    <declare-styleable name="RoundCornerProgressBar">
-        <attr name="round_corner_width" format="dimension" />
-        <attr name="round_corner_background_color" format="color"/>
-        <attr name="round_corner_progress_color" format="color"/>
-    </declare-styleable>
-
 </resources>

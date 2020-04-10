@@ -33,4 +33,12 @@
     <string name="confirmed">Confirmed</string>
     <string name="recovered">Recovered</string>
     <string name="deaths">Deaths</string>
+    <string name="source_code">Source Code</string>
+    <string name="helpful_links">Helpful links</string>
+    <string name="helpful_links_by_states">Helpline Numbers [By State]</string>
+    <string name="ministry_of_health">Ministry Of Health</string>
+    <string name="who">WHO</string>
+    <string name="who_whatsapp">WHO Whatsapp</string>
+    <string name="other">Other</string>
+    <string name="data_source">Data Source</string>
 </resources>
