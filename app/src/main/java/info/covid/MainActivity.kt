@@ -1,7 +1,7 @@
 package info.covid
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             topLevelDestinationIds = setOf(
                 R.id.home,
+                R.id.notification,
                 R.id.map,
                 R.id.about
             )

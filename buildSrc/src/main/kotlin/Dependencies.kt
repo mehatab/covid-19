@@ -1,5 +1,3 @@
-import org.gradle.api.JavaVersion
-
 object Config {
     const val compileSdk = 29
     const val buildTools = "29.0.3"
@@ -30,6 +28,9 @@ object Versions {
     const val multidex = "1.0.3"
 
     const val nav_version = "2.2.1"
+
+    const val threetenbp = "1.4.3"
+    const val preference = "1.1.0"
 }
 
 object Deps {
@@ -60,4 +61,8 @@ object Deps {
     const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
     const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
     const val multidex = "com.android.support:multidex:${Versions.multidex}"
+
+    const val threetenbp = "org.threeten:threetenbp:${Versions.threetenbp}"
+    const val preference = "androidx.preference:preference:${Versions.preference}"
+
 }

@@ -17,7 +17,6 @@ import info.covid.common.RVAdapter
 import info.covid.database.enities.CovidDayInfo
 import info.covid.databinding.FragmentHomeBinding
 import info.covid.utils.MyXAxisValueFormatter
-import info.covid.utils.removeFirst
 import info.covid.utils.toNumber
 
 

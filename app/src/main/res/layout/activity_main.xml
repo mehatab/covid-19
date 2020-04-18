@@ -20,9 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:background="@color/colorPrimaryDark"
+        app:itemIconTint="@color/bottom_nav_color"
         app:backgroundTint="@color/colorPrimaryDark"
         app:itemBackground="@color/colorPrimaryDark"
-        app:itemIconTint="?android:attr/textColorPrimary"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav" />

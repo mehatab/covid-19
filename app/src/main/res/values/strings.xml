@@ -41,4 +41,6 @@
     <string name="who_whatsapp">WHO Whatsapp</string>
     <string name="other">Other</string>
     <string name="data_source">Data Source</string>
+    <string name="notification">Notification</string>
+    <string name="updates">Updates</string>
 </resources>
