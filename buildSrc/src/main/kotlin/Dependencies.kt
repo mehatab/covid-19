@@ -4,8 +4,8 @@ object Config {
     const val applicationId = "info.covid"
     const val minSdk = 19
     const val targetSdk = 29
-    const val versionCode = 7
-    const val versionName = "1.3.0"
+    const val versionCode = 8
+    const val versionName = "1.4.0"
 }
 
 object Versions {
