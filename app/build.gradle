@@ -79,7 +79,6 @@ dependencies {
 
     implementation Deps.MPAndroidChart
     implementation Deps.AnyChart
-    implementation Deps.threetenbp
 
     implementation Deps.preference
 
