@@ -1,11 +1,17 @@
 package info.covid.database.enities
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import info.covid.common.DiffItem
+import info.covid.utils.toNumber
 
-@Entity(tableName = "COVID_INFO_DAY",
-    indices = [Index(value = ["date"], unique = true)])
+@Entity(
+    tableName = "COVID_INFO_DAY",
+    indices = [Index(value = ["date"], unique = true)]
+)
 data class CovidDayInfo(
     @PrimaryKey
     @ColumnInfo(name = "dayId")
@@ -18,20 +24,26 @@ data class CovidDayInfo(
     var dailydeceased: String? = null,
     @ColumnInfo(name = "dailyconfirmed")
     @field:Json(name = "dailyconfirmed")
-    var dailyconfirmed:  String? = null,
+    var dailyconfirmed: String? = null,
     @ColumnInfo(name = "dailyrecovered")
     @field:Json(name = "dailyrecovered")
-    var dailyrecovered:  String? = null,
+    var dailyrecovered: String? = null,
     @ColumnInfo(name = "totalconfirmed")
     @field:Json(name = "totalconfirmed")
-    var totalconfirmed:  String? = null,
+    var totalconfirmed: String? = null,
     @ColumnInfo(name = "totaldeceased")
     @field:Json(name = "totaldeceased")
-    var totaldeceased:  String? = null,
+    var totaldeceased: String? = null,
     @ColumnInfo(name = "totalrecovered")
     @field:Json(name = "totalrecovered")
-    var totalrecovered:  String? = null
+    var totalrecovered: String? = null
 ) : DiffItem {
     override fun getId() = dayId ?: 0
     override fun getContent() = toString()
+    fun getTotalActive() =
+        totalconfirmed.toNumber().minus(totaldeceased.toNumber().plus(totalrecovered.toNumber()))
+
+    fun getDailyActive() =
+        dailyconfirmed.toNumber().minus(dailydeceased.toNumber().plus(dailyrecovered.toNumber()))
+
 }

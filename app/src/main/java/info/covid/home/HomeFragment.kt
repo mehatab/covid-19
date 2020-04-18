@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
         binding.viewModel = viewModel
-        adapter = RVAdapter(R.layout.adapter_day_count_item_new)
+        adapter = RVAdapter(R.layout.adapter_day_count_item)
         stateAdapter = RVAdapter(R.layout.adapter_state_item)
         binding.rv.adapter = adapter
         binding.stateRv.adapter = stateAdapter

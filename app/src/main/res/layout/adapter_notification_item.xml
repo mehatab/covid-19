@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:includeFontPadding="false"
+            android:textColor="?android:textColorSecondary"
             android:textSize="@dimen/_9ssp"
             app:layout_constraintLeft_toRightOf="@id/dot"
             app:layout_constraintRight_toRightOf="parent"
@@ -43,11 +44,19 @@
             android:layout_marginTop="@dimen/_2sdp"
             android:includeFontPadding="false"
             android:text="@{viewModel.update}"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/dot"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/time" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/divider"
+            app:layout_constraintTop_toBottomOf="@id/update" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,6 +4,7 @@
     <string name="confirm_count"><![CDATA[<b>%s</b>  Confirmed]]></string>
     <string name="death_count"><![CDATA[<b>%s</b>  Deaths]]></string>
     <string name="recovered_count"><![CDATA[<b>%s</b>  Recovered]]></string>
+    <string name="day_active_count"><![CDATA[<b>%s</b>  Active (<b>%s</b> New)]]></string>
     <string name="day_confirm_count"><![CDATA[<b>%s</b>  Confirmed (<b>%s</b> New)]]></string>
     <string name="day_death_count"><![CDATA[<b>%s</b>  Deaths (<b>%s</b> New)]]></string>
     <string name="day_recovered_count"><![CDATA[<b>%s</b>  Recovered (<b>%s</b> New)]]></string>
@@ -26,7 +27,6 @@
     <string name="_30_days">30 Days</string>
     <string name="daily">Daily</string>
     <string name="cumulative">Cumulative</string>
-    <string name="background">#FFFFFF</string>
     <string name="label_color">#6e6e6e</string>
     <string name="news">News</string>
     <string name="all">All</string>

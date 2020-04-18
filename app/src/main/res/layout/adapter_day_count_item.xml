@@ -3,10 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <data>
-    <import type="android.text.Html"/>
+
+    <import type="android.text.Html" />
+
     <import type="android.view.View" />
-    <import type="info.covid.utils.DateExtensionsKt"/>
-    <import type="info.covid.utils.ExtensionsKt"/>
+
+    <import type="info.covid.utils.DateExtensionsKt" />
+
+    <import type="info.covid.utils.ExtensionsKt" />
 
     <variable
         name="adapterPosition"
@@ -14,6 +18,10 @@
 
     <variable
         name="total"
+        type="Integer" />
+
+    <variable
+        name="maxCount"
         type="Integer" />
 
     <variable
@@ -31,66 +39,104 @@
         android:layout_height="@dimen/_30sdp"
         android:background="@drawable/dot_line"
         android:visibility="@{adapterPosition == 1 ? View.GONE : View.VISIBLE}"
-        app:layout_constraintLeft_toLeftOf="@id/circle"
-        app:layout_constraintRight_toRightOf="@id/circle"
+        app:layout_constraintLeft_toLeftOf="@id/month"
+        app:layout_constraintRight_toRightOf="@id/month"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/circle"
-        android:layout_width="@dimen/_7sdp"
-        android:layout_height="@dimen/_7sdp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_line"
-        app:srcCompat="@drawable/circle" />
-
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/date"
-        android:layout_width="0dp"
+        android:id="@+id/circle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_6sdp"
-        android:text="@{DateExtensionsKt.format(viewModel.date)}"
+        android:text="@{DateExtensionsKt.day(viewModel.date)}"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/_11ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/circle"
-        app:layout_constraintLeft_toRightOf="@id/circle"
+        app:layout_constraintLeft_toLeftOf="@id/month"
+        app:layout_constraintRight_toRightOf="@id/month"
+        app:layout_constraintTop_toBottomOf="@id/top_line" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{DateExtensionsKt.month(viewModel.date)}"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/_11ssp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/circle" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_4sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:progress="@{ExtensionsKt.percentage(maxCount, viewModel.dailyconfirmed)}"
+        android:progressDrawable="@drawable/progressbar_rounded_corner"
+        app:layout_constraintBottom_toBottomOf="@id/month"
+        app:layout_constraintLeft_toRightOf="@id/month"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/circle" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:drawableStart="@drawable/dot"
+        android:drawablePadding="@dimen/_5sdp"
+        android:text="@{Html.fromHtml(@string/day_active_count(viewModel.getTotalActive(), viewModel.getDailyActive()))}"
+        app:drawableTint="@color/active"
+        app:layout_constraintLeft_toLeftOf="@id/progress"
+        app:layout_constraintTop_toBottomOf="@id/progress" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/confirmed"
-        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:drawableStart="@drawable/dot"
+        android:drawablePadding="@dimen/_5sdp"
+        app:drawableTint="@color/confirmed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{Html.fromHtml(@string/day_confirm_count(ExtensionsKt.toNumber(viewModel.totalconfirmed), ExtensionsKt.toNumber(viewModel.dailyconfirmed)))}"
-        app:layout_constraintLeft_toLeftOf="@id/date"
-        app:layout_constraintTop_toBottomOf="@id/date" />
+        app:layout_constraintLeft_toLeftOf="@id/progress"
+        app:layout_constraintTop_toBottomOf="@id/active" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/recovered"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/dot"
+        android:drawablePadding="@dimen/_5sdp"
+        android:text="@{Html.fromHtml(@string/day_recovered_count(ExtensionsKt.toNumber(viewModel.totalrecovered), ExtensionsKt.toNumber(viewModel.dailyrecovered)))}"
+        app:drawableTint="@color/recovered"
+        app:layout_constraintLeft_toLeftOf="@id/progress"
+        app:layout_constraintTop_toBottomOf="@id/confirmed" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/deaths"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:drawableStart="@drawable/dot"
+        android:drawablePadding="@dimen/_5sdp"
         android:text="@{Html.fromHtml(@string/day_death_count(ExtensionsKt.toNumber(viewModel.totaldeceased),ExtensionsKt.toNumber(viewModel.dailydeceased)))}"
-        app:layout_constraintLeft_toLeftOf="@id/date"
-        app:layout_constraintTop_toBottomOf="@id/confirmed" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/recovered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@{Html.fromHtml(@string/day_recovered_count(ExtensionsKt.toNumber(viewModel.totalrecovered), ExtensionsKt.toNumber(viewModel.dailyrecovered)))}"
-        app:layout_constraintLeft_toLeftOf="@id/date"
-        app:layout_constraintTop_toBottomOf="@id/deaths" />
+        app:drawableTint="@color/deaths"
+        app:layout_constraintLeft_toLeftOf="@id/progress"
+        app:layout_constraintTop_toBottomOf="@id/recovered" />
 
     <View
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:background="@drawable/dot_line"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="@{adapterPosition == total ? View.GONE : View.VISIBLE}"
-        app:layout_constraintLeft_toLeftOf="@id/circle"
-        app:layout_constraintRight_toRightOf="@id/circle"
-        app:layout_constraintTop_toBottomOf="@id/circle" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/month"
+        app:layout_constraintRight_toRightOf="@id/month"
+        app:layout_constraintTop_toBottomOf="@id/month" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

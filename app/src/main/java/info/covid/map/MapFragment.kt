@@ -13,11 +13,9 @@ import com.anychart.core.map.series.Choropleth
 import com.anychart.enums.SelectionMode
 import com.anychart.enums.SidePosition
 import com.anychart.scales.LinearColor
-import info.covid.R
 import info.covid.databinding.FragmentMapBinding
 import info.covid.utils.Const
 import info.covid.utils.toNumber
-import kotlin.collections.ArrayList
 
 
 class MapFragment : Fragment() {
@@ -36,13 +34,11 @@ class MapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.anyChartView.setBackgroundColor(getBackgroundColor())
         binding.anyChartView.setProgressBar(binding.progressBar)
 
         val map = AnyChart.map()
         map.geoData("anychart.maps.india")
 
-        map.background().fill(getBackgroundColor())
 
         map.colorRange().apply {
             enabled(true)
@@ -93,7 +89,7 @@ class MapFragment : Fragment() {
         series.labels().apply {
             enabled(true)
             fontSize(11)
-            fontColor(getString(R.string.label_color))
+            fontColor("#000000")
             format("{%Value}")
         }
 
@@ -102,7 +98,7 @@ class MapFragment : Fragment() {
             .useHtml(true)
             .format(
                 ("function() {\n" +
-                        "  return '<span style=\"font-size: 13px\">' + this.value + ' Confirmed</span>';\n" +
+                        "  return '<span style=\"font-size: 13px\">' + this.value + ' Active</span>';\n" +
                         "}")
             )
 
@@ -119,7 +115,7 @@ class MapFragment : Fragment() {
                     CustomDataEntry(
                         "IN." + Const.statesCodes[state.state ?: ""],
                         state.state ?: "",
-                        state.confirmed.toNumber()
+                        state.active.toNumber()
                     )
                 )
             }
@@ -154,9 +150,5 @@ class MapFragment : Fragment() {
         init {
             setValue("enabled", enabled)
         }
-    }
-
-    private fun getBackgroundColor(): String {
-        return getString(R.string.background)
     }
 }
