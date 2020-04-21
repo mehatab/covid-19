@@ -25,6 +25,7 @@
         android:id="@+id/state"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
+        android:elevation="1dp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:onClick="@{(v)-> listener.onItemClick(v, adapterPosition)}"
         android:background="@drawable/state_item_bg"

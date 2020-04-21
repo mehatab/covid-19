@@ -36,6 +36,7 @@
                     <info.covid.customview.RallyLineGraphChart
                         android:id="@+id/active_graph"
                         android:layout_width="0dp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_height="@dimen/_90sdp"
                         android:background="@drawable/state_item_bg"
                         app:curveBorderColor="@color/active"
@@ -68,6 +69,7 @@
 
                     <info.covid.customview.RallyLineGraphChart
                         android:id="@+id/confirmed_graph"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_90sdp"
                         android:background="@drawable/state_item_bg"
@@ -87,7 +89,7 @@
                         android:textSize="@dimen/_15ssp"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="@id/confirmed_graph"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@id/confirmed_graph" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"

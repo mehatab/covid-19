@@ -38,7 +38,7 @@ class RallyLineGraphChart : View {
 
     private val borderPathWidth by lazy {
         TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP, 2.5f, resources.displayMetrics
+            TypedValue.COMPLEX_UNIT_DIP, 2f, resources.displayMetrics
         )
     }
 
@@ -150,7 +150,7 @@ class RallyLineGraphChart : View {
                     0f,
                     height.toFloat(),
                     borderColor,
-                    Color.WHITE,
+                    Color.TRANSPARENT,
                     Shader.TileMode.CLAMP
                 )
             }
