@@ -24,10 +24,9 @@ class RallyLineGraphChart : View {
     private val barPaint = Paint()
     private val pathPaint = Paint()
     private val borderPathPaint = Paint()
+    private val backgroundPaint = Paint()
 
-    private var viewCanvas: Canvas? = null
-    private var bitmap: Bitmap? = null
-    private val bitmapPaint = Paint(Paint.DITHER_FLAG)
+    private var borderColor = Color.BLACK
 
     private var curveTopMargin = 32
 
@@ -71,7 +70,8 @@ class RallyLineGraphChart : View {
                 R.styleable.RallyLineGraphChart_curveFillColor,
                 Color.parseColor("#ff2A2931")
             )
-        val borderColor =
+
+        borderColor =
             ta.getColor(
                 R.styleable.RallyLineGraphChart_curveBorderColor,
                 Color.parseColor("#FF66AFFF")
@@ -110,56 +110,12 @@ class RallyLineGraphChart : View {
         }
     }
 
-//  private fun measureWidth(widthMeasureSpec: Int): Int {
-//    return resolveSizeAndState(MeasureSpec.getSize(widthMeasureSpec), widthMeasureSpec, 0)
-//  }
-//
-//  private fun measureHeight(heightMeasureSpec: Int): Int {
-//    return resolveSizeAndState(MeasureSpec.getSize(heightMeasureSpec), heightMeasureSpec, 0)
-//  }
-
-    override fun onSizeChanged(
-        w: Int,
-        h: Int,
-        oldw: Int,
-        oldh: Int
-    ) {
-        super.onSizeChanged(w, h, oldw, oldh)
-
-        bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-        viewCanvas = Canvas(bitmap!!)
-        //drawVerticalBars(viewCanvas)
-    }
-
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
         drawBezierCurve(canvas)
-        bitmap?.let {
-            canvas?.drawBitmap(it, 0f, 0f, bitmapPaint)
-        }
     }
 
-    private fun drawVerticalBars(canvas: Canvas?) {
-        val largeBarHeight = getLargeBarHeight()
-        val smallBarHeight = height - largeBarHeight / 3
-        val barMargin = (width - (barWidth * VERTICAL_BARS)) / VERTICAL_BARS
-        var startX = 0f
-        val startY = height.toFloat()
-        var endX: Float
-        var endY: Float
-
-        for (i in 0 until VERTICAL_BARS) {
-            startX += barWidth + barMargin
-            endX = startX
-            endY = if (i % INDEX_OF_LARGE_BAR != 2) {
-                smallBarHeight
-            } else {
-                largeBarHeight
-            }
-            canvas?.drawLine(startX, startY, endX, endY, barPaint)
-        }
-    }
 
     private fun drawBezierCurve(canvas: Canvas?) {
 
@@ -182,9 +138,24 @@ class RallyLineGraphChart : View {
             path.lineTo(width.toFloat(), height.toFloat())
             path.lineTo(0f, height.toFloat())
 
-            //canvas?.drawPath(path, pathPaint)
 
             canvas?.drawPath(borderPath, borderPathPaint)
+
+            backgroundPaint.apply {
+                isAntiAlias = false
+                style = Paint.Style.FILL
+                shader = LinearGradient(
+                    0f,
+                    0f,
+                    0f,
+                    height.toFloat(),
+                    borderColor,
+                    Color.WHITE,
+                    Shader.TileMode.CLAMP
+                )
+            }
+
+            canvas?.drawPath(path, backgroundPaint)
 
         } catch (e: Exception) {
         }
