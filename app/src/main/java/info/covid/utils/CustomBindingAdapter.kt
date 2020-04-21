@@ -4,6 +4,7 @@ import android.text.format.DateUtils
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import info.covid.customview.rings.Rings
+import java.text.NumberFormat
 
 @BindingAdapter(
     value = ["firstText", "secondText", "thiredText", "overAllText"],
@@ -32,4 +33,15 @@ fun setRelativeTime(tv: TextView, time: Long? = 0) {
             ""
         }
     } else ""
+}
+
+@BindingAdapter("amount")
+fun setAmount(tv: TextView, amount: String? = null) {
+    tv.text = if (amount.isNullOrEmpty().not()) {
+        try {
+            NumberFormat.getNumberInstance().format(amount.toNumber())
+        } catch (e: Exception) {
+            amount
+        }
+    } else amount
 }

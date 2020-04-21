@@ -12,6 +12,7 @@ import info.covid.common.RVAdapter
 import info.covid.databinding.FragmentStatewiseInfoBinding
 import info.covid.models.District
 import info.covid.utils.Const.STATE
+import info.covid.utils.removeLast
 
 class StateWiseInfoFragment : Fragment() {
     private lateinit var binding: FragmentStatewiseInfoBinding
@@ -40,19 +41,19 @@ class StateWiseInfoFragment : Fragment() {
         })
 
         stateViewModel.recoversMapData.observe(viewLifecycleOwner, Observer {
-            binding.recoveredGraph.addDataPoints(it)
+            binding.recoveredGraph.addDataPoints(it.removeLast())
         })
 
         stateViewModel.confirmedMapData.observe(viewLifecycleOwner, Observer {
-            binding.confirmedGraph.addDataPoints(it)
+            binding.confirmedGraph.addDataPoints(it.removeLast())
         })
 
         stateViewModel.deceasedMapData.observe(viewLifecycleOwner, Observer {
-            binding.deceasedGraph.addDataPoints(it)
+            binding.deceasedGraph.addDataPoints(it.removeLast())
         })
 
         stateViewModel.activeMapData.observe(viewLifecycleOwner, Observer {
-            binding.activeGraph.addDataPoints(it)
+            binding.activeGraph.addDataPoints(it.removeLast())
         })
 
     }
