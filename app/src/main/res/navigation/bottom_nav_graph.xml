@@ -28,4 +28,13 @@
         android:name="info.covid.info.AboutFragment"
         android:label="@string/about" />
 
+    <fragment
+        android:id="@+id/state_wise_info"
+        android:name="info.covid.state.StateWiseInfoFragment"
+        android:label="{title}">
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

@@ -43,4 +43,6 @@
     <string name="data_source">Data Source</string>
     <string name="notification">Notification</string>
     <string name="updates">Updates</string>
+    <string name="state">State</string>
+    <string name="active">Active</string>
 </resources>

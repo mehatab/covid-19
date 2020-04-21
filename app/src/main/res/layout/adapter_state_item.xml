@@ -4,6 +4,14 @@
 
     <data>
 
+        <variable
+            name="listener"
+            type="info.covid.common.RVAdapter.OnItemClickListener" />
+
+        <variable
+            name="adapterPosition"
+            type="Integer" />
+
         <import type="info.covid.utils.ExtensionsKt" />
 
         <import type="android.text.Html" />
@@ -14,9 +22,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/state"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:onClick="@{(v)-> listener.onItemClick(v, adapterPosition)}"
         android:background="@drawable/state_item_bg"
         android:padding="@dimen/_8sdp">
 

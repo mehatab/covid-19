@@ -38,4 +38,7 @@ interface CovidDao {
 
   @Query("SELECT * FROM STATE_WISE where state = 'Total'")
   fun getToday() : LiveData<List<State>>
+
+    @Query("SELECT * FROM STATE_WISE where state =:state")
+    fun getState(state: String): LiveData<State>
 }

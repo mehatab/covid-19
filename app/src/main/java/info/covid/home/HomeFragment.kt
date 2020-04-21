@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -15,12 +16,15 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import info.covid.R
 import info.covid.common.RVAdapter
 import info.covid.database.enities.CovidDayInfo
+import info.covid.database.enities.State
 import info.covid.databinding.FragmentHomeBinding
+import info.covid.utils.Const
+import info.covid.utils.Const.STATE
 import info.covid.utils.MyXAxisValueFormatter
 import info.covid.utils.toNumber
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), RVAdapter.OnItemClickListener {
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: RVAdapter<CovidDayInfo>
@@ -34,7 +38,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater)
         binding.viewModel = viewModel
         adapter = RVAdapter(R.layout.adapter_day_count_item)
-        stateAdapter = RVAdapter(R.layout.adapter_state_item)
+        stateAdapter = RVAdapter(R.layout.adapter_state_item, this)
         binding.rv.adapter = adapter
         binding.stateRv.adapter = stateAdapter
         setUpChart()
@@ -183,5 +187,15 @@ class HomeFragment : Fragment() {
         }
     }
 
-
+    override fun onItemClick(view: View, position: Int) {
+        when (view.id) {
+            R.id.state -> {
+                findNavController().navigate(R.id.state_wise_info, Bundle().apply {
+                    val state = stateAdapter.getItem(position.minus(1)) as State
+                    putString(Const.TITLE, state.state)
+                    putString(STATE, state.state)
+                })
+            }
+        }
+    }
 }

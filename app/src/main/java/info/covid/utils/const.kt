@@ -42,4 +42,7 @@ object Const {
     }
 
 
+    const val STATE_ID = "STATE_ID"
+    const val STATE = "STATE"
+    const val TITLE = "title"
 }
