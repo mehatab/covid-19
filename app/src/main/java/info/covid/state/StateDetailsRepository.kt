@@ -36,6 +36,7 @@ class StateDetailsRepository {
                 val states = resp.body()?.dailyStats ?: emptyList()
                 val mapData = HashMap<String, ArrayList<DataPoint>>()
                 var max = 0f
+
                 states.groupBy { it.status }.forEach {
                     mapData[it.key ?: ""] = arrayListOf()
                     it.value.forEach { stateDailyItem ->
@@ -45,12 +46,15 @@ class StateDetailsRepository {
                     }
                 }
 
-
+                var confirmed = 0f
+                var recovered = 0f
+                var deceased = 0f
                 mapData["Active"] = arrayListOf<DataPoint>().apply {
                     mapData["Confirmed"]?.forEachIndexed { index, dataPoint ->
-                        val recovered = mapData["Recovered"]?.get(index)?.amount ?: 0f
-                        val deceased = mapData["Deceased"]?.get(index)?.amount ?: 0f
-                        add(DataPoint(dataPoint.amount.minus((recovered.plus(deceased)))))
+                        recovered += mapData["Recovered"]?.get(index)?.amount ?: 0f
+                        deceased += mapData["Deceased"]?.get(index)?.amount ?: 0f
+                        confirmed += dataPoint.amount
+                        add(DataPoint(confirmed.minus((recovered.plus(deceased)))))
                     }
                 }
 

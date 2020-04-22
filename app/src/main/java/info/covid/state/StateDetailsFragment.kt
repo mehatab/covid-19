@@ -53,7 +53,7 @@ class StateDetailsFragment : Fragment() {
         })
 
         stateViewModel.activeMapData.observe(viewLifecycleOwner, Observer {
-            binding.activeGraph.addDataPoints(it.removeLast(), stateViewModel.maxNumber)
+            binding.activeGraph.addDataPoints(it.removeLast(), it.maxBy { it.amount }?.amount ?: 0f)
         })
 
     }
