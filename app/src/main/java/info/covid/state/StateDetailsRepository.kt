@@ -9,7 +9,7 @@ class StateDetailsRepository {
     private val apiService = RetrofitClient.get().create(StateAPIService::class.java)
 
     suspend fun <T> getDistrictInfo(
-        state: String,
+        stateName: String,
         success: (DistrictState?) -> T,
         error: (String) -> T
     ) {
@@ -17,7 +17,7 @@ class StateDetailsRepository {
             val resp = apiService.getStateDistrictWise()
             if (resp.isSuccessful) {
                 val states = resp.body() ?: emptyList()
-                val state = states.find { it.state == state }
+                val state = states.find { it.state == stateName }
                 success(state)
             } else error("Oops, Something went wrong")
         } catch (e: Exception) {
