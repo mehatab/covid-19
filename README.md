@@ -1,7 +1,7 @@
 # Coronavirus COVID-19 Tracker Android Application
 This application displays the latest updates based on numbers from https://www.covid19india.org/
 
-##<a href="https://github.com/Mehatab/covid-19/releases/download/v1.4.0/app-release.apk">Download</a> APK & install
+##<a href="https://github.com/Mehatab/covid-19/releases/download/v1.5.0/app-release.apk">Download</a> APK & install
 
 <p align="center">
   <img src="screenshots/screenshot_1.jpg" width="150" title="COVID-19 Info">
