@@ -45,4 +45,5 @@
     <string name="updates">Updates</string>
     <string name="state">State</string>
     <string name="active">Active</string>
+    <string name="state_ut">State/UT</string>
 </resources>

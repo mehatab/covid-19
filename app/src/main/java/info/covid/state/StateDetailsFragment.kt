@@ -14,9 +14,9 @@ import info.covid.models.District
 import info.covid.utils.Const.STATE
 import info.covid.utils.removeLast
 
-class StateWiseInfoFragment : Fragment() {
+class StateDetailsFragment : Fragment() {
     private lateinit var binding: FragmentStatewiseInfoBinding
-    private val stateViewModel by viewModels<StateWiseViewModel>()
+    private val stateViewModel by viewModels<StateDetailsViewModel>()
     private lateinit var adapter: RVAdapter<District>
 
     override fun onCreateView(

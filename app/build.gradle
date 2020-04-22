@@ -78,7 +78,6 @@ dependencies {
     implementation Deps.navigation_ui
 
     implementation Deps.MPAndroidChart
-    implementation Deps.AnyChart
 
     implementation Deps.preference
 

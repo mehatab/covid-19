@@ -4,9 +4,9 @@ import info.covid.customview.DataPoint
 import info.covid.models.DistrictState
 import info.covid.network.RetrofitClient
 
-class StateWiseRepository {
+class StateDetailsRepository {
 
-    private val apiService = RetrofitClient.get().create(StateWiseAPIService::class.java)
+    private val apiService = RetrofitClient.get().create(StateAPIService::class.java)
 
     suspend fun <T> getDistrictInfo(
         state: String,

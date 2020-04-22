@@ -12,4 +12,12 @@
     <color name="recovered">#7ECA8F</color>
     <color name="deaths">#a6acb1</color>
     <color name="active">#66AFFF</color>
+
+    <array name="map_colors">
+        <item>#F6FAFB</item>
+        <item>#B2E2F8</item>
+        <item>#74C9EF</item>
+        <item>#20A3E1</item>
+        <item>#01579b</item>
+    </array>
 </resources>

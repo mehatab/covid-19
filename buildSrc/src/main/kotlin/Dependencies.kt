@@ -4,8 +4,8 @@ object Config {
     const val applicationId = "info.covid"
     const val minSdk = 19
     const val targetSdk = 29
-    const val versionCode = 9
-    const val versionName = "1.4.1"
+    const val versionCode = 10
+    const val versionName = "1.5.0"
 }
 
 object Versions {
@@ -23,7 +23,6 @@ object Versions {
 
     const val lifecycle = "2.1.0"
     const val MPAndroidChart = "v3.1.0"
-    const val AnyChart = "1.1.2"
     const val room = "2.2.5"
     const val multidex = "1.0.3"
 
@@ -51,7 +50,6 @@ object Deps {
     const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
 
     const val MPAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.MPAndroidChart}"
-    const val AnyChart = "com.github.AnyChart:AnyChart-Android:${Versions.AnyChart}"
 
     const val sdp = "com.intuit.sdp:sdp-android:${Versions.dime}"
     const val ssp = "com.intuit.ssp:ssp-android:${Versions.dime}"

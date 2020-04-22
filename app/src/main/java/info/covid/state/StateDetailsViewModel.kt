@@ -11,8 +11,8 @@ import info.covid.models.District
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class StateWiseViewModel(application: Application) : AndroidViewModel(application) {
-    private val stateWiseRepository = StateWiseRepository()
+class StateDetailsViewModel(application: Application) : AndroidViewModel(application) {
+    private val stateWiseRepository = StateDetailsRepository()
     val districts = MutableLiveData<List<District>>()
     val stateName = MutableLiveData<String>()
     val recoversMapData = MutableLiveData<List<DataPoint>>()

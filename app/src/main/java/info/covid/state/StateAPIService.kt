@@ -5,7 +5,7 @@ import info.covid.models.StateDailyResponse
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface StateWiseAPIService {
+interface StateAPIService {
     @GET("/v2/state_district_wise.json")
     suspend fun getStateDistrictWise(): Response<List<DistrictState>>
 

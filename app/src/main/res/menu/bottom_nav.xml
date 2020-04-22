@@ -16,9 +16,9 @@
             android:title="@string/notification" />
 
         <item
-            android:id="@+id/map"
+            android:id="@+id/state_ut"
             android:icon="@drawable/map_selector"
-            android:title="@string/map"/>
+            android:title="@string/state_ut" />
 
         <item
             android:id="@+id/about"

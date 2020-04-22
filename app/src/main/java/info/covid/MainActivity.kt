@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             topLevelDestinationIds = setOf(
                 R.id.home,
                 R.id.notification,
-                R.id.map,
+                R.id.state_ut,
                 R.id.about
             )
         )

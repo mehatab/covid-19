@@ -1,6 +1,7 @@
 package info.covid.utils
 
 import android.text.format.DateUtils
+import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import info.covid.customview.rings.Rings
@@ -44,4 +45,19 @@ fun setAmount(tv: TextView, amount: String? = null) {
             amount
         }
     } else amount
+}
+
+@BindingAdapter("deltaNumber")
+fun setDeltaNumber(tv: TextView, amount: String? = null) {
+    tv.text = if (amount.isNullOrEmpty().not() && amount.toNumber() > 0) {
+        tv.visibility = View.VISIBLE
+        try {
+            NumberFormat.getNumberInstance().format(amount.toNumber())
+        } catch (e: Exception) {
+            amount
+        }
+    } else {
+        tv.visibility = View.INVISIBLE
+        " "
+    }
 }

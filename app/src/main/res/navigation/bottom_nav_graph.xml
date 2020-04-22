@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_notification" />
 
     <fragment
-        android:id="@+id/map"
-        android:name="info.covid.map.MapFragment"
-        android:label="@string/map"
-        tools:layout="@layout/fragment_map" />
+        android:id="@+id/state_ut"
+        android:name="info.covid.state.list.StateListFragment"
+        android:label="@string/state_ut"
+        tools:layout="@layout/fragment_states_ut_list" />
 
     <fragment
         android:id="@+id/about"
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/state_wise_info"
-        android:name="info.covid.state.StateWiseInfoFragment"
+        android:name="info.covid.state.StateDetailsFragment"
         android:label="{title}">
         <argument
             android:name="title"
