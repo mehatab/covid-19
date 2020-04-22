@@ -77,7 +77,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:textSize">@dimen/_8ssp</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
         <item name="layout_constraintWidth_percent">0.2</item>
         <item name="android:paddingTop">@dimen/_10sdp</item>
         <item name="android:paddingBottom">@dimen/_10sdp</item>

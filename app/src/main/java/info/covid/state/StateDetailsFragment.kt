@@ -41,19 +41,19 @@ class StateDetailsFragment : Fragment() {
         })
 
         stateViewModel.recoversMapData.observe(viewLifecycleOwner, Observer {
-            binding.recoveredGraph.addDataPoints(it.removeLast())
+            binding.recoveredGraph.addDataPoints(it.removeLast(), stateViewModel.maxNumber)
         })
 
         stateViewModel.confirmedMapData.observe(viewLifecycleOwner, Observer {
-            binding.confirmedGraph.addDataPoints(it.removeLast())
+            binding.confirmedGraph.addDataPoints(it.removeLast(), stateViewModel.maxNumber)
         })
 
         stateViewModel.deceasedMapData.observe(viewLifecycleOwner, Observer {
-            binding.deceasedGraph.addDataPoints(it.removeLast())
+            binding.deceasedGraph.addDataPoints(it.removeLast(), stateViewModel.maxNumber)
         })
 
         stateViewModel.activeMapData.observe(viewLifecycleOwner, Observer {
-            binding.activeGraph.addDataPoints(it.removeLast())
+            binding.activeGraph.addDataPoints(it.removeLast(), stateViewModel.maxNumber)
         })
 
     }

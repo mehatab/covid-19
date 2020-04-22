@@ -46,9 +46,12 @@ class StateDetailsViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
-    private fun getDailyData(state: String) {
+    var maxNumber = 0f
+
+    private fun getDailyData(stateName: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            stateWiseRepository.getStateDaily(state, {
+            stateWiseRepository.getStateDaily(stateName, { it, max ->
+                maxNumber = max
                 recoversMapData.postValue(it["Recovered"])
                 confirmedMapData.postValue(it["Confirmed"])
                 deceasedMapData.postValue(it["Deceased"])

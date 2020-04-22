@@ -32,19 +32,17 @@
                     app:layout_collapseMode="parallax"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-
                     <info.covid.customview.RallyLineGraphChart
                         android:id="@+id/active_graph"
                         android:layout_width="0dp"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_height="@dimen/_90sdp"
                         android:background="@drawable/state_item_bg"
                         app:curveBorderColor="@color/active"
                         app:curveTopMargin="@dimen/_50sdp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/confirmed_graph"
                         app:layout_constraintWidth_percent="0.48" />
-
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/active"
@@ -53,7 +51,7 @@
                         android:layout_margin="@dimen/_5sdp"
                         amount="@{viewModel.state.active}"
                         android:textColor="@color/active"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="@id/active_graph"
                         app:layout_constraintTop_toTopOf="@id/active_graph" />
@@ -75,7 +73,7 @@
                         android:background="@drawable/state_item_bg"
                         app:curveBorderColor="@color/confirmed"
                         app:curveTopMargin="@dimen/_50sdp"
-                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.48" />
 
@@ -86,10 +84,25 @@
                         android:layout_margin="@dimen/_5sdp"
                         amount="@{viewModel.state.confirmed}"
                         android:textColor="@color/confirmed"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="@id/confirmed_graph"
                         app:layout_constraintTop_toTopOf="@id/confirmed_graph" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/delta_confirmed"
+                        deltaNumber="@{viewModel.state.deltaconfirmed}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:drawableStart="@drawable/ic_up_arrow"
+                        android:drawablePadding="@dimen/_2sdp"
+                        android:textColor="@color/confirmed"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        app:drawableTint="@color/confirmed"
+                        app:layout_constraintBottom_toBottomOf="@id/confirmed"
+                        app:layout_constraintLeft_toRightOf="@id/confirmed" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
@@ -104,12 +117,12 @@
                         android:id="@+id/recovered_graph"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_90sdp"
-                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/state_item_bg"
                         app:curveBorderColor="@color/recovered"
                         app:curveTopMargin="@dimen/_50sdp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/active_graph"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.48" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -119,10 +132,26 @@
                         android:layout_margin="@dimen/_5sdp"
                         amount="@{viewModel.state.recovered}"
                         android:textColor="@color/recovered"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="@id/recovered_graph"
                         app:layout_constraintTop_toTopOf="@id/recovered_graph" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/delta_recovered"
+                        deltaNumber="@{viewModel.state.deltarecovered}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:drawableStart="@drawable/ic_up_arrow"
+                        android:drawablePadding="@dimen/_2sdp"
+                        android:textColor="@color/recovered"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        app:drawableTint="@color/recovered"
+                        app:layout_constraintBottom_toBottomOf="@id/recovered"
+                        app:layout_constraintLeft_toRightOf="@id/recovered" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
@@ -141,7 +170,7 @@
                         android:background="@drawable/state_item_bg"
                         app:curveBorderColor="@color/deaths"
                         app:curveTopMargin="@dimen/_50sdp"
-                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/confirmed_graph"
                         app:layout_constraintWidth_percent="0.48" />
 
@@ -152,10 +181,25 @@
                         android:layout_margin="@dimen/_5sdp"
                         amount="@{viewModel.state.deaths}"
                         android:textColor="@color/deaths"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="@id/deceased_graph"
                         app:layout_constraintTop_toTopOf="@id/deceased_graph" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/delta_deceased"
+                        deltaNumber="@{viewModel.state.deltadeaths}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:drawableStart="@drawable/ic_up_arrow"
+                        android:drawablePadding="@dimen/_2sdp"
+                        android:textColor="@color/deaths"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        app:drawableTint="@color/deaths"
+                        app:layout_constraintBottom_toBottomOf="@id/deceased"
+                        app:layout_constraintLeft_toRightOf="@id/deceased" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"

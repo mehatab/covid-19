@@ -161,14 +161,14 @@ class RallyLineGraphChart : View {
         }
     }
 
-    private fun calculatePointsForData() {
+    private fun calculatePointsForData(max: Float) {
         if (data.isEmpty()) return
 
         val bottomY = getLargeBarHeight() - CURVE_BOTTOM_MARGIN
         val xDiff =
             width.toFloat() / (data.size - 1) //subtract -1 because we want to include position at right side
 
-        val maxData = data.maxBy { it.amount }!!.amount
+        val maxData = max // data.maxBy { it.amount }!!.amount
 
         for (i in 0 until data.size) {
             val y = bottomY - (data[i].amount / maxData * (bottomY - curveTopMargin))
@@ -188,7 +188,7 @@ class RallyLineGraphChart : View {
 
     private fun getLargeBarHeight() = height / 2.1f * 2f
 
-    fun addDataPoints(data: List<DataPoint>) {
+    fun addDataPoints(data: List<DataPoint>, max: Float) {
         //do calculation in worker thread // Note: You should use some safe thread mechanism
         //Calculation logic here are not fine, should updated when more time available
         post {
@@ -198,7 +198,7 @@ class RallyLineGraphChart : View {
 
                 if (oldPoints.isEmpty()) {
                     this.data.addAll(data.toList())
-                    calculatePointsForData()
+                    calculatePointsForData(max)
                     calculateConnectionPointsForBezierCurve()
                     postInvalidate()
                     return@Runnable
@@ -206,7 +206,7 @@ class RallyLineGraphChart : View {
 
                 resetDataPoints()
                 this.data.addAll(data.toList())
-                calculatePointsForData()
+                calculatePointsForData(max)
                 calculateConnectionPointsForBezierCurve()
 
                 val newPoints = points.toList()

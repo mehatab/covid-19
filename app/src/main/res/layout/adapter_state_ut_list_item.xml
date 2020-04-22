@@ -25,9 +25,11 @@
         android:id="@+id/state_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
+        android:foreground="?attr/selectableItemBackground"
         android:onClick="@{(v)-> listener.onItemClick(v, adapterPosition)}"
         android:paddingTop="@dimen/_5sdp">
+
+        <!--        android:background="@{(adapterPosition % 2) == 0 ? @color/divider :  @color/background }"-->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/state"

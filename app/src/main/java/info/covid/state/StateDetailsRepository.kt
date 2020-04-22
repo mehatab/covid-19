@@ -27,7 +27,7 @@ class StateDetailsRepository {
 
     suspend fun <T> getStateDaily(
         state: String,
-        success: (HashMap<String, ArrayList<DataPoint>>) -> T,
+        success: (HashMap<String, ArrayList<DataPoint>>, max: Float) -> T,
         error: (String) -> T
     ) {
         try {
@@ -35,11 +35,13 @@ class StateDetailsRepository {
             if (resp.isSuccessful) {
                 val states = resp.body()?.dailyStats ?: emptyList()
                 val mapData = HashMap<String, ArrayList<DataPoint>>()
-
+                var max = 0f
                 states.groupBy { it.status }.forEach {
                     mapData[it.key ?: ""] = arrayListOf()
                     it.value.forEach { stateDailyItem ->
-                        mapData[it.key]?.add(DataPoint(stateDailyItem.getCount(state).toFloat()))
+                        val temp = stateDailyItem.getCount(state).toFloat()
+                        max = if (max > temp) max else temp
+                        mapData[it.key]?.add(DataPoint(temp))
                     }
                 }
 
@@ -52,7 +54,7 @@ class StateDetailsRepository {
                     }
                 }
 
-                success(mapData)
+                success(mapData, max)
             } else error("Oops, Something went wrong")
         } catch (e: Exception) {
             error("Oops, Something went wrong.")
