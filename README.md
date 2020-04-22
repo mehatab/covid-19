@@ -12,7 +12,7 @@ If you've found an error in this project, please file an issue.
 
 Patches are encouraged, and may be submitted by forking this project and
 submitting a pull request. Since this project is still in development,
-if your change is substantial, please raise an issue first to discuss it.
+if your change is substantial, please raise an issue.
 
 
 ## Maintainer
