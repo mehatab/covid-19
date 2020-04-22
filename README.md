@@ -16,4 +16,4 @@ if your change is substantial, please raise an issue.
 
 
 ## Maintainer
-COVID-19 Info maintainer: Mehatab Shaikh <shaikh.mehatab@gmail.com>
+Mehatab Shaikh <shaikh.mehatab@gmail.com>
