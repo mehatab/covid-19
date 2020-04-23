@@ -62,7 +62,7 @@
                 app:drawableTint="@color/confirmed" />
 
             <com.google.android.material.textview.MaterialTextView
-                amount="@{viewModel.confirmed}"
+                number="@{viewModel.confirmed}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?android:textColorPrimary"
@@ -95,7 +95,7 @@
                 app:drawableTint="@color/recovered" />
 
             <com.google.android.material.textview.MaterialTextView
-                amount="@{viewModel.recovered}"
+                number="@{viewModel.recovered}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?android:textColorPrimary"
@@ -118,7 +118,7 @@
 
 
             <com.google.android.material.textview.MaterialTextView
-                amount="@{viewModel.active}"
+                number="@{viewModel.active}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?android:textColorPrimary"
@@ -153,7 +153,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
-                amount="@{viewModel.deaths}"
+                number="@{viewModel.deaths}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?android:textColorPrimary"

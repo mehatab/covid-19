@@ -26,12 +26,28 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/delta_count"
+            deltaNumber="@{viewModel.delta.confirmed.toString()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:drawableStart="@drawable/ic_up_arrow"
+            android:drawablePadding="@dimen/_2sdp"
+            android:textColor="@color/confirmed"
+            android:textSize="@dimen/_8ssp"
+            android:textStyle="bold"
+            app:drawableTint="@color/confirmed"
+            app:layout_constraintBottom_toBottomOf="@id/count"
+            app:layout_constraintRight_toLeftOf="@id/count"
+            app:layout_constraintTop_toTopOf="@id/count" />
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_8sdp"
-            amount="@{viewModel.confirmed.toString()}"
-            android:textColor="@color/confirmed"
+            number="@{viewModel.confirmed.toString()}"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
             app:layout_constraintRight_toRightOf="parent"

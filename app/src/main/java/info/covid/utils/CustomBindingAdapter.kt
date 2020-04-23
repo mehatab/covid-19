@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import info.covid.customview.rings.Rings
+import info.covid.customview.sectionbar.SectionProgressBar
 import java.text.NumberFormat
 
 @BindingAdapter(
@@ -36,8 +37,8 @@ fun setRelativeTime(tv: TextView, time: Long? = 0) {
     } else ""
 }
 
-@BindingAdapter("amount")
-fun setAmount(tv: TextView, amount: String? = null) {
+@BindingAdapter("number")
+fun setNumber(tv: TextView, amount: String? = null) {
     tv.text = if (amount.isNullOrEmpty().not()) {
         try {
             NumberFormat.getNumberInstance().format(amount.toNumber())
@@ -60,4 +61,19 @@ fun setDeltaNumber(tv: TextView, amount: String? = null) {
         tv.visibility = View.INVISIBLE
         " "
     }
+}
+
+@BindingAdapter(value = ["confirmed_cases", "active_cases", "recovered_cases", "deaths_cases"])
+fun setProgress(
+    sp: SectionProgressBar,
+    c: String? = null,
+    a: Int? = 0,
+    r: String? = null,
+    d: String? = null
+) {
+    sp.setProgress(
+        (a?.times(100f)?.div(c.toNumber()) ?: 0f).div(100),
+        r.toNumber().times(100f).div(c.toNumber()).div(100),
+        d.toNumber().times(100f).div(c.toNumber()).div(100)
+    )
 }

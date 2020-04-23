@@ -4,6 +4,7 @@
 
     <data>
 
+        <import type="info.covid.utils.DateExtensionsKt" />
         <variable
             name="viewModel"
             type="info.covid.state.StateDetailsViewModel" />
@@ -36,20 +37,20 @@
                         android:id="@+id/active_graph"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_90sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
                         android:background="@drawable/state_item_bg"
                         app:curveBorderColor="@color/active"
                         app:curveTopMargin="@dimen/_50sdp"
-                        android:layout_marginTop="@dimen/_16sdp"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/confirmed_graph"
                         app:layout_constraintWidth_percent="0.48" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/active"
+                        number="@{viewModel.state.active}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        amount="@{viewModel.state.active}"
                         android:textColor="@color/active"
                         android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
@@ -67,9 +68,9 @@
 
                     <info.covid.customview.RallyLineGraphChart
                         android:id="@+id/confirmed_graph"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_90sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/state_item_bg"
                         app:curveBorderColor="@color/confirmed"
                         app:curveTopMargin="@dimen/_50sdp"
@@ -79,10 +80,10 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/confirmed"
+                        number="@{viewModel.state.confirmed}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        amount="@{viewModel.state.confirmed}"
                         android:textColor="@color/confirmed"
                         android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
@@ -127,10 +128,10 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/recovered"
+                        number="@{viewModel.state.recovered}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        amount="@{viewModel.state.recovered}"
                         android:textColor="@color/recovered"
                         android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
@@ -176,10 +177,10 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/deceased"
+                        number="@{viewModel.state.deaths}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        amount="@{viewModel.state.deaths}"
                         android:textColor="@color/deaths"
                         android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
@@ -210,6 +211,17 @@
                         app:layout_constraintLeft_toLeftOf="@id/deceased_graph"
                         app:layout_constraintTop_toBottomOf="@id/deceased" />
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:text="@{DateExtensionsKt.relativeTime(viewModel.state.lastupdatedtime)}"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/deceased_graph" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.appbar.AppBarLayout>
@@ -219,7 +231,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:paddingVertical="@dimen/_20sdp"
                 app:layoutManager="LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
