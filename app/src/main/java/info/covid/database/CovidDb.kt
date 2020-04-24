@@ -8,17 +8,22 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import info.covid.database.dao.CovidDao
+import info.covid.database.dao.FilterDao
+import info.covid.database.dao.ResourcesDao
 import info.covid.database.enities.CovidDayInfo
 import info.covid.database.enities.KeyValues
+import info.covid.database.enities.Resources
 import info.covid.database.enities.State
 
 @Database(
-    entities = [CovidDayInfo::class, State::class, KeyValues::class],
-    version = 3
+    entities = [CovidDayInfo::class, State::class, KeyValues::class, Resources::class],
+    version = 4
 )
 abstract class CovidDb : RoomDatabase() {
 
     abstract fun getCovidDao(): CovidDao
+    abstract fun getResourcesDao(): ResourcesDao
+    abstract fun getFilterDao(): FilterDao
 
     companion object {
         private var INSTANCE: CovidDb? = null
@@ -39,6 +44,12 @@ abstract class CovidDb : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS `resources` (`resourceId` INTEGER NOT NULL, `category` TEXT, `city` TEXT,  `contact` TEXT, `organisation` TEXT, `description` TEXT, `phonenumber` TEXT, `state` TEXT, PRIMARY KEY(`resourceId`))")
+            }
+        }
+
         @JvmStatic
         fun get(context: Context): CovidDb {
             if (INSTANCE == null) {
@@ -46,6 +57,7 @@ abstract class CovidDb : RoomDatabase() {
                     Room.databaseBuilder(context, CovidDb::class.java, "coviddb.db")
                         .addMigrations(MIGRATION_2_3)
                         .addMigrations(MIGRATION_1_2)
+                        .addMigrations(MIGRATION_3_4)
                         .build()
             }
             return INSTANCE!!

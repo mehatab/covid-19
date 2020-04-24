@@ -54,8 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_50sdp"
+            android:paddingVertical="@dimen/_10sdp"
             app:layoutManager="LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />

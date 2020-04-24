@@ -4,6 +4,7 @@ import android.text.format.DateUtils
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.google.android.material.chip.ChipGroup
 import info.covid.customview.rings.Rings
 import info.covid.customview.sectionbar.SectionProgressBar
 import java.text.NumberFormat
@@ -76,4 +77,16 @@ fun setProgress(
         r.toNumber().times(100f).div(c.toNumber()).div(100),
         d.toNumber().times(100f).div(c.toNumber()).div(100)
     )
+}
+
+
+@BindingAdapter("onItemSelected")
+fun onItemSelected(cg: ChipGroup, listener: OnItemSelectionListener) {
+    cg.setOnCheckedChangeListener { _, checkedId ->
+        listener.onItemSelected(checkedId)
+    }
+}
+
+interface OnItemSelectionListener {
+    fun onItemSelected(id: Int)
 }

@@ -21,6 +21,11 @@
             android:title="@string/state_ut" />
 
         <item
+            android:id="@+id/essentials"
+            android:icon="@drawable/search_selector"
+            android:title="@string/essentials" />
+
+        <item
             android:id="@+id/about"
             android:icon="@drawable/info_selector"
             android:title="@string/about" />

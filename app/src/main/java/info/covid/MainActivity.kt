@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home,
                 R.id.notification,
                 R.id.state_ut,
+                R.id.essentials,
                 R.id.about
             )
         )
@@ -43,4 +44,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp() = NavHostFragment.findNavController(fragNavHost).navigateUp()
 
+    override fun onBackPressed() {
+        if (onBackPressedDispatcher.hasEnabledCallbacks())
+            onBackPressedDispatcher.onBackPressed()
+        else
+            super.onBackPressed()
+    }
 }

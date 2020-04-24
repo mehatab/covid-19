@@ -46,4 +46,10 @@
     <string name="state">State</string>
     <string name="active">Active</string>
     <string name="state_ut">State/UT</string>
+    <string name="essentials">Essentials</string>
+    <string name="filters">Filters</string>
+    <string name="cities">Cities</string>
+    <string name="categories">Categories</string>
+    <string name="a11y_filter_applied">applied</string>
+    <string name="a11y_filter_not_applied">not applied</string>
 </resources>

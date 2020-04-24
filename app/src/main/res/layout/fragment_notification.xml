@@ -28,8 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_50sdp"
+            android:paddingVertical="@dimen/_10sdp"
             app:layoutManager="LinearLayoutManager" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
