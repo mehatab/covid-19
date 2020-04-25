@@ -1,15 +1,14 @@
 package info.covid.home
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -17,19 +16,15 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import info.covid.R
 import info.covid.common.RVAdapter
 import info.covid.database.enities.CovidDayInfo
-import info.covid.database.enities.State
 import info.covid.databinding.FragmentHomeBinding
-import info.covid.utils.Const
-import info.covid.utils.Const.STATE
 import info.covid.utils.MyXAxisValueFormatter
 import info.covid.utils.toNumber
 
 
-class HomeFragment : Fragment(), RVAdapter.OnItemClickListener {
+class HomeFragment : Fragment() {
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: RVAdapter<CovidDayInfo>
-    private lateinit var stateAdapter: RVAdapter<CovidDayInfo>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,9 +34,7 @@ class HomeFragment : Fragment(), RVAdapter.OnItemClickListener {
         binding = FragmentHomeBinding.inflate(inflater)
         binding.viewModel = viewModel
         adapter = RVAdapter(R.layout.adapter_day_count_item)
-        stateAdapter = RVAdapter(R.layout.adapter_state_item, this)
         binding.rv.adapter = adapter
-        binding.stateRv.adapter = stateAdapter
         setUpChart()
         subscribeToData()
         initListeners()
@@ -55,7 +48,7 @@ class HomeFragment : Fragment(), RVAdapter.OnItemClickListener {
         })
 
         viewModel.stateDataList.observe(viewLifecycleOwner, Observer {
-            stateAdapter.setList(it)
+
         })
 
         viewModel.dayList.observe(viewLifecycleOwner, Observer {
@@ -65,35 +58,6 @@ class HomeFragment : Fragment(), RVAdapter.OnItemClickListener {
 
             binding.rv.scrollToPosition(0)
         })
-
-        viewModel.error.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        })
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.home_toolbar, menu)
-        val refresh = menu.findItem(R.id.refresh)
-
-        viewModel.refreshing.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                refresh.setActionView(R.layout.action_view_progress)
-            } else refresh.actionView = null
-        })
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.refresh -> {
-                viewModel.getDate()
-            }
-        }
-        return true
     }
 
     private fun initListeners() {
@@ -186,22 +150,9 @@ class HomeFragment : Fragment(), RVAdapter.OnItemClickListener {
         binding.dailyChart.data = LineData(lines).apply {
             setDrawValues(false)
         }
+
+        binding.dailyChart.data.notifyDataChanged()
+        binding.dailyChart.invalidate()
     }
 
-    override fun onItemClick(view: View, position: Int) {
-        when (view.id) {
-            R.id.state -> {
-                findNavController().navigate(R.id.state_wise_info, Bundle().apply {
-                    val state = stateAdapter.getItem(position.minus(1)) as State
-                    putString(Const.TITLE, state.state)
-                    putString(STATE, state.state)
-                })
-            }
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode())
-    }
 }

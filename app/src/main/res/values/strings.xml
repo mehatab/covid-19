@@ -52,4 +52,5 @@
     <string name="categories">Categories</string>
     <string name="a11y_filter_applied">applied</string>
     <string name="a11y_filter_not_applied">not applied</string>
+    <string name="deepdive">Deep dive</string>
 </resources>

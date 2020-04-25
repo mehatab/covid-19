@@ -16,9 +16,9 @@
             android:title="@string/notification" />
 
         <item
-            android:id="@+id/state_ut"
-            android:icon="@drawable/map_selector"
-            android:title="@string/state_ut" />
+            android:id="@+id/deepdive"
+            android:icon="@drawable/pie_selector"
+            android:title="@string/deepdive" />
 
         <item
             android:id="@+id/essentials"

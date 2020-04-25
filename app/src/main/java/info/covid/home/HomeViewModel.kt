@@ -5,7 +5,6 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.viewModelScope
 import com.github.mikephil.charting.data.Entry
 import info.covid.database.CovidDb
 import info.covid.database.enities.CovidDayInfo
@@ -13,27 +12,20 @@ import info.covid.database.enities.State
 import info.covid.utils.removeFirst
 import info.covid.utils.toMilliseconds
 import info.covid.utils.toNumber
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val dao by lazy { CovidDb.get(application).getCovidDao() }
-    private var repository = HomeRepository()
 
     val allTime = MutableLiveData(false)
-    val dayList = Transformations.switchMap(allTime) { return@switchMap dao.getInfo() }
+    val dayList = Transformations.switchMap(allTime) {
+        return@switchMap dao.getInfo()
+    }
 
     val confirmed = ObservableField(0)
     val deaths = ObservableField(0)
     val recovered = ObservableField(0)
     val active = ObservableField(0)
 
-
-    val refreshing = MutableLiveData(false)
-    val error = MutableLiveData<String>()
 
     var confirmedList: ArrayList<Entry> = ArrayList()
     var deceasedList: ArrayList<Entry> = ArrayList()
@@ -59,11 +51,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     val today = ObservableField<State>()
-
-    val todayDate by lazy {
-        SimpleDateFormat("dd MMMM ", Locale.getDefault()).format(Date())
-    }
-
 
     val chartData = Transformations.map(dayList) { resp ->
         confirmedList.clear()
@@ -121,58 +108,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     )
                 }
             }
-        }
-    }
-
-    init {
-        getDate()
-    }
-
-
-    fun getDate() {
-        viewModelScope.launch(Dispatchers.IO) {
-            refreshing.postValue(true)
-            repository.getData({ resp ->
-
-                viewModelScope.launch(Dispatchers.IO) {
-                    resp?.let {
-                        if (!resp.result.isNullOrEmpty()) {
-                            val today = CovidDayInfo()
-
-                            today.apply {
-                                val total = it.statewise?.first()
-
-                                dailyconfirmed = total?.deltaconfirmed
-                                dailyrecovered = total?.deltarecovered
-                                dailydeceased = total?.deltadeaths
-                                totalconfirmed = total?.confirmed
-                                totaldeceased = total?.deaths
-                                totalrecovered = total?.recovered
-
-                                date = todayDate
-                            }
-
-
-                            viewModelScope.launch(Dispatchers.IO) {
-                                dao.insert(it.result ?: emptyList())
-                                dao.insert(today)
-                                if (!it.key_values.isNullOrEmpty()) {
-                                    dao.insert(it.key_values!![0].apply {
-                                        TodayID = 1
-                                    })
-                                }
-
-                                dao.insertStateWise(it.statewise ?: emptyList())
-                            }
-                        }
-                    }
-                }
-
-                refreshing.postValue(false)
-            }, {
-                refreshing.postValue(false)
-                error.postValue(it)
-            })
         }
     }
 }

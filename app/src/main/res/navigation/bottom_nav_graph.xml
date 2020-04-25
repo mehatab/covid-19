@@ -7,8 +7,20 @@
 
     <fragment
         android:id="@+id/home"
+        android:name="info.covid.state.list.StateListFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_states_ut_list">
+
+        <action
+            android:id="@+id/state_details"
+            app:destination="@id/state_wise_info" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/deepdive"
         android:name="info.covid.home.HomeFragment"
-        android:label="@string/app_name"
+        android:label="@string/deepdive"
         tools:layout="@layout/fragment_home" />
 
     <fragment
@@ -16,12 +28,6 @@
         android:name="info.covid.notification.NotificationFragment"
         android:label="@string/updates"
         tools:layout="@layout/fragment_notification" />
-
-    <fragment
-        android:id="@+id/state_ut"
-        android:name="info.covid.state.list.StateListFragment"
-        android:label="@string/state_ut"
-        tools:layout="@layout/fragment_states_ut_list" />
 
     <fragment
         android:id="@+id/essentials"
@@ -38,10 +44,12 @@
         android:id="@+id/state_wise_info"
         android:name="info.covid.state.StateDetailsFragment"
         android:label="{title}"
-        tools:layout="@layout/fragment_states_ut_list">
+        tools:layout="@layout/fragment_statewise_info">
+
         <argument
             android:name="title"
             app:argType="string" />
+
     </fragment>
 
 </navigation>

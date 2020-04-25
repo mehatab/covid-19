@@ -26,6 +26,8 @@
             android:id="@+id/coordinator_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="0dp"
+            app:elevation="0dp"
             android:background="@android:color/transparent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -290,17 +292,6 @@
                     style="@style/Divider"
                     android:layout_width="match_parent"
                     app:layout_constraintTop_toBottomOf="@id/daily_chart" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/state_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_10sdp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/daily_chart_divider" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
