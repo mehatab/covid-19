@@ -25,20 +25,22 @@ class MainActivity : AppCompatActivity() {
         bottom_nav.setupWithNavController(navController)
 
         val appBarConfiguration = AppBarConfiguration(
-            topLevelDestinationIds = setOf(
-                R.id.home,
-                R.id.notification,
-                R.id.deepdive,
-                R.id.essentials,
-                R.id.about
-            )
+                topLevelDestinationIds = setOf(
+                        R.id.home,
+                        R.id.notification,
+                        R.id.state_list,
+                        R.id.essentials,
+                        R.id.about
+                )
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            bottom_nav.visibility =
-                if (destination.id == R.id.state_wise_info) View.GONE else View.VISIBLE
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            bottom_nav.visibility = when (destination.id) {
+                R.id.state_wise_info -> View.GONE
+                else -> View.VISIBLE
+            }
         }
     }
 

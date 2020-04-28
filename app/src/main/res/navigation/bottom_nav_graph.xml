@@ -6,9 +6,9 @@
     app:startDestination="@id/home">
 
     <fragment
-        android:id="@+id/home"
+        android:id="@+id/state_list"
         android:name="info.covid.state.list.StateListFragment"
-        android:label="@string/home"
+        android:label="@string/state_ut"
         tools:layout="@layout/fragment_states_ut_list">
 
         <action
@@ -18,9 +18,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/deepdive"
+        android:id="@+id/home"
         android:name="info.covid.home.HomeFragment"
-        android:label="@string/deepdive"
+        android:label="@string/home"
         tools:layout="@layout/fragment_home" />
 
     <fragment

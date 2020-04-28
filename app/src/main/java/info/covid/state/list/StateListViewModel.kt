@@ -1,30 +1,26 @@
 package info.covid.state.list
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import info.covid.customview.DataPoint
 import info.covid.database.CovidDb
-import info.covid.database.enities.CovidDayInfo
-import info.covid.home.HomeRepository
 import info.covid.utils.toNumber
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
+import kotlin.collections.Map
+import kotlin.collections.arrayListOf
+import kotlin.collections.forEachIndexed
+import kotlin.collections.map
+import kotlin.collections.maxBy
+import kotlin.collections.set
 
 class StateListViewModel(application: Application) : AndroidViewModel(application) {
     private val dao = CovidDb.get(application).getCovidDao()
 
     val states = dao.getStates()
 
-    private var repository = HomeRepository()
-    val refreshing = MutableLiveData(false)
-    val error = MutableLiveData<String>()
-
-    val todayDate by lazy {
-        SimpleDateFormat("dd MMMM ", Locale.getDefault()).format(Date())
-    }
 
     val total = dao.getTotal()
 
@@ -69,56 +65,4 @@ class StateListViewModel(application: Application) : AndroidViewModel(applicatio
         return@map mapData
     }
 
-
-    init {
-        getDate()
-    }
-
-
-    fun getDate() {
-        viewModelScope.launch(Dispatchers.IO) {
-            refreshing.postValue(true)
-            repository.getData({ resp ->
-
-                viewModelScope.launch(Dispatchers.IO) {
-                    resp?.let {
-                        if (!resp.result.isNullOrEmpty()) {
-                            val today = CovidDayInfo()
-
-                            today.apply {
-                                val total = it.statewise?.first()
-
-                                dailyconfirmed = total?.deltaconfirmed
-                                dailyrecovered = total?.deltarecovered
-                                dailydeceased = total?.deltadeaths
-                                totalconfirmed = total?.confirmed
-                                totaldeceased = total?.deaths
-                                totalrecovered = total?.recovered
-
-                                date = todayDate
-                            }
-
-
-                            viewModelScope.launch(Dispatchers.IO) {
-                                dao.insert(it.result ?: emptyList())
-                                dao.insert(today)
-                                if (!it.key_values.isNullOrEmpty()) {
-                                    dao.insert(it.key_values!![0].apply {
-                                        TodayID = 1
-                                    })
-                                }
-
-                                dao.insertStateWise(it.statewise ?: emptyList())
-                            }
-                        }
-                    }
-                }
-
-                refreshing.postValue(false)
-            }, {
-                refreshing.postValue(false)
-                error.postValue(it)
-            })
-        }
-    }
 }

@@ -1,10 +1,9 @@
 package info.covid.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -49,6 +48,10 @@ class HomeFragment : Fragment() {
 
         viewModel.stateDataList.observe(viewLifecycleOwner, Observer {
 
+        })
+
+        viewModel.error.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })
 
         viewModel.dayList.observe(viewLifecycleOwner, Observer {
@@ -155,4 +158,28 @@ class HomeFragment : Fragment() {
         binding.dailyChart.invalidate()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_toolbar, menu)
+        val refresh = menu.findItem(R.id.refresh)
+
+        viewModel.refreshing.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                refresh.setActionView(R.layout.action_view_progress)
+            } else refresh.actionView = null
+        })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.refresh -> {
+                viewModel.getDate()
+            }
+        }
+        return true
+    }
 }

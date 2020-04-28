@@ -1,8 +1,9 @@
 package info.covid.state.list
 
 import android.os.Bundle
-import android.view.*
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -63,36 +64,7 @@ class StateListFragment : Fragment(), RVAdapter.OnItemClickListener {
             }
         })
 
-        mViewModel.error.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        })
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.home_toolbar, menu)
-        val refresh = menu.findItem(R.id.refresh)
-
-        mViewModel.refreshing.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                refresh.setActionView(R.layout.action_view_progress)
-            } else refresh.actionView = null
-        })
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.refresh -> {
-                mViewModel.getDate()
-            }
-        }
-        return true
-    }
-
 
     override fun onItemClick(view: View, position: Int) {
         when (view.id) {
