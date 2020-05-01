@@ -92,7 +92,6 @@
         </PreferenceScreen>
 
         <PreferenceScreen app:enabled="false"/>
-        <PreferenceScreen app:enabled="false"/>
 
     </PreferenceCategory>
 

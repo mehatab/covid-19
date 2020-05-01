@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class StateDetailsViewModel(application: Application) : AndroidViewModel(application) {
-    private val stateWiseRepository = StateDetailsRepository()
     val districts = MutableLiveData<List<District>>()
     val stateName = MutableLiveData<String>()
     val recoversMapData = MutableLiveData<List<DataPoint>>()
@@ -36,7 +35,7 @@ class StateDetailsViewModel(application: Application) : AndroidViewModel(applica
     private fun getDistrictsData(state: String) {
         progress.set(View.VISIBLE)
         viewModelScope.launch(Dispatchers.IO) {
-            stateWiseRepository.getDistrictInfo(state, {
+            StateDetailsRepository.getDistrictInfo(state, {
                 districts.postValue((it?.districts?.sortedByDescending { it.confirmed }
                     ?: emptyList()))
                 progress.set(View.GONE)
@@ -50,7 +49,7 @@ class StateDetailsViewModel(application: Application) : AndroidViewModel(applica
 
     private fun getDailyData(stateName: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            stateWiseRepository.getStateDaily(stateName, { it, max ->
+            StateDetailsRepository.getStateDaily(stateName, { it, max ->
                 maxNumber = max
                 recoversMapData.postValue(it["Recovered"])
                 confirmedMapData.postValue(it["Confirmed"])

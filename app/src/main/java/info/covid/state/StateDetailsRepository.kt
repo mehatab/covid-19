@@ -2,11 +2,14 @@ package info.covid.state
 
 import info.covid.customview.DataPoint
 import info.covid.models.DistrictState
+import info.covid.models.StateDailyResponse
 import info.covid.network.RetrofitClient
+import retrofit2.Response
 
-class StateDetailsRepository {
+object StateDetailsRepository {
 
     private val apiService = RetrofitClient.get().create(StateAPIService::class.java)
+    private lateinit var districtListResp: Response<List<DistrictState>>
 
     suspend fun <T> getDistrictInfo(
         stateName: String,
@@ -14,9 +17,12 @@ class StateDetailsRepository {
         error: (String) -> T
     ) {
         try {
-            val resp = apiService.getStateDistrictWise()
-            if (resp.isSuccessful) {
-                val states = resp.body() ?: emptyList()
+
+            if (::districtListResp.isInitialized.not() || districtListResp.isSuccessful.not())
+                districtListResp = apiService.getStateDistrictWise()
+
+            if (districtListResp.isSuccessful) {
+                val states = districtListResp.body() ?: emptyList()
                 val state = states.find { it.state == stateName }
                 success(state)
             } else error("Oops, Something went wrong")
@@ -25,15 +31,19 @@ class StateDetailsRepository {
         }
     }
 
+    private lateinit var StateDaily: Response<StateDailyResponse>
+
     suspend fun <T> getStateDaily(
         state: String,
         success: (HashMap<String, ArrayList<DataPoint>>, max: Float) -> T,
         error: (String) -> T
     ) {
         try {
-            val resp = apiService.getStateDaily()
-            if (resp.isSuccessful) {
-                val states = resp.body()?.dailyStats ?: emptyList()
+            if (::districtListResp.isInitialized.not() || districtListResp.isSuccessful.not())
+                StateDaily = apiService.getStateDaily()
+
+            if (StateDaily.isSuccessful) {
+                val states = StateDaily.body()?.dailyStats ?: emptyList()
                 val mapData = HashMap<String, ArrayList<DataPoint>>()
                 var max = 0f
 
