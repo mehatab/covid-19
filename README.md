@@ -3,10 +3,10 @@ This application displays the latest updates based on numbers from https://www.c
 
 ## <a href="https://github.com/Mehatab/covid-19/releases/download/v1.5.6/app-release.apk"><img src="screenshots/download_button.png" width="32%" /></a>
 
-<img src="screenshots/light_screenshot_1.jpg" width="15%" /> <img src="screenshots/light_screenshot_2.jpg" width="15%" /> <img src="screenshots/light_screenshot_3.jpg" width="15%" /> <img src="screenshots/light_screenshot_4.jpg" width="15%" /> <img src="screenshots/light_screenshot_5.jpg" width="15%" />
+<img src="screenshots/light_screenshot_1.png" width="15%" /> <img src="screenshots/light_screenshot_2.png" width="15%" /> <img src="screenshots/light_screenshot_3.png" width="15%" /> <img src="screenshots/light_screenshot_4.png" width="15%" /> <img src="screenshots/light_screenshot_5.png" width="15%" />
 
 ### Dark Mode
-<img src="screenshots/screenshot_1.png" width="15%" /> <img src="screenshots/screenshot_2.png" width="15%" />  <img src="screenshots/screenshot_3.png" width="15%" /> <img src="screenshots/screenshot_4.jpg" width="15%" /> <img src="screenshots/screenshot_5.jpg" width="15%" />
+<img src="screenshots/screenshot_1.png" width="15%" /> <img src="screenshots/screenshot_2.png" width="15%" />  <img src="screenshots/screenshot_3.png" width="15%" /> <img src="screenshots/screenshot_4.png" width="15%" /> <img src="screenshots/screenshot_5.png" width="15%" />
 
 ## Required Permissions
     android.permission.INTERNET
