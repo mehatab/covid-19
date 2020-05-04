@@ -11,6 +11,16 @@ This application displays the latest updates based on numbers from https://www.c
 ## Required Permissions
     android.permission.INTERNET
 
+## Libraries
+- Kotlin
+- MVVM Architecture
+- Material Design
+- AndroidX
+- Kotlin Coroutines
+- Retrofit 2
+- Moshi JSON Parser 
+- Android Architecture Component
+
 ## Contributions
 
 If you've found an error in this project, please file an issue.
