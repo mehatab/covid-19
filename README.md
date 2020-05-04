@@ -31,7 +31,7 @@ if your change is substantial, please raise an issue.
 
 
 # Credits
-Thanks to [Postman CORONAVIRUS COVID19 API](https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest) and [COVID19India.org](https://github.com/covid19india/api) for open-source API.
+Thanks to [COVID19India.org](https://github.com/covid19india/api) for open-source API.
 
 ## Maintainer
 Mehatab Shaikh <shaikh.mehatab@gmail.com>
