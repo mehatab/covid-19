@@ -8,6 +8,7 @@ object Config {
     const val versionName = "1.5.6"
 }
 
+
 object Versions {
     const val kotlin_stdlib = "1.3.61"
     const val material = "1.2.0-alpha05"
