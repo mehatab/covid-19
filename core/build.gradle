@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion Config.compileSdk
+    buildToolsVersion Config.buildTools
+    defaultConfig {
+        minSdkVersion Config.minSdk
+        targetSdkVersion Config.targetSdk
+        versionCode Config.versionCode
+        versionName Config.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
+
+dependencies {
+    implementation Deps.kotlin_stdlib
+    implementation Deps.preference
+    implementation Deps.fragment_ktx
+}

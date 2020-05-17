@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Config.compileSdk
+    buildToolsVersion Config.buildTools
+    defaultConfig {
+        minSdkVersion Config.minSdk
+        targetSdkVersion Config.targetSdk
+        versionCode Config.versionCode
+        versionName Config.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    dataBinding{
+        enabled true
+    }
+}
+
+dependencies {
+    implementation project(":uicomponents")
+    implementation project(":data")
+    implementation Deps.liveData
+
+    implementation Deps.kotlin_stdlib
+    implementation Deps.material
+    implementation Deps.constraintLayout
+
+    implementation Deps.MPAndroidChart
+
+    implementation Deps.sdp
+    implementation Deps.ssp
+
+    implementation Deps.fragment_ktx
+
+    implementation Deps.navigation
+}

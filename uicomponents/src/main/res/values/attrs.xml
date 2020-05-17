@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RallyLineGraphChart">
+        <attr name="barColor" format="color" />
+        <attr name="curveBorderColor" format="color" />
+        <attr name="curveFillColor" format="color" />
+        <attr name="curveTopMargin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="Rings">
+        <attr name="rings_text_size" format="dimension" />
+        <attr name="rings_text_margin_left" format="dimension" />
+        <attr name="rings_inner_stroke_width" format="dimension" />
+        <attr name="rings_inner_stroke_width_unfinished" format="dimension" />
+        <attr name="rings_outer_stroke_width" format="dimension" />
+        <attr name="rings_outer_stroke_width_unfinished" format="dimension" />
+
+        <attr name="rings_unfinished_color" format="color" />
+        <attr name="rings_default_filled_color" format="color" />
+
+        <attr name="rings_inner_first_color" format="color" />
+        <attr name="rings_inner_second_color" format="color" />
+        <attr name="rings_inner_third_color" format="color" />
+        <attr name="rings_overall_color" format="color" />
+
+    </declare-styleable>
+
+
+    <attr format="reference" name="textAppearanceSubtitle3"/>
+    <attr format="dimension" name="defaultMargin"/>
+    <attr format="dimension" name="defaultMarginMax"/>
+    <attr format="dimension" name="defaultMarginMed"/>
+    <attr format="dimension" name="defaultMarginMin"/>
+</resources>

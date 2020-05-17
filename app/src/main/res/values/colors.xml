@@ -6,7 +6,6 @@
     <color name="background">#FFFFFF</color>
     <color name="colorSurface">#FFFFFF</color>
     <color name="divider">#DADADA</color>
-    <color name="textColorPrimary">#000000</color>
 
     <color name="confirmed">#FF6A88</color>
     <color name="recovered">#7ECA8F</color>

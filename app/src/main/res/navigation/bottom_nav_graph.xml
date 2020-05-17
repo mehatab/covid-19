@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="info.covid.home.HomeFragment"
+        android:name="info.covid.dashboard.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home" />
 
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/about"
-        android:name="info.covid.info.AboutFragment"
+        android:name="info.covid.core.AboutFragment"
         android:label="@string/about" />
 
     <fragment

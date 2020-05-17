@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="filters">Filters</string>
+    <string name="state_ut">State/UT</string>
+    <string name="cities">Cities</string>
+    <string name="categories">Categories</string>
+    <string name="refresh">Refresh</string>
+</resources>

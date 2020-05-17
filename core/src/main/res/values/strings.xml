@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="covid_info">Coronavirus disease (COVID-19) is an infectious disease caused by a new virus. \n\nThe disease causes respiratory illness (like the flu) with symptoms such as a cough, fever, and in more severe cases, difficulty breathing. You can protect yourself by washing your hands frequently, avoiding touching your face, and avoiding close contact (1 meter or 3 feet) with people who are unwell</string>
+    <string name="note">This is not Government app and we are not associated with the Government.</string>
+    <string name="helpful_links">Helpful links</string>
+    <string name="helpful_links_by_states">Helpline Numbers [By State]</string>
+    <string name="ministry_of_health">Ministry Of Health</string>
+    <string name="who">WHO</string>
+    <string name="who_whatsapp">WHO Whatsapp</string>
+    <string name="other">Other</string>
+    <string name="data_source">Data Source</string>
+    <string name="developer">Developer</string>
+    <string name="twitter">Twitter</string>
+
+    <string name="source_code">Source Code</string>
+</resources>

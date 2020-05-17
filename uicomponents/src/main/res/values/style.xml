@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 Mehatab Shaikh
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  ~
+  -->
+
+<resources>
+
+    <style name="Widget.Covid.TextInputStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/colorBackground</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlayFilledPadding</item>
+        <item name="android:textColorHint">?android:textColorHint</item>
+    </style>
+
+    <style name="ThemeOverlayFilledPadding">
+        <item name="editTextStyle">@style/Widget.Covid.TextInputEditText</item>
+    </style>
+
+    <style name="Widget.Covid.TextInputEditText" parent="@style/Widget.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Widget.TextAppearance.Base" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Widget.Text.Headline6" parent="Widget.TextAppearance.Base">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Widget.Text.Headline5" parent="Widget.TextAppearance.Base">
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="Widget.Text.Headline4" parent="Widget.TextAppearance.Base">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Widget.Text.Headline3" parent="Widget.TextAppearance.Base">
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="Widget.Text.Headline2" parent="Widget.TextAppearance.Base">
+        <item name="android:textSize">45sp</item>
+    </style>
+
+    <style name="Widget.Text.Headline1" parent="Widget.TextAppearance.Base">
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="Widget.Text.Subtitle1" parent="Widget.TextAppearance.Base">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Widget.Text.Subtitle2" parent="Widget.TextAppearance.Base">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Widget.Text.Subtitle3" parent="Widget.TextAppearance.Base">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Widget.Covid.BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_nav_color</item>
+        <item name="elevation">12dp</item>
+    </style>
+
+    <style name="Widget.Covid.CategoryChip" parent="@style/Widget.MaterialComponents.Chip.Action">
+        <item name="closeIconVisible">false</item>
+        <item name="android:textSize">2sp</item>
+    </style>
+
+    <style name="ShapeAppearance.Covid.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Covid.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Covid.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+</resources>

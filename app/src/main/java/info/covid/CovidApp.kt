@@ -1,8 +1,8 @@
 package info.covid
 
-import androidx.multidex.MultiDexApplication
+import android.app.Application
 
-class CovidApp : MultiDexApplication(){
+class CovidApp : Application() {
 
     override fun onCreate() {
         super.onCreate()

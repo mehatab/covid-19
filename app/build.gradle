@@ -61,6 +61,12 @@ android {
 
 dependencies {
     implementation project(":data")
+    implementation project(":essentials")
+    implementation project(":uicomponents")
+    implementation project(":notification")
+    implementation project(":state")
+    implementation project(":core")
+    implementation project(":dashboard")
 
     implementation Deps.kotlin_stdlib
     implementation Deps.material
@@ -86,6 +92,4 @@ dependencies {
     implementation Deps.room
     kapt Deps.room_compiler
     implementation Deps.room_ktx
-
-    implementation Deps.multidex
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 Mehatab Shaikh
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  ~
+  -->
+
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#000000</color>
+    <color name="colorSecondary">#000000</color>
+    <color name="colorControlNormal">#2E2E2E</color>
+    <color name="colorError">#B00020</color>
+
+    <color name="textPrimary">#000000</color>
+    <color name="textSecondary">#535353</color>
+    <color name="textColorHint">#B8B6B6</color>
+
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="divider">#F1F1F1</color>
+
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="bottomNavigationColor">@color/colorBackground</color>
+
+
+    <!--Chart-->
+
+
+    <color name="confirmed">#FF6A88</color>
+    <color name="recovered">#7ECA8F</color>
+    <color name="deaths">#a6acb1</color>
+    <color name="active">#66AFFF</color>
+
+</resources>

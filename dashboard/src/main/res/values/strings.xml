@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="confirmed">Confirmed</string>
+    <string name="recovered">Recovered</string>
+    <string name="deaths">Deaths</string>
+    <string name="today">Today</string>
+    <string name="_30_days">30 Days</string>
+    <string name="daily">Daily</string>
+    <string name="all">All</string>
+    <string name="cumulative">Cumulative</string>
+    <string name="refresh">Refresh</string>
+
+    <string name="active_count"><![CDATA[<b>%s</b>  Active]]></string>
+    <string name="confirm_count"><![CDATA[<b>%s</b>  Confirmed]]></string>
+    <string name="death_count"><![CDATA[<b>%s</b>  Deaths]]></string>
+    <string name="recovered_count"><![CDATA[<b>%s</b>  Recovered]]></string>
+    <string name="day_active_count"><![CDATA[<b>%s</b>  Active (<b>%s</b> New)]]></string>
+    <string name="day_confirm_count"><![CDATA[<b>%s</b>  Confirmed (<b>%s</b> New)]]></string>
+    <string name="day_death_count"><![CDATA[<b>%s</b>  Deaths (<b>%s</b> New)]]></string>
+    <string name="day_recovered_count"><![CDATA[<b>%s</b>  Recovered (<b>%s</b> New)]]></string>
+
+</resources>

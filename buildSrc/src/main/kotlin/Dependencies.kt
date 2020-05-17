@@ -1,11 +1,11 @@
 object Config {
-    const val compileSdk = 29
-    const val buildTools = "29.0.3"
-    const val applicationId = "info.covid"
-    const val minSdk = 19
-    const val targetSdk = 29
-    const val versionCode = 16
-    const val versionName = "1.5.6"
+    val compileSdk = 29
+    val buildTools = "29.0.3"
+    val applicationId = "info.covid"
+    val minSdk = 21
+    val targetSdk = 29
+    val versionCode = 16
+    val versionName = "1.5.6"
 }
 
 
@@ -25,7 +25,6 @@ object Versions {
     const val lifecycle = "2.1.0"
     const val MPAndroidChart = "v3.1.0"
     const val room = "2.2.5"
-    const val multidex = "1.0.3"
 
     const val nav_version = "2.2.1"
 
@@ -58,7 +57,6 @@ object Deps {
     const val room = "androidx.room:room-runtime:${Versions.room}"
     const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
     const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
-    const val multidex = "com.android.support:multidex:${Versions.multidex}"
 
     const val preference = "androidx.preference:preference:${Versions.preference}"
 

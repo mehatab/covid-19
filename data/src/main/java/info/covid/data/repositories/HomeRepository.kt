@@ -1,10 +1,16 @@
 package info.covid.data.repositories
 
+import android.app.Application
+import info.covid.data.CovidDb
+import info.covid.data.enities.CovidDayInfo
+import info.covid.data.enities.KeyValues
+import info.covid.data.enities.State
 import info.covid.data.models.CovidResponse
 import info.covid.data.network.CovidApiService
 import info.covid.data.network.RetrofitClient
 
-class HomeRepository {
+class HomeRepository(application: Application) {
+    private val dao by lazy { CovidDb.get(application).getCovidDao() }
 
     private val apiService = RetrofitClient.get().create(CovidApiService::class.java)
 
@@ -17,5 +23,21 @@ class HomeRepository {
         } catch (e: Exception) {
             error("Oops, Something went wrong.")
         }
+    }
+
+    fun getInfo() = dao.getInfo()
+    fun getStatesWithTotal() = dao.getStatesWithTotal()
+    suspend fun insert(list: List<CovidDayInfo>) {
+        dao.insert(list)
+    }
+    suspend fun insert(today: CovidDayInfo) {
+        dao.insert(today)
+    }
+    suspend fun insert(keyValues: KeyValues) {
+        dao.insert(keyValues)
+    }
+
+    suspend fun insertStateWise(list: List<State>) {
+        dao.insertStateWise(list)
     }
 }

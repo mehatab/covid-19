@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deaths">deaths</string>
+    <string name="active">active</string>
+    <string name="confirmed">confirmed</string>
+    <string name="recovered">recovered</string>
+    <string name="state_ut">State/UT</string>
+</resources>
