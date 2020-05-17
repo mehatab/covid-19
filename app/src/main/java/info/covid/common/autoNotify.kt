@@ -2,6 +2,7 @@ package info.covid.common
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import info.covid.data.DiffItem
 import kotlin.properties.ObservableProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -21,11 +22,6 @@ fun <T : DiffItem, R : RecyclerView.ViewHolder> RecyclerView.Adapter<R>.autoNoti
         override fun getNewListSize() = newList.size
     }
     DiffUtil.calculateDiff(diffItemCallback).dispatchUpdatesTo(this)
-}
-
-interface DiffItem{
-    fun getId() : Long
-    fun getContent() : String
 }
 
 fun <T : List<DiffItem>, R : RecyclerView.ViewHolder> autoNotifyDelegate(

@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.google.android.material.chip.ChipGroup
 import info.covid.customview.rings.Rings
 import info.covid.customview.sectionbar.SectionProgressBar
+import info.covid.data.utils.toNumber
 import java.text.NumberFormat
 
 @BindingAdapter(

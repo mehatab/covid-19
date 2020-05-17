@@ -4,10 +4,11 @@ import android.app.Application
 import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.*
-import info.covid.customview.DataPoint
-import info.covid.database.CovidDb
-import info.covid.database.enities.State
-import info.covid.models.District
+import info.covid.data.CovidDb
+import info.covid.data.enities.State
+import info.covid.data.models.DataPoint
+import info.covid.data.models.District
+import info.covid.data.repositories.StateDetailsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="info.covid.models.Notification" />
+            type="info.covid.data.models.Notification" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

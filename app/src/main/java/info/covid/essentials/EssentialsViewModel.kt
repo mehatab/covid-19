@@ -5,8 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
-import info.covid.database.CovidDb
-import info.covid.models.Filter
+import info.covid.data.CovidDb
+import info.covid.data.models.Filter
+import info.covid.data.repositories.EssentialsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

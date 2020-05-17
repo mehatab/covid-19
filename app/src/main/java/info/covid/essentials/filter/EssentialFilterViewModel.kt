@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import info.covid.database.CovidDb
+import info.covid.data.CovidDb
 
 class EssentialFilterViewModel(application: Application) : AndroidViewModel(application) {
     private val filterDao by lazy {

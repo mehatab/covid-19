@@ -9,10 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import info.covid.R
 import info.covid.common.RVAdapter
+import info.covid.data.models.District
+import info.covid.data.utils.Const.STATE
+import info.covid.data.utils.removeLast
 import info.covid.databinding.FragmentStatewiseInfoBinding
-import info.covid.models.District
-import info.covid.utils.Const.STATE
-import info.covid.utils.removeLast
 
 class StateDetailsFragment : Fragment() {
     private lateinit var binding: FragmentStatewiseInfoBinding

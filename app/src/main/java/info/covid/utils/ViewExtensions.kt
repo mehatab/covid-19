@@ -4,7 +4,7 @@ import android.view.View
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import info.covid.database.enities.Tag
+import info.covid.data.enities.Tag
 
 
 fun ChipGroup.addChips(list: List<Tag>, tag: String? = null) {

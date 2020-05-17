@@ -14,10 +14,10 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import info.covid.R
 import info.covid.common.RVAdapter
-import info.covid.database.enities.CovidDayInfo
+import info.covid.data.enities.CovidDayInfo
+import info.covid.data.utils.toNumber
 import info.covid.databinding.FragmentHomeBinding
 import info.covid.utils.MyXAxisValueFormatter
-import info.covid.utils.toNumber
 
 
 class HomeFragment : Fragment() {

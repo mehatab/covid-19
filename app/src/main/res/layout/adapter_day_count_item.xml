@@ -10,7 +10,7 @@
 
     <import type="info.covid.utils.DateExtensionsKt" />
 
-    <import type="info.covid.utils.ExtensionsKt" />
+    <import type="info.covid.data.utils.ExtensionsKt" />
 
     <variable
         name="adapterPosition"
@@ -26,7 +26,7 @@
 
     <variable
         name="viewModel"
-        type="info.covid.database.enities.CovidDayInfo" />
+        type="info.covid.data.enities.CovidDayInfo" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout

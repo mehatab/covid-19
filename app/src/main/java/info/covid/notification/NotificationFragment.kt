@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import info.covid.R
 import info.covid.common.RVAdapter
+import info.covid.data.models.Notification
 import info.covid.databinding.FragmentNotificationBinding
-import info.covid.models.Notification
 
 class NotificationFragment : Fragment() {
     private lateinit var binding: FragmentNotificationBinding

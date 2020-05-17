@@ -8,6 +8,7 @@ import android.view.View
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import info.covid.R
+import info.covid.data.models.DataPoint
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -292,4 +293,3 @@ class RallyLineGraphChart : View {
     }
 }
 
-data class DataPoint(val amount: Float)

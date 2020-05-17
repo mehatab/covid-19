@@ -60,6 +60,8 @@ android {
 }
 
 dependencies {
+    implementation project(":data")
+
     implementation Deps.kotlin_stdlib
     implementation Deps.material
     implementation Deps.constraintLayout

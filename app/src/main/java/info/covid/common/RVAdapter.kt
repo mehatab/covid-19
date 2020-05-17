@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import info.covid.BR
+import info.covid.data.DiffItem
 
 class RVAdapter<out T : DiffItem>(
     private val layoutID: Int,

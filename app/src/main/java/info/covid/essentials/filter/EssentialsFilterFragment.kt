@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import info.covid.databinding.FragmentEssentialsFilterBinding
 import info.covid.essentials.SharedViewModel
-import info.covid.models.Filter
+import info.covid.data.models.Filter
 import info.covid.utils.addChips
 
 class EssentialsFilterFragment : Fragment() {

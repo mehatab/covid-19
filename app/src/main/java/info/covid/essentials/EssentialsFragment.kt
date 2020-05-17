@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPS
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import info.covid.R
 import info.covid.common.RVAdapter
-import info.covid.database.enities.Resources
+import info.covid.data.enities.Resources
 import info.covid.databinding.FragmentEssentialsBinding
 import info.covid.utils.onExpanded
 

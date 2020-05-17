@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import info.covid.customview.DataPoint
-import info.covid.database.CovidDb
-import info.covid.utils.toNumber
+import info.covid.data.CovidDb
+import info.covid.data.models.DataPoint
+import info.covid.data.utils.toNumber
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.collections.Map

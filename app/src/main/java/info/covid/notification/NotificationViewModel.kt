@@ -6,7 +6,8 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import info.covid.models.Notification
+import info.covid.data.models.Notification
+import info.covid.data.repositories.NotificationRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

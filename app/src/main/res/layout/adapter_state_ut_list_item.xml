@@ -12,13 +12,13 @@
             name="adapterPosition"
             type="Integer" />
 
-        <import type="info.covid.utils.ExtensionsKt" />
+        <import type="info.covid.data.utils.ExtensionsKt" />
 
         <import type="android.text.Html" />
 
         <variable
             name="viewModel"
-            type="info.covid.database.enities.State" />
+            type="info.covid.data.enities.State" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -10,11 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import info.covid.R
 import info.covid.common.RVAdapter
-import info.covid.database.enities.State
+import info.covid.data.enities.State
+import info.covid.data.utils.Const
+import info.covid.data.utils.Const.STATE
+import info.covid.data.utils.removeLast
 import info.covid.databinding.FragmentStatesUtListBinding
-import info.covid.utils.Const
-import info.covid.utils.Const.STATE
-import info.covid.utils.removeLast
 
 class StateListFragment : Fragment(), RVAdapter.OnItemClickListener {
     private lateinit var binding: FragmentStatesUtListBinding
