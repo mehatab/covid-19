@@ -52,6 +52,7 @@ dependencies {
     implementation Deps.constraintLayout
 
     implementation Deps.MPAndroidChart
+    implementation Deps.koil
 
     implementation Deps.sdp
     implementation Deps.ssp

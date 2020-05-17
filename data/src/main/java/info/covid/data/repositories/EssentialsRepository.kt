@@ -1,22 +1,14 @@
 package info.covid.data.repositories
 
-import android.app.Application
-import info.covid.data.CovidDb
+import info.covid.data.dao.FilterDao
+import info.covid.data.dao.ResourcesDao
 import info.covid.data.enities.Resources
 import info.covid.data.network.EssentialsApiService
 import info.covid.data.network.RetrofitClient
 
 
-class EssentialsRepository(application: Application) {
+class EssentialsRepository(val resourceDao: ResourcesDao, val filterDao : FilterDao) {
     private val apiService = RetrofitClient.get().create(EssentialsApiService::class.java)
-
-    private val filterDao by lazy {
-        CovidDb.get(application).getFilterDao()
-    }
-
-    private val resourceDao by lazy {
-        CovidDb.get(application).getResourcesDao()
-    }
 
     suspend fun <T> getResources(success: (List<Resources>?) -> T, error: (String) -> T) {
         try {

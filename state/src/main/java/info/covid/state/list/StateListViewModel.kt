@@ -1,9 +1,8 @@
 package info.covid.state.list
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import info.covid.data.models.DataPoint
 import info.covid.data.repositories.StateRepository
 import info.covid.data.utils.toNumber
@@ -16,8 +15,7 @@ import kotlin.collections.map
 import kotlin.collections.maxBy
 import kotlin.collections.set
 
-class StateListViewModel(application: Application) : AndroidViewModel(application) {
-    private val repo = StateRepository(application)
+class StateListViewModel(val repo: StateRepository) : ViewModel() {
 
     val states = repo.getStates()
 

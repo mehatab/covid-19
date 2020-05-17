@@ -6,7 +6,7 @@
 
         <variable
             name="listener"
-            type="info.covid.uicomponents.RVAdapter.OnItemClickListener" />
+            type="info.covid.uicomponents.OnItemClickListener" />
 
         <variable
             name="adapterPosition"

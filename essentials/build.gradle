@@ -50,6 +50,7 @@ dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.material
     implementation Deps.constraintLayout
+    implementation Deps.koil
 
     implementation Deps.sdp
     implementation Deps.ssp

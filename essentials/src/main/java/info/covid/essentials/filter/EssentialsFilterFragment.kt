@@ -14,10 +14,11 @@ import info.covid.essentials.SharedViewModel
 import info.covid.data.models.Filter
 import info.covid.essentials.databinding.FragmentEssentialsFilterBinding
 import info.covid.uicomponents.addChips
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class EssentialsFilterFragment : Fragment() {
     private lateinit var binding: FragmentEssentialsFilterBinding
-    private val mViewModel by viewModels<EssentialFilterViewModel>()
+    private val mViewModel : EssentialFilterViewModel by viewModel()
     private val sharedViewModel by activityViewModels<SharedViewModel>()
     private lateinit var behavior: BottomSheetBehavior<View>
 

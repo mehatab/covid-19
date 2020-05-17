@@ -29,6 +29,7 @@ object Versions {
     const val nav_version = "2.2.1"
 
     const val preference = "1.1.0"
+    const val koil = "2.0.1"
 }
 
 object Deps {
@@ -59,5 +60,6 @@ object Deps {
     const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
 
     const val preference = "androidx.preference:preference:${Versions.preference}"
+    val koil = "org.koin:koin-android-viewmodel:${Versions.koil}"
 
 }

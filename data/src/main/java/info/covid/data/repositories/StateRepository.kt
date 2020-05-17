@@ -1,10 +1,10 @@
 package info.covid.data.repositories
 
-import android.app.Application
-import info.covid.data.CovidDb
 
-class StateRepository(application: Application) {
-    private val dao = CovidDb.get(application).getCovidDao()
+import info.covid.data.dao.CovidDao
+
+class StateRepository(val dao: CovidDao) {
+
 
     fun getStates() = dao.getStates()
     fun getTotal() = dao.getTotal()

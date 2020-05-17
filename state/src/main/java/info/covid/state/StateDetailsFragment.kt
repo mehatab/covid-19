@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import info.covid.data.models.District
 import info.covid.data.utils.Const.STATE
 import info.covid.data.utils.removeLast
 import info.covid.state.databinding.FragmentStatewiseInfoBinding
-import info.covid.uicomponents.RVAdapter
+import info.covid.uicomponents.GenericRVAdapter
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class StateDetailsFragment : Fragment() {
     private lateinit var binding: FragmentStatewiseInfoBinding
-    private val stateViewModel by viewModels<StateDetailsViewModel>()
-    private lateinit var adapter: RVAdapter<District>
+    private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_district_item) }
+    private val stateViewModel : StateDetailsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +34,6 @@ class StateDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = RVAdapter(R.layout.adapter_district_item)
         binding.rv.adapter = adapter
 
         stateViewModel.districts.observe(viewLifecycleOwner, Observer {

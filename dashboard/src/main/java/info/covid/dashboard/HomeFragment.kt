@@ -13,15 +13,17 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import info.covid.dashboard.databinding.FragmentHomeBinding
-import info.covid.data.enities.CovidDayInfo
 import info.covid.data.utils.toNumber
-import info.covid.uicomponents.RVAdapter
+import info.covid.uicomponents.GenericRVAdapter
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 
 class HomeFragment : Fragment() {
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel : HomeViewModel by viewModel()
+    private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_day_count_item) }
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adapter: RVAdapter<CovidDayInfo>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +32,6 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
         binding.viewModel = viewModel
-        adapter = RVAdapter(R.layout.adapter_day_count_item)
         binding.rv.adapter = adapter
         setUpChart()
         subscribeToData()

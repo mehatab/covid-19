@@ -1,19 +1,15 @@
 package info.covid.essentials
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.viewModelScope
+
+import androidx.lifecycle.*
 import info.covid.data.models.Filter
 import info.covid.data.repositories.EssentialsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class EssentialsViewModel(application: Application) : AndroidViewModel(application) {
+class EssentialsViewModel(val essentialsRepository: EssentialsRepository) : ViewModel() {
 
-    private val essentialsRepository = EssentialsRepository(application)
     val error = MutableLiveData<String>()
     val refreshing = MutableLiveData(false)
 

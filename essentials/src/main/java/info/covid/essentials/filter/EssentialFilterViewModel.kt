@@ -1,13 +1,11 @@
 package info.covid.essentials.filter
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import info.covid.data.repositories.EssentialsRepository
 
-class EssentialFilterViewModel(application: Application) : AndroidViewModel(application) {
-    val repo = EssentialsRepository(application)
+class EssentialFilterViewModel(val repo: EssentialsRepository) : ViewModel() {
 
 
     val selectedState = MutableLiveData<String>()

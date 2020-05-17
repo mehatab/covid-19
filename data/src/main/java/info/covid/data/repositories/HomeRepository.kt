@@ -1,7 +1,6 @@
 package info.covid.data.repositories
 
-import android.app.Application
-import info.covid.data.CovidDb
+import info.covid.data.dao.CovidDao
 import info.covid.data.enities.CovidDayInfo
 import info.covid.data.enities.KeyValues
 import info.covid.data.enities.State
@@ -9,8 +8,7 @@ import info.covid.data.models.CovidResponse
 import info.covid.data.network.CovidApiService
 import info.covid.data.network.RetrofitClient
 
-class HomeRepository(application: Application) {
-    private val dao by lazy { CovidDb.get(application).getCovidDao() }
+class HomeRepository(val dao : CovidDao) {
 
     private val apiService = RetrofitClient.get().create(CovidApiService::class.java)
 

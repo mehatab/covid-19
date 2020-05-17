@@ -11,17 +11,19 @@ import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
-import info.covid.data.enities.Resources
 import info.covid.essentials.databinding.FragmentEssentialsBinding
-import info.covid.uicomponents.RVAdapter
+import info.covid.uicomponents.GenericRVAdapter
 import info.covid.uicomponents.onExpanded
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class EssentialsFragment : Fragment() {
     private lateinit var binding: FragmentEssentialsBinding
-    private lateinit var adapter: RVAdapter<Resources>
-    private val viewModel by viewModels<EssentialsViewModel>()
+    private val viewModel : EssentialsViewModel by viewModel()
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
     private val sharedViewModel by activityViewModels<SharedViewModel>()
+    private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_resource_item) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +36,6 @@ class EssentialsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = RVAdapter(R.layout.adapter_resource_item)
         binding.rv.adapter = adapter
 
         viewModel.resources.observe(viewLifecycleOwner, Observer {

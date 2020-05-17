@@ -1,11 +1,7 @@
 package info.covid.dashboard
 
-import android.app.Application
 import androidx.databinding.ObservableField
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.github.mikephil.charting.data.Entry
 import info.covid.data.enities.CovidDayInfo
 import info.covid.data.enities.State
@@ -19,9 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
-
-    private var repository = HomeRepository(application)
+class HomeViewModel(val repository: HomeRepository) : ViewModel() {
 
     val refreshing = MutableLiveData(false)
     val error = MutableLiveData<String>()

@@ -12,7 +12,7 @@ import info.covid.data.repositories.StateRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class StateDetailsViewModel(application: Application) : AndroidViewModel(application) {
+class StateDetailsViewModel(val repo: StateRepository) : ViewModel() {
     val districts = MutableLiveData<List<District>>()
     val stateName = MutableLiveData<String>()
     val recoversMapData = MutableLiveData<List<DataPoint>>()
@@ -21,7 +21,6 @@ class StateDetailsViewModel(application: Application) : AndroidViewModel(applica
     val activeMapData = MutableLiveData<List<DataPoint>>()
     val progress = ObservableField(View.GONE)
 
-    private val repo = StateRepository(application)
 
     val state = Transformations.switchMap(stateName, ::getState)
 

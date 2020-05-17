@@ -13,13 +13,17 @@ import info.covid.data.utils.Const
 import info.covid.data.utils.Const.STATE
 import info.covid.data.utils.removeLast
 import info.covid.state.R
+import info.covid.state.StateDetailsViewModel
 import info.covid.state.databinding.FragmentStatesUtListBinding
-import info.covid.uicomponents.RVAdapter
+import info.covid.uicomponents.GenericRVAdapter
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
-class StateListFragment : Fragment(), RVAdapter.OnItemClickListener {
+class StateListFragment : Fragment() {
     private lateinit var binding: FragmentStatesUtListBinding
-    private lateinit var adapter: RVAdapter<State>
-    private val mViewModel by viewModels<StateListViewModel>()
+    private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_state_ut_list_item) }
+    private val mViewModel : StateListViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +39,6 @@ class StateListFragment : Fragment(), RVAdapter.OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = RVAdapter(R.layout.adapter_state_ut_list_item, this)
         binding.rv.adapter = adapter
 
         mViewModel.states.observe(viewLifecycleOwner, Observer {
@@ -64,9 +67,12 @@ class StateListFragment : Fragment(), RVAdapter.OnItemClickListener {
             }
         })
 
+        adapter.onItemClickListener = { v, index->
+            onItemClick(v, index)
+        }
     }
 
-    override fun onItemClick(view: View, position: Int) {
+    private fun onItemClick(view: View, position: Int) {
         when (view.id) {
             R.id.state_item -> {
                 findNavController().navigate(R.id.state_details, Bundle().apply {
