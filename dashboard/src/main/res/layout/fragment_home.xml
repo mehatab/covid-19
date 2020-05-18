@@ -127,6 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="?defaultMarginMax"
+                    android:background="@color/divider"
                     app:layout_constraintTop_toBottomOf="@id/confirm_label" />
 
                 <View
@@ -145,7 +146,7 @@
                     thiredText="@{viewModel.active}"
                     android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_marginTop="?defaultMarginMed"
+                    android:layout_marginTop="?defaultMarginMax"
                     app:layout_constraintRight_toLeftOf="@id/center"
                     app:layout_constraintTop_toBottomOf="@id/today_divider"
                     app:rings_inner_first_color="@color/deaths"
@@ -214,6 +215,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="?defaultMarginMax"
+                    android:background="@color/divider"
                     app:layout_constraintTop_toBottomOf="@id/rings" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -267,7 +269,7 @@
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/daily_chart"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="300dp"
                     android:layout_marginTop="?defaultMarginMed"
                     app:layout_constraintTop_toBottomOf="@id/chart_type" />
 
@@ -277,6 +279,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="?defaultMarginMax"
+                    android:background="@color/divider"
                     app:layout_constraintTop_toBottomOf="@id/daily_chart" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
