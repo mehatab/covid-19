@@ -4,8 +4,8 @@ object Config {
     val applicationId = "info.covid"
     val minSdk = 21
     val targetSdk = 29
-    val versionCode = 16
-    val versionName = "1.5.6"
+    val versionCode = 17
+    val versionName = "1.5.7"
 }
 
 
@@ -30,6 +30,7 @@ object Versions {
 
     const val preference = "1.1.0"
     const val koin = "2.0.1"
+    const val bugsnag = "5.0.0"
 }
 
 object Deps {
@@ -61,5 +62,6 @@ object Deps {
 
     const val preference = "androidx.preference:preference:${Versions.preference}"
     val koin = "org.koin:koin-android-viewmodel:${Versions.koin}"
+    val bugsnag = "com.bugsnag:bugsnag-android:${Versions.bugsnag}"
 
 }

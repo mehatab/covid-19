@@ -1,6 +1,7 @@
 package info.covid
 
 import android.app.Application
+import com.bugsnag.android.Bugsnag
 import info.covid.dashboard.di.dashboardModule
 import info.covid.data.di.dataModule
 import info.covid.essentials.di.essentialsModule
@@ -14,6 +15,8 @@ class CovidApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        Bugsnag.start(this)
+
         startKoin {
             androidContext(this@CovidApp)
             modules(

@@ -1,5 +1,7 @@
 # Built application files
+**/*/res/values/secrets.xml
 *.apk
+*.jks
 *.aar
 *.ap_
 *.aab

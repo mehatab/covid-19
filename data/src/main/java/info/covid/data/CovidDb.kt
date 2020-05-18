@@ -25,25 +25,4 @@ abstract class CovidDb : RoomDatabase() {
     abstract fun getResourcesDao(): ResourcesDao
     abstract fun getFilterDao(): FilterDao
 
-    companion object {
-        private var INSTANCE: CovidDb? = null
-
-        @JvmStatic
-        fun get(context: Context): CovidDb {
-            if (INSTANCE == null) {
-                INSTANCE =
-                    Room.databaseBuilder(context, CovidDb::class.java, "coviddb.db")
-                        .addMigrations(MIGRATION_2_3)
-                        .addMigrations(MIGRATION_1_2)
-                        .addMigrations(MIGRATION_3_4)
-                        .build()
-            }
-            return INSTANCE!!
-        }
-
-        @JvmStatic
-        fun destroyInstance() {
-            INSTANCE = null
-        }
-    }
 }

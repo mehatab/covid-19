@@ -1,14 +1,17 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
+apply plugin: "com.bugsnag.android.gradle"
+
 
 android {
     compileSdkVersion Config.compileSdk
     buildToolsVersion Config.buildTools
+
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
     defaultConfig {
         applicationId Config.applicationId
         minSdkVersion Config.minSdk
@@ -17,16 +20,6 @@ android {
         versionName Config.versionName
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    signingConfigs {
-
-        release {
-            storeFile file("covid.jks")
-            storePassword "covid@123"
-            keyAlias "covid"
-            keyPassword "covid@123"
-        }
     }
 
     buildTypes {
@@ -41,7 +34,6 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
     }
 
@@ -86,6 +78,8 @@ dependencies {
 
     implementation Deps.preference
     implementation Deps.koin
+
+    implementation Deps.bugsnag
 
     implementation Deps.room
     kapt Deps.room_compiler
