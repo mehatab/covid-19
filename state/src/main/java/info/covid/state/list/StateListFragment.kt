@@ -16,29 +16,21 @@ import info.covid.state.R
 import info.covid.state.StateDetailsViewModel
 import info.covid.state.databinding.FragmentStatesUtListBinding
 import info.covid.uicomponents.GenericRVAdapter
+import info.covid.uicomponents.bind
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class StateListFragment : Fragment() {
-    private lateinit var binding: FragmentStatesUtListBinding
+class StateListFragment : Fragment(R.layout.fragment_states_ut_list) {
+    private val binding: FragmentStatesUtListBinding by bind(FragmentStatesUtListBinding::bind)
+
     private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_state_ut_list_item) }
     private val mViewModel : StateListViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentStatesUtListBinding.inflate(inflater).apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = mViewModel
-        }
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = mViewModel
         binding.rv.adapter = adapter
 
         mViewModel.states.observe(viewLifecycleOwner, Observer {

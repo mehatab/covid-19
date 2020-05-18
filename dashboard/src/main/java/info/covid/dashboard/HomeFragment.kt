@@ -15,30 +15,26 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import info.covid.dashboard.databinding.FragmentHomeBinding
 import info.covid.data.utils.toNumber
 import info.covid.uicomponents.GenericRVAdapter
+import info.covid.uicomponents.bind
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
-class HomeFragment : Fragment() {
-    private val viewModel : HomeViewModel by viewModel()
+class HomeFragment : Fragment(R.layout.fragment_home) {
+    private val binding: FragmentHomeBinding by bind(FragmentHomeBinding::bind)
+    private val viewModel: HomeViewModel by viewModel()
     private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_day_count_item) }
-    private lateinit var binding: FragmentHomeBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentHomeBinding.inflate(inflater)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.rv.adapter = adapter
         setUpChart()
         subscribeToData()
         initListeners()
-        return binding.root
     }
-
 
     private fun subscribeToData() {
         viewModel.chartData.observe(viewLifecycleOwner, Observer {

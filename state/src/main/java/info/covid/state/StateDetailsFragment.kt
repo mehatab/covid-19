@@ -11,29 +11,20 @@ import info.covid.data.utils.Const.STATE
 import info.covid.data.utils.removeLast
 import info.covid.state.databinding.FragmentStatewiseInfoBinding
 import info.covid.uicomponents.GenericRVAdapter
+import info.covid.uicomponents.bind
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class StateDetailsFragment : Fragment() {
-    private lateinit var binding: FragmentStatewiseInfoBinding
+class StateDetailsFragment : Fragment(R.layout.fragment_statewise_info) {
+    private val binding: FragmentStatewiseInfoBinding by bind(FragmentStatewiseInfoBinding::bind)
     private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_district_item) }
     private val stateViewModel : StateDetailsViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentStatewiseInfoBinding.inflate(inflater).apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = stateViewModel
-        }
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = stateViewModel
         binding.rv.adapter = adapter
 
         stateViewModel.districts.observe(viewLifecycleOwner, Observer {

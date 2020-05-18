@@ -12,29 +12,22 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import info.covid.essentials.SharedViewModel
 import info.covid.data.models.Filter
+import info.covid.essentials.R
 import info.covid.essentials.databinding.FragmentEssentialsFilterBinding
 import info.covid.uicomponents.addChips
+import info.covid.uicomponents.bind
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class EssentialsFilterFragment : Fragment() {
-    private lateinit var binding: FragmentEssentialsFilterBinding
-    private val mViewModel : EssentialFilterViewModel by viewModel()
+class EssentialsFilterFragment : Fragment(R.layout.fragment_essentials_filter) {
+    private val binding: FragmentEssentialsFilterBinding by bind(FragmentEssentialsFilterBinding::bind)
+    private val mViewModel: EssentialFilterViewModel by viewModel()
     private val sharedViewModel by activityViewModels<SharedViewModel>()
     private lateinit var behavior: BottomSheetBehavior<View>
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentEssentialsFilterBinding.inflate(inflater).apply {
-            viewModel = mViewModel
-        }
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = mViewModel
+
         mViewModel.states.observe(viewLifecycleOwner, Observer {
             binding.statesRv.addChips(it, sharedViewModel.filter.value?.stateName)
         })
