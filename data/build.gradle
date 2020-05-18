@@ -43,7 +43,7 @@ dependencies {
 
     implementation Deps.retrofit
     implementation Deps.moshi
-    implementation Deps.koil
+    implementation Deps.koin
 
     implementation Deps.room
     kapt Deps.room_compiler

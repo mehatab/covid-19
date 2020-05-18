@@ -51,7 +51,7 @@ dependencies {
     implementation Deps.material
     implementation Deps.constraintLayout
 
-    implementation Deps.koil
+    implementation Deps.koin
 
     implementation Deps.sdp
     implementation Deps.ssp
