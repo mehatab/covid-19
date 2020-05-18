@@ -16,6 +16,7 @@ import info.covid.dashboard.databinding.FragmentHomeBinding
 import info.covid.data.utils.toNumber
 import info.covid.uicomponents.GenericRVAdapter
 import info.covid.uicomponents.bind
+import info.covid.uicomponents.getTextColorPrimary
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -89,9 +90,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setUpChart() {
-        //binding.dailyChart.legend.textColor = getColor(requireContext(), R.color.textColorPrimary)
-        //binding.dailyChart.xAxis.textColor = getColor(requireContext(), R.color.textColorPrimary)
-        //binding.dailyChart.axisLeft.textColor = getColor(requireContext(), R.color.textColorPrimary)
+        binding.dailyChart.legend.textColor = getTextColorPrimary()
+        binding.dailyChart.xAxis.textColor = getTextColorPrimary()
+        binding.dailyChart.axisLeft.textColor = getTextColorPrimary()
         binding.dailyChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         binding.dailyChart.description = null
         binding.dailyChart.axisRight.isEnabled = false

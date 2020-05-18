@@ -38,110 +38,100 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/today_label"
+                    style="?textAppearanceHeadline4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="?defaultMarginMed"
+                    android:layout_marginTop="?defaultMarginMed"
                     android:text="@string/today"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/last_update"
+                    style="?textAppearanceSubtitle3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/_20sdp"
+                    android:paddingBottom="?defaultMarginMax"
                     android:text="@{DateExtensionsKt.relativeTime(viewModel.today.lastupdatedtime)}"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintLeft_toLeftOf="@id/today_label"
                     app:layout_constraintTop_toBottomOf="@id/today_label" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/t_confirmed"
+                    style="?textAppearanceHeadline3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="@{viewModel.today.deltaconfirmed}"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/last_update"
                     app:layout_constraintWidth_percent="0.33" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/t_recovered"
+                    style="?textAppearanceHeadline3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="@{viewModel.today.deltarecovered}"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold"
                     app:layout_constraintLeft_toRightOf="@id/t_confirmed"
                     app:layout_constraintTop_toBottomOf="@id/last_update"
                     app:layout_constraintWidth_percent="0.33" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/t_deaths"
+                    style="?textAppearanceHeadline3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="@{viewModel.today.deltadeaths}"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold"
                     app:layout_constraintLeft_toRightOf="@id/t_recovered"
                     app:layout_constraintTop_toBottomOf="@id/last_update"
                     app:layout_constraintWidth_percent="0.33" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/confirm_label"
+                    style="?textAppearanceSubtitle3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginTop="?defaultMarginMin"
                     android:text="@string/confirmed"
-                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintLeft_toLeftOf="@id/t_confirmed"
                     app:layout_constraintRight_toRightOf="@id/t_confirmed"
                     app:layout_constraintTop_toBottomOf="@id/t_confirmed" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    style="?textAppearanceSubtitle3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginTop="?defaultMarginMin"
                     android:text="@string/recovered"
-                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintLeft_toLeftOf="@id/t_recovered"
                     app:layout_constraintRight_toRightOf="@id/t_recovered"
                     app:layout_constraintTop_toBottomOf="@id/t_recovered" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    style="?textAppearanceSubtitle3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginTop="?defaultMarginMin"
                     android:text="@string/deaths"
-                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintLeft_toLeftOf="@id/t_deaths"
                     app:layout_constraintRight_toRightOf="@id/t_deaths"
                     app:layout_constraintTop_toBottomOf="@id/t_deaths" />
-
 
                 <View
                     android:id="@+id/today_divider"
                     style="?dividerHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="?defaultMarginMax"
                     app:layout_constraintTop_toBottomOf="@id/confirm_label" />
 
                 <View
                     android:id="@+id/center"
-                    android:layout_width="@dimen/_30sdp"
+                    android:layout_width="?defaultMarginMax"
                     android:layout_height="1dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -153,75 +143,66 @@
                     overAllText="@{viewModel.confirmed}"
                     secondText="@{viewModel.recovered}"
                     thiredText="@{viewModel.active}"
-                    android:layout_width="@dimen/_110sdp"
-                    android:layout_height="@dimen/_110sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="?defaultMarginMed"
                     app:layout_constraintRight_toLeftOf="@id/center"
                     app:layout_constraintTop_toBottomOf="@id/today_divider"
                     app:rings_inner_first_color="@color/deaths"
                     app:rings_inner_second_color="@color/recovered"
                     app:rings_inner_third_color="@color/active"
                     app:rings_overall_color="@color/confirmed"
-                    app:rings_text_size="@dimen/_8ssp"
+                    app:rings_text_size="9sp"
                     app:rings_unfinished_color="@color/divider" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/confirmed"
+                    style="?textAppearanceHeadline5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="?defaultMarginMax"
                     android:drawableStart="@drawable/dot"
-                    android:drawableLeft="@drawable/dot"
-                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawablePadding="?defaultMarginMin"
                     android:text="@{Html.fromHtml(@string/confirm_count(viewModel.confirmed))}"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_11ssp"
                     app:drawableTint="@color/confirmed"
                     app:layout_constraintLeft_toRightOf="@id/center"
                     app:layout_constraintTop_toTopOf="@id/rings" />
 
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/active"
+                    style="?textAppearanceHeadline5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="?defaultMarginMin"
                     android:drawableStart="@drawable/dot"
-                    android:drawableLeft="@drawable/dot"
-                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawablePadding="?defaultMarginMin"
                     android:text="@{Html.fromHtml(@string/active_count(viewModel.active))}"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_11ssp"
                     app:drawableTint="@color/active"
                     app:layout_constraintLeft_toRightOf="@id/center"
                     app:layout_constraintTop_toBottomOf="@id/confirmed" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/recovered"
+                    style="?textAppearanceHeadline5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="?defaultMarginMin"
                     android:drawableStart="@drawable/dot"
-                    android:drawableLeft="@drawable/dot"
-                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawablePadding="?defaultMarginMin"
                     android:text="@{Html.fromHtml(@string/recovered_count(viewModel.recovered))}"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_11ssp"
                     app:drawableTint="@color/recovered"
                     app:layout_constraintLeft_toRightOf="@id/center"
                     app:layout_constraintTop_toBottomOf="@id/active" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/deaths"
+                    style="?textAppearanceHeadline5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="?defaultMarginMin"
                     android:drawableStart="@drawable/dot"
-                    android:drawableLeft="@drawable/dot"
-                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawablePadding="?defaultMarginMin"
                     android:text="@{Html.fromHtml(@string/death_count(viewModel.deaths))}"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_11ssp"
                     app:drawableTint="@color/deaths"
                     app:layout_constraintLeft_toRightOf="@id/center"
                     app:layout_constraintTop_toBottomOf="@id/recovered" />
@@ -232,25 +213,24 @@
                     style="?dividerHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="?defaultMarginMax"
                     app:layout_constraintTop_toBottomOf="@id/rings" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/chart_type"
+                    style="?textAppearanceSubtitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="?defaultMarginMed"
                     android:background="@drawable/state_item_bg"
-                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawablePadding="?defaultMarginMin"
                     android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingTop="@dimen/_5sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:paddingBottom="@dimen/_5sdp"
+                    android:paddingLeft="?defaultMarginMed"
+                    android:paddingTop="?defaultMarginMin"
+                    android:paddingRight="?defaultMarginMed"
+                    android:paddingBottom="?defaultMarginMin"
                     android:text="@string/daily"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/_10ssp"
                     app:drawableRightCompat="@drawable/ic_down_arrow"
                     app:drawableTint="?android:attr/textColorPrimary"
                     app:layout_constraintLeft_toLeftOf="@id/today_label"
@@ -260,7 +240,7 @@
                     android:id="@+id/filters"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_8sdp"
+                    android:layout_marginEnd="?defaultMarginMed"
                     app:checkedChip="@id/days_30"
                     app:layout_constraintBottom_toBottomOf="@id/chart_type"
                     app:layout_constraintRight_toRightOf="parent"
@@ -287,8 +267,8 @@
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/daily_chart"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_190sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="?defaultMarginMed"
                     app:layout_constraintTop_toBottomOf="@id/chart_type" />
 
                 <View
@@ -296,7 +276,7 @@
                     style="?dividerHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="?defaultMarginMax"
                     app:layout_constraintTop_toBottomOf="@id/daily_chart" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -308,9 +288,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingVertical="@dimen/_20sdp"
-            android:paddingLeft="@dimen/_10sdp"
-            android:paddingRight="@dimen/_10sdp"
+            android:paddingVertical="?defaultMarginMax"
+            android:paddingLeft="?defaultMarginMed"
+            android:paddingRight="?defaultMarginMed"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

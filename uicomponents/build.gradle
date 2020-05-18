@@ -53,9 +53,6 @@ dependencies {
 
     implementation Deps.koin
 
-    implementation Deps.sdp
-    implementation Deps.ssp
-
     implementation Deps.fragment_ktx
 
     implementation Deps.navigation

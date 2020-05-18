@@ -27,13 +27,17 @@
         android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground"
         android:onClick="@{(v)-> listener.onItemClick(v, adapterPosition)}"
-        android:paddingTop="@dimen/_5sdp">
+        android:paddingTop="?defaultMarginMed">
 
         <!--        android:background="@{(adapterPosition % 2) == 0 ? @color/divider :  @color/background }"-->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/state"
-            style="@style/Covid.StateSectionLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="?textAppearanceHeadline6"
+            android:gravity="center"
+            android:paddingVertical="?defaultMarginMed"
             android:text="@{viewModel.state}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -54,19 +58,17 @@
                 deltaNumber="@{viewModel.deltaconfirmed}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="?defaultMarginMin"
                 android:drawableStart="@drawable/ic_up_arrow"
                 android:textColor="@color/confirmed"
-                android:textSize="@dimen/_7ssp"
-                android:textStyle="bold"
+                style="?textAppearanceSubtitle3"
                 app:drawableTint="@color/confirmed" />
 
             <com.google.android.material.textview.MaterialTextView
                 number="@{viewModel.confirmed}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:textColorPrimary"
-                android:textStyle="bold"
+                style="?textAppearanceHeadline6"
                 app:layout_constraintLeft_toRightOf="@+id/state"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,19 +89,17 @@
                 deltaNumber="@{viewModel.deltarecovered}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="?defaultMarginMin"
                 android:drawableStart="@drawable/ic_up_arrow"
                 android:textColor="@color/recovered"
-                android:textSize="@dimen/_7ssp"
-                android:textStyle="bold"
+                style="?textAppearanceSubtitle3"
                 app:drawableTint="@color/recovered" />
 
             <com.google.android.material.textview.MaterialTextView
                 number="@{viewModel.recovered}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:textColorPrimary"
-                android:textStyle="bold"
+                style="?textAppearanceHeadline6"
                 app:layout_constraintLeft_toRightOf="@+id/state"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,8 +121,7 @@
                 number="@{viewModel.active}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:textColorPrimary"
-                android:textStyle="bold"
+                style="?textAppearanceHeadline6"
                 app:layout_constraintLeft_toRightOf="@+id/state"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -144,11 +143,10 @@
                 deltaNumber="@{viewModel.deltadeaths}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="?defaultMarginMin"
                 android:drawableStart="@drawable/ic_up_arrow"
                 android:textColor="@color/deaths"
-                android:textSize="@dimen/_7ssp"
-                android:textStyle="bold"
+                style="?textAppearanceSubtitle3"
                 app:drawableTint="@color/deaths"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -156,8 +154,7 @@
                 number="@{viewModel.deaths}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:textColorPrimary"
-                android:textStyle="bold"
+                style="?textAppearanceHeadline6"
                 app:layout_constraintLeft_toRightOf="@+id/state"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -166,7 +163,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="?defaultMarginMax"
             android:background="@color/divider"
             app:layout_constraintBottom_toBottomOf="parent" />
 

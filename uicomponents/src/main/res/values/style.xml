@@ -46,7 +46,7 @@
 
     <style name="Widget.TextAppearance.Base" parent="@style/TextAppearance.AppCompat.Body1">
         <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Widget.Text.Headline6" parent="Widget.TextAppearance.Base">
@@ -62,7 +62,7 @@
     </style>
 
     <style name="Widget.Text.Headline3" parent="Widget.TextAppearance.Base">
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">28sp</item>
     </style>
 
     <style name="Widget.Text.Headline2" parent="Widget.TextAppearance.Base">
@@ -92,7 +92,8 @@
 
     <style name="Widget.Covid.BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemIconTint">@color/bottom_nav_color</item>
-        <item name="elevation">12dp</item>
+        <item name="backgroundTint">?colorSurface</item>
+        <item name="elevation">2dp</item>
     </style>
 
     <style name="Widget.Covid.CategoryChip" parent="@style/Widget.MaterialComponents.Chip.Action">

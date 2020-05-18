@@ -79,9 +79,6 @@ dependencies {
 
     implementation Deps.liveData
 
-    implementation Deps.sdp
-    implementation Deps.ssp
-
     implementation Deps.navigation
     implementation Deps.navigation_ui
 

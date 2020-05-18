@@ -17,27 +17,26 @@
         android:background="@drawable/filters_sheet_background"
         android:backgroundTint="?attr/colorSurface"
         android:clickable="true"
-        android:elevation="@dimen/_10sdp"
+        android:elevation="?defaultMarginMed"
         android:focusable="true"
         tools:ignore="Overdraw">
 
         <TextView
             android:id="@+id/title"
+            style="?textAppearanceHeadline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="?defaultMarginMed"
             android:text="@string/filters"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="@dimen/_12ssp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/collapse_arrow"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_margin="@dimen/_5sdp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="?defaultMarginMin"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_down_arrow"
             android:tint="?android:textColorPrimary"
@@ -48,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
-            android:paddingVertical="@dimen/_10sdp"
+            android:paddingVertical="?defaultMarginMed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title">
 
@@ -58,7 +57,10 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/states"
-                    style="@style/FilterHeader"
+                    style="?textAppearanceHeadline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="?defaultMarginMed"
                     android:text="@string/state_ut"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -68,14 +70,17 @@
                     onItemSelected="@{(id)-> viewModel.onStateSelected(id)}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_8sdp"
+                    android:padding="?defaultMarginMed"
                     app:layout_constraintTop_toBottomOf="@id/states"
                     app:selectionRequired="true"
                     app:singleSelection="true" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/cities"
-                    style="@style/FilterHeader"
+                    style="?textAppearanceHeadline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="?defaultMarginMed"
                     android:text="@string/cities"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/states_rv" />
@@ -85,13 +90,16 @@
                     onItemSelected="@{(id)-> viewModel.onCitySelected(id)}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_8sdp"
+                    android:padding="?defaultMarginMed"
                     app:layout_constraintTop_toBottomOf="@id/cities"
                     app:singleSelection="true" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/category"
-                    style="@style/FilterHeader"
+                    style="?textAppearanceHeadline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="?defaultMarginMed"
                     android:text="@string/categories"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cities_rv" />
@@ -100,7 +108,7 @@
                     android:id="@+id/categories_rv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_8sdp"
+                    android:padding="?defaultMarginMed"
                     app:layout_constraintTop_toBottomOf="@id/category"
                     app:singleSelection="true" />
 

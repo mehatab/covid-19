@@ -76,6 +76,7 @@
         <item name="defaultMarginMax">30dp</item>
         <item name="defaultMarginMed">10dp</item>
         <item name="defaultMarginMin">6dp</item>
+
     </style>
 
 </resources>

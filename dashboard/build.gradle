@@ -54,10 +54,5 @@ dependencies {
     implementation Deps.MPAndroidChart
     implementation Deps.koin
 
-    implementation Deps.sdp
-    implementation Deps.ssp
-
     implementation Deps.fragment_ktx
-
-    implementation Deps.navigation
 }

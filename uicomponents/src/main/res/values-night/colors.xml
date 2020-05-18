@@ -26,8 +26,8 @@
 
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#101010</color>
-    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorPrimaryDark">#0E0E0E</color>
+    <color name="colorAccent">#517EE5</color>
     <color name="colorSecondary">#FFFFFF</color>
     <color name="colorControlNormal">#B5B4B4</color>
     <color name="colorError">#B00020</color>
@@ -38,7 +38,7 @@
 
     <color name="divider">#191919</color>
 
-    <color name="colorSurface">#101010</color>
+    <color name="colorSurface">#0E0E0E</color>
 
     <color name="bottomNavigationColor">#010101</color>
 
