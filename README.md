@@ -13,7 +13,7 @@ This application displays the latest updates based on numbers from https://www.c
 
 ## Libraries
 - Kotlin
-- Koil
+- Koin
 - MVVM Architecture
 - Material Design
 - AndroidX
