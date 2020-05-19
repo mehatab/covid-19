@@ -30,7 +30,7 @@ object Versions {
 
     const val preference = "1.1.0"
     const val koin = "2.0.1"
-    const val bugsnag = "5.0.0"
+    const val bugsnag = "4.11.0"
 }
 
 object Deps {

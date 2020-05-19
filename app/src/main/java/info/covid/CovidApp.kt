@@ -11,11 +11,19 @@ import info.covid.uicomponents.di.uiComponentsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
+
 class CovidApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Bugsnag.start(this)
+
+        if (BuildConfig.DEBUG.not()) {
+            with(Bugsnag.init(this, BuildConfig.BUGSNAG_API_KEY)){
+                setReleaseStage(BuildConfig.BUILD_TYPE)
+                setProjectPackages("info.covid")
+            }
+        }
+
 
         startKoin {
             androidContext(this@CovidApp)
