@@ -43,4 +43,4 @@ Crash Reporting
 
 Provided [for free](https://www.bugsnag.com/open-source) by
 
-![Bugsnag](screenshots/bugsnag_logo.png)
+![Bugsnag](screenshots/bugsnag.png)
