@@ -1,6 +1,5 @@
 package info.covid.state
 
-import android.app.Application
 import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.*
@@ -12,7 +11,7 @@ import info.covid.data.repositories.StateRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class StateDetailsViewModel(val repo: StateRepository) : ViewModel() {
+class StateDetailsViewModel(private val repo: StateRepository, private val stateDetailsRepository: StateDetailsRepository) : ViewModel() {
     val districts = MutableLiveData<List<District>>()
     val stateName = MutableLiveData<String>()
     val recoversMapData = MutableLiveData<List<DataPoint>>()
@@ -33,7 +32,7 @@ class StateDetailsViewModel(val repo: StateRepository) : ViewModel() {
     private fun getDistrictsData(state: String) {
         progress.set(View.VISIBLE)
         viewModelScope.launch(Dispatchers.IO) {
-            StateDetailsRepository.getDistrictInfo(state, {
+            stateDetailsRepository.getDistrictInfo(state, {
                 districts.postValue((it?.districts?.sortedByDescending { it.confirmed }
                     ?: emptyList()))
                 progress.set(View.GONE)
@@ -47,7 +46,7 @@ class StateDetailsViewModel(val repo: StateRepository) : ViewModel() {
 
     private fun getDailyData(stateName: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            StateDetailsRepository.getStateDaily(stateName, { it, max ->
+            stateDetailsRepository.getStateDaily(stateName, { it, max ->
                 maxNumber = max
                 recoversMapData.postValue(it["Recovered"])
                 confirmedMapData.postValue(it["Confirmed"])

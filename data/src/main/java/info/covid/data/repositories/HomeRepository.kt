@@ -8,9 +8,7 @@ import info.covid.data.models.CovidResponse
 import info.covid.data.network.CovidApiService
 import info.covid.data.network.RetrofitClient
 
-class HomeRepository(val dao : CovidDao) {
-
-    private val apiService = RetrofitClient.get().create(CovidApiService::class.java)
+class HomeRepository(val dao : CovidDao, val apiService : CovidApiService ) {
 
     suspend fun <T> getData(success: (CovidResponse?) -> T, error: (String) -> T) {
         try {

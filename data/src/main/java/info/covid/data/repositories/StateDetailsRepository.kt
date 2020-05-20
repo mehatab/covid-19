@@ -9,9 +9,8 @@ import info.covid.data.network.StateAPIService
 
 import retrofit2.Response
 
-object StateDetailsRepository {
+class StateDetailsRepository(private val apiService: StateAPIService){
 
-    private val apiService = RetrofitClient.get().create(StateAPIService::class.java)
     private lateinit var districtListResp: Response<List<DistrictState>>
 
     suspend fun <T> getDistrictInfo(
@@ -34,7 +33,7 @@ object StateDetailsRepository {
         }
     }
 
-    private lateinit var StateDaily: Response<StateDailyResponse>
+    private lateinit var stateDaily: Response<StateDailyResponse>
 
     suspend fun <T> getStateDaily(
         state: String,
@@ -43,10 +42,10 @@ object StateDetailsRepository {
     ) {
         try {
             if (::districtListResp.isInitialized.not() || districtListResp.isSuccessful.not())
-                StateDaily = apiService.getStateDaily()
+                stateDaily = apiService.getStateDaily()
 
-            if (StateDaily.isSuccessful) {
-                val states = StateDaily.body()?.dailyStats ?: emptyList()
+            if (stateDaily.isSuccessful) {
+                val states = stateDaily.body()?.dailyStats ?: emptyList()
                 val mapData = HashMap<String, ArrayList<DataPoint>>()
                 var max = 0f
 

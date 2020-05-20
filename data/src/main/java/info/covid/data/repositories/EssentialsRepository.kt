@@ -7,8 +7,11 @@ import info.covid.data.network.EssentialsApiService
 import info.covid.data.network.RetrofitClient
 
 
-class EssentialsRepository(val resourceDao: ResourcesDao, val filterDao : FilterDao) {
-    private val apiService = RetrofitClient.get().create(EssentialsApiService::class.java)
+class EssentialsRepository(
+    private val resourceDao: ResourcesDao,
+    private val filterDao: FilterDao,
+    private val apiService: EssentialsApiService
+) {
 
     suspend fun <T> getResources(success: (List<Resources>?) -> T, error: (String) -> T) {
         try {

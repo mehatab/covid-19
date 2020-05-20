@@ -5,9 +5,7 @@ import info.covid.data.network.CovidApiService
 import info.covid.data.network.RetrofitClient
 
 
-class NotificationRepository {
-
-    private val apiService = RetrofitClient.get().create(CovidApiService::class.java)
+class NotificationRepository(private val apiService: CovidApiService) {
 
     suspend fun <T> getUpdates(success: (List<Notification>) -> T, error: (String) -> T) {
         try {

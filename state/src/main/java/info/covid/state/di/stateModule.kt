@@ -6,6 +6,6 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val stateModule = module{
-    viewModel { StateDetailsViewModel(get()) }
+    viewModel { StateDetailsViewModel(get(), get()) }
     viewModel { StateListViewModel(get()) }
 }
