@@ -11,18 +11,12 @@ import info.covid.data.utils.toNumber
 import info.covid.uicomponents.toMilliseconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
-class HomeViewModel(val repository: HomeRepository) : ViewModel() {
+class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
 
     val refreshing = MutableLiveData(false)
     val error = MutableLiveData<String>()
-
-    val todayDate by lazy {
-        SimpleDateFormat("dd MMMM ", Locale.getDefault()).format(Date())
-    }
 
     val allTime = MutableLiveData(false)
     val dayList = Transformations.switchMap(allTime) {
@@ -73,47 +67,17 @@ class HomeViewModel(val repository: HomeRepository) : ViewModel() {
             resp.forEachIndexed { index, it ->
                 if (((resp.size - 30) < index) || allTime.value == true) {
                     val time = it.date?.toMilliseconds() ?: 0f
-                    confirmedList.add(
-                        Entry(
-                            time,
-                            it.totalconfirmed.toNumber().toFloat()
-                        )
-                    )
+                    confirmedList.add(Entry(time, it.totalconfirmed.toNumber().toFloat()))
 
-                    deceasedList.add(
-                        Entry(
-                            time,
-                            it.totaldeceased.toNumber().toFloat()
-                        )
-                    )
+                    deceasedList.add(Entry(time, it.totaldeceased.toNumber().toFloat()))
 
-                    recoveredList.add(
-                        Entry(
-                            time,
-                            it.totalrecovered.toNumber().toFloat()
-                        )
-                    )
+                    recoveredList.add(Entry(time, it.totalrecovered.toNumber().toFloat()))
 
-                    dailyConfirmedList.add(
-                        Entry(
-                            time,
-                            it.dailyconfirmed.toNumber().toFloat()
-                        )
-                    )
+                    dailyConfirmedList.add(Entry(time, it.dailyconfirmed.toNumber().toFloat()))
 
-                    dailyDeceasedList.add(
-                        Entry(
-                            time,
-                            it.dailydeceased.toNumber().toFloat()
-                        )
-                    )
+                    dailyDeceasedList.add(Entry(time, it.dailydeceased.toNumber().toFloat()))
 
-                    dailyRecoveredList.add(
-                        Entry(
-                            time,
-                            it.dailyrecovered.toNumber().toFloat()
-                        )
-                    )
+                    dailyRecoveredList.add(Entry(time, it.dailyrecovered.toNumber().toFloat()))
                 }
             }
         }
@@ -128,42 +92,7 @@ class HomeViewModel(val repository: HomeRepository) : ViewModel() {
     fun getDate() {
         viewModelScope.launch(Dispatchers.IO) {
             refreshing.postValue(true)
-            repository.getData({ resp ->
-
-                viewModelScope.launch(Dispatchers.IO) {
-                    resp?.let {
-                        if (!resp.result.isNullOrEmpty()) {
-                            val today = CovidDayInfo()
-
-                            today.apply {
-                                val total = it.statewise?.first()
-
-                                dailyconfirmed = total?.deltaconfirmed
-                                dailyrecovered = total?.deltarecovered
-                                dailydeceased = total?.deltadeaths
-                                totalconfirmed = total?.confirmed
-                                totaldeceased = total?.deaths
-                                totalrecovered = total?.recovered
-
-                                date = todayDate
-                            }
-
-
-                            viewModelScope.launch(Dispatchers.IO) {
-                                repository.insert(it.result ?: emptyList())
-                                repository.insert(today)
-                                if (!it.key_values.isNullOrEmpty()) {
-                                    repository.insert(it.key_values!![0].apply {
-                                        TodayID = 1
-                                    })
-                                }
-
-                                repository.insertStateWise(it.statewise ?: emptyList())
-                            }
-                        }
-                    }
-                }
-
+            repository.getData({
                 refreshing.postValue(false)
             }, {
                 refreshing.postValue(false)

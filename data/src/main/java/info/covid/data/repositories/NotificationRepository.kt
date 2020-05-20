@@ -2,8 +2,6 @@ package info.covid.data.repositories
 
 import info.covid.data.models.Notification
 import info.covid.data.network.CovidApiService
-import info.covid.data.network.RetrofitClient
-
 
 class NotificationRepository(private val apiService: CovidApiService) {
 
