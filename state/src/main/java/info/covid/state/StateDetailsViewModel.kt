@@ -10,8 +10,12 @@ import info.covid.data.repositories.StateDetailsRepository
 import info.covid.data.repositories.StateRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.math.sqrt
 
-class StateDetailsViewModel(private val repo: StateRepository, private val stateDetailsRepository: StateDetailsRepository) : ViewModel() {
+class StateDetailsViewModel(
+    private val repo: StateRepository,
+    private val stateDetailsRepository: StateDetailsRepository
+) : ViewModel() {
     val districts = MutableLiveData<List<District>>()
     val stateName = MutableLiveData<String>()
     val recoversMapData = MutableLiveData<List<DataPoint>>()
@@ -19,7 +23,6 @@ class StateDetailsViewModel(private val repo: StateRepository, private val state
     val deceasedMapData = MutableLiveData<List<DataPoint>>()
     val activeMapData = MutableLiveData<List<DataPoint>>()
     val progress = ObservableField(View.GONE)
-
 
     val state = Transformations.switchMap(stateName, ::getState)
 
@@ -57,4 +60,23 @@ class StateDetailsViewModel(private val repo: StateRepository, private val state
             })
         }
     }
+
+    val correlationCoefficient = Transformations.map(confirmedMapData) {
+        val list = arrayListOf<DataPoint>()
+        if (it.isNullOrEmpty().not()) {
+            it.forEachIndexed { index, _ ->
+                list.add(
+                    DataPoint(
+                        GFG.correlationCoefficient(
+                            it.subList(0, index.plus(1)).toTypedArray(),
+                            index.plus(1)
+                        )
+                    )
+                )
+            }
+        }
+        return@map list
+    }
+
+
 }
