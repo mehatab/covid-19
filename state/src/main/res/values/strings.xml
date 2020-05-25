@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="deaths">deaths</string>
-    <string name="active">active</string>
-    <string name="confirmed">confirmed</string>
-    <string name="recovered">recovered</string>
+    <string name="deaths">Deaths</string>
+    <string name="active">Active</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="recovered">Recovered</string>
     <string name="state_ut">State/UT</string>
+    <string name="state_percentage">%.2f\%%</string>
 </resources>

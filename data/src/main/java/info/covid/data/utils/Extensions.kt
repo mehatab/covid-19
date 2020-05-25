@@ -16,6 +16,11 @@ fun <T> List<T>.removeLast(): List<T> {
     }
 }
 
+fun <T> List<T>.top(count: Int): List<T> {
+    return if (isNullOrEmpty() || size <= count) this else {
+        return this.subList(0, count)
+    }
+}
 
 fun <T> List<T>.removeFirst(): List<T> {
     return if (isNullOrEmpty()) this else {
@@ -25,14 +30,16 @@ fun <T> List<T>.removeFirst(): List<T> {
 }
 
 
-fun Int?.percentage(second: String? = null): Int {
+fun Int?.percentageInt(second: String? = null) = percentage(second).toInt()
+
+fun Int?.percentage(second: String? = null): Float {
     return if (this == null) {
-        0
+        0f
     } else {
         try {
-            (second.toNumber() * 100).div(this)
+            (second.toNumber() * 100f).div(this)
         } catch (e: java.lang.Exception) {
-            return 0
+            return 0f
         }
     }
 }

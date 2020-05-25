@@ -1,16 +1,25 @@
 package info.covid.dashboard
 
+import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import info.covid.dashboard.databinding.FragmentHomeBinding
 import info.covid.data.utils.toNumber
@@ -27,6 +36,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModel()
     private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_day_count_item) }
 
+    val pieChartColors = listOf<Int>(
+        0xFFed1869.toInt(),
+        0xFF29bfcd.toInt(),
+        0xFFf89820.toInt(),
+        0xFF9367ac.toInt(),
+        0xFF8ec73f.toInt(),
+        0xFF808080.toInt(),
+        0xFFfcd800.toInt(),
+        0xFFb76766.toInt(),
+        0xFF1a77b3.toInt(),
+        0xFF4fb848.toInt()
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,7 +64,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         })
 
         viewModel.stateDataList.observe(viewLifecycleOwner, Observer {
+            val dataSet = PieDataSet(it, "")
+            dataSet.colors = pieChartColors
 
+            val data = PieData(dataSet)
+
+            data.setValueFormatter(PercentFormatter())
+
+            data.setValueTextSize(13f)
+            binding.stateChart.data = data
+
+            binding.stateChart.data.notifyDataChanged()
+            binding.stateChart.invalidate()
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer {
@@ -57,6 +89,40 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             binding.rv.scrollToPosition(0)
         })
+    }
+
+
+    private fun preparePieChart(mChart: PieChart, tf: Typeface) {
+        binding.stateChart.description.text = ""
+        binding.stateChart.isDrawHoleEnabled = false
+
+        mChart.description.isEnabled = true
+        mChart.centerText = ""
+        mChart.setCenterTextSize(10F)
+        mChart.setCenterTextTypeface(tf)
+        val l = mChart.legend
+        mChart.legend.isWordWrapEnabled = true
+        mChart.legend.isEnabled = true
+        l.textColor = getTextColorPrimary()
+        l.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
+        l.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+        l.formSize = 20F
+        l.formToTextSpace = 5f
+        l.form = Legend.LegendForm.CIRCLE
+        l.textSize = 12f
+        l.orientation = Legend.LegendOrientation.HORIZONTAL
+        l.isWordWrapEnabled = true
+        l.yEntrySpace = 5f
+        l.setDrawInside(false)
+        mChart.setTouchEnabled(false)
+        mChart.setDrawEntryLabels(false)
+        mChart.legend.isWordWrapEnabled = true
+        mChart.setExtraOffsets(10f, 0f, 10f, 0f)
+        mChart.setUsePercentValues(true)
+        mChart.setUsePercentValues(true)
+        mChart.setDrawCenterText(false)
+        mChart.description.isEnabled = true
+        mChart.isRotationEnabled = false
     }
 
     private fun initListeners() {
@@ -100,6 +166,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.dailyChart.xAxis.setDrawGridLines(false)
         binding.dailyChart.xAxis.valueFormatter = MyXAxisValueFormatter()
         binding.dailyChart.setExtraOffsets(0f, 0f, 0f, 15f)
+        preparePieChart(binding.stateChart, Typeface.SANS_SERIF)
     }
 
 

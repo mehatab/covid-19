@@ -69,7 +69,7 @@
         android:layout_height="?defaultMarginMin"
         android:layout_marginLeft="?defaultMarginMed"
         android:layout_marginRight="?defaultMarginMed"
-        android:progress="@{ExtensionsKt.percentage(maxCount, viewModel.dailyconfirmed)}"
+        android:progress="@{ExtensionsKt.percentageInt(maxCount, viewModel.dailyconfirmed)}"
         android:progressDrawable="@drawable/progressbar_rounded_corner"
         app:layout_constraintBottom_toBottomOf="@id/month"
         app:layout_constraintLeft_toRightOf="@id/month"

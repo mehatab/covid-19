@@ -3,11 +3,13 @@ package info.covid.dashboard
 import androidx.databinding.ObservableField
 import androidx.lifecycle.*
 import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.PieEntry
 import info.covid.data.enities.CovidDayInfo
 import info.covid.data.enities.State
 import info.covid.data.repositories.HomeRepository
 import info.covid.data.utils.removeFirst
 import info.covid.data.utils.toNumber
+import info.covid.data.utils.top
 import info.covid.uicomponents.toMilliseconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,19 +40,27 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     var dailyDeceasedList: ArrayList<Entry> = ArrayList()
     var dailyRecoveredList: ArrayList<Entry> = ArrayList()
 
-    val stateDataList = Transformations.map(repository.getStatesWithTotal()) {
-        if (!it.isNullOrEmpty()) {
-            it.first().also { total ->
-                today.set(total)
-                confirmed.set(total.confirmed.toNumber())
-                deaths.set(total.deaths.toNumber())
-                active.set(total.active.toNumber())
-                recovered.set(total.recovered.toNumber())
-            }
+    val pieEntries = ArrayList<PieEntry>()
 
-            return@map it.removeFirst()
-        } else return@map it
-    }
+    val stateDataList: LiveData<List<PieEntry>> =
+        Transformations.map(repository.getStatesWithTotal()) {
+            if (!it.isNullOrEmpty()) {
+                it.first().also { total ->
+                    today.set(total)
+                    confirmed.set(total.confirmed.toNumber())
+                    deaths.set(total.deaths.toNumber())
+                    active.set(total.active.toNumber())
+                    recovered.set(total.recovered.toNumber())
+                }
+
+                pieEntries.clear()
+                it.removeFirst().top(10).map {
+                    pieEntries.add(PieEntry(it.confirmed.toNumber().toFloat(), it.state))
+                }
+
+                return@map pieEntries
+            } else return@map arrayListOf<PieEntry>()
+        }
 
     val today = ObservableField<State>()
 

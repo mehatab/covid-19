@@ -12,6 +12,7 @@ import info.covid.data.enities.State
 import info.covid.data.utils.Const
 import info.covid.data.utils.Const.STATE
 import info.covid.data.utils.removeLast
+import info.covid.data.utils.toNumber
 import info.covid.state.R
 import info.covid.state.StateDetailsViewModel
 import info.covid.state.databinding.FragmentStatesUtListBinding
@@ -25,7 +26,7 @@ class StateListFragment : Fragment(R.layout.fragment_states_ut_list) {
     private val binding: FragmentStatesUtListBinding by bind(FragmentStatesUtListBinding::bind)
 
     private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_state_ut_list_item) }
-    private val mViewModel : StateListViewModel by viewModel()
+    private val mViewModel: StateListViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +35,7 @@ class StateListFragment : Fragment(R.layout.fragment_states_ut_list) {
         binding.rv.adapter = adapter
 
         mViewModel.states.observe(viewLifecycleOwner, Observer {
-            adapter.setList(it)
+            adapter.setList(it, mViewModel.total.value?.confirmed.toNumber())
         })
 
 
@@ -59,7 +60,7 @@ class StateListFragment : Fragment(R.layout.fragment_states_ut_list) {
             }
         })
 
-        adapter.onItemClickListener = { v, index->
+        adapter.onItemClickListener = { v, index ->
             onItemClick(v, index)
         }
     }
