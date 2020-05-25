@@ -7,6 +7,7 @@ import com.github.mikephil.charting.data.PieEntry
 import info.covid.data.enities.CovidDayInfo
 import info.covid.data.enities.State
 import info.covid.data.repositories.HomeRepository
+import info.covid.data.utils.percentage
 import info.covid.data.utils.removeFirst
 import info.covid.data.utils.toNumber
 import info.covid.data.utils.top
@@ -44,6 +45,7 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
 
     val stateDataList: LiveData<List<PieEntry>> =
         Transformations.map(repository.getStatesWithTotal()) {
+            pieEntries.clear()
             if (!it.isNullOrEmpty()) {
                 it.first().also { total ->
                     today.set(total)
@@ -53,13 +55,15 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
                     recovered.set(total.recovered.toNumber())
                 }
 
-                pieEntries.clear()
+
                 it.removeFirst().top(10).map {
-                    pieEntries.add(PieEntry(it.confirmed.toNumber().toFloat(), it.state))
+                    pieEntries.add(PieEntry(confirmed.get().percentage(it.confirmed), it.state))
                 }
 
-                return@map pieEntries
-            } else return@map arrayListOf<PieEntry>()
+                pieEntries.add(PieEntry(100f - pieEntries.sumByDouble { it.value.toDouble() }.toFloat(), "Other"))
+            }
+
+            return@map pieEntries
         }
 
     val today = ObservableField<State>()

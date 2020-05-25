@@ -45,4 +45,20 @@ object Const {
     const val STATE_ID = "STATE_ID"
     const val STATE = "STATE"
     const val TITLE = "title"
+
+
+    val pieChartColors = listOf<Int>(
+        0xFFed1869.toInt(),
+        0xFF29bfcd.toInt(),
+        0xFFf89820.toInt(),
+        0xFF9367ac.toInt(),
+        0xFF8ec73f.toInt(),
+        0xFF808080.toInt(),
+        0xFFfcd800.toInt(),
+        0xFFb76766.toInt(),
+        0xFF1a77b3.toInt(),
+        0xFF66403a.toInt(),
+        0xFFC4C4C4.toInt()
+    )
+
 }

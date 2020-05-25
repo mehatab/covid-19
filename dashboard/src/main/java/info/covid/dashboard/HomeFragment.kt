@@ -1,6 +1,5 @@
 package info.covid.dashboard
 
-import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Menu
@@ -20,8 +19,10 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import info.covid.dashboard.databinding.FragmentHomeBinding
+import info.covid.data.utils.Const.pieChartColors
 import info.covid.data.utils.toNumber
 import info.covid.uicomponents.GenericRVAdapter
 import info.covid.uicomponents.bind
@@ -35,19 +36,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by bind(FragmentHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModel()
     private val adapter: GenericRVAdapter by inject() { parametersOf(R.layout.adapter_day_count_item) }
-
-    val pieChartColors = listOf<Int>(
-        0xFFed1869.toInt(),
-        0xFF29bfcd.toInt(),
-        0xFFf89820.toInt(),
-        0xFF9367ac.toInt(),
-        0xFF8ec73f.toInt(),
-        0xFF808080.toInt(),
-        0xFFfcd800.toInt(),
-        0xFFb76766.toInt(),
-        0xFF1a77b3.toInt(),
-        0xFF4fb848.toInt()
-    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -118,7 +106,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         mChart.setDrawEntryLabels(false)
         mChart.legend.isWordWrapEnabled = true
         mChart.setExtraOffsets(10f, 0f, 10f, 0f)
-        mChart.setUsePercentValues(true)
         mChart.setUsePercentValues(true)
         mChart.setDrawCenterText(false)
         mChart.description.isEnabled = true
