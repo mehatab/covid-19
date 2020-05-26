@@ -104,12 +104,6 @@ class StateDetailsFragment : Fragment(R.layout.fragment_statewise_info) {
             adapter.setList(it)
         })
 
-        stateViewModel.correlationCoefficient.observe(viewLifecycleOwner, Observer {
-            it.forEach {
-                Log.d("correlationCoefficient", "${it.amount}")
-            }
-        })
-
         stateViewModel.recoversMapData.observe(viewLifecycleOwner, Observer {
             binding.recoveredGraph.addDataPoints(it.removeLast(), stateViewModel.maxNumber)
         })

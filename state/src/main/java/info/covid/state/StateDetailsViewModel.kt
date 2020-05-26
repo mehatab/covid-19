@@ -10,7 +10,6 @@ import info.covid.data.repositories.StateDetailsRepository
 import info.covid.data.repositories.StateRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.math.sqrt
 
 class StateDetailsViewModel(
     private val repo: StateRepository,
@@ -60,23 +59,4 @@ class StateDetailsViewModel(
             })
         }
     }
-
-    val correlationCoefficient = Transformations.map(confirmedMapData) {
-        val list = arrayListOf<DataPoint>()
-        if (it.isNullOrEmpty().not()) {
-            it.forEachIndexed { index, _ ->
-                list.add(
-                    DataPoint(
-                        GFG.correlationCoefficient(
-                            it.subList(0, index.plus(1)).toTypedArray(),
-                            index.plus(1)
-                        )
-                    )
-                )
-            }
-        }
-        return@map list
-    }
-
-
 }
