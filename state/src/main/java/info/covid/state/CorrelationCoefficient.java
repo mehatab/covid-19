@@ -6,7 +6,7 @@ import java.util.List;
 
 import info.covid.data.models.DataPoint;
 
-class GFG {
+class CorrelationCoefficient {
 
     // function that returns correlation coefficient. 
     static float correlationCoefficient(DataPoint Y[], int n) {
