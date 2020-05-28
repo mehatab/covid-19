@@ -13,4 +13,7 @@
     <string name="twitter">Twitter</string>
 
     <string name="source_code">Source Code</string>
+    <string name="versionName"/>
+    <string name="version">Version</string>
+
 </resources>

@@ -106,7 +106,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         mChart.setDrawEntryLabels(false)
         mChart.legend.isWordWrapEnabled = true
         mChart.setExtraOffsets(10f, 0f, 10f, 0f)
-        mChart.setUsePercentValues(true)
+        mChart.setUsePercentValues(false)
         mChart.setDrawCenterText(false)
         mChart.description.isEnabled = true
         mChart.isRotationEnabled = false

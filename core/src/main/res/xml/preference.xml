@@ -91,6 +91,11 @@
 
         </PreferenceScreen>
 
+
+        <Preference
+            android:title="@string/version"
+            app:summary="@string/versionName" />
+
         <PreferenceScreen app:enabled="false"/>
 
     </PreferenceCategory>

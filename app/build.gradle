@@ -60,6 +60,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    applicationVariants.all { variant ->
+        variant.resValue "string", "versionName", Config.versionName
+    }
 }
 
 dependencies {

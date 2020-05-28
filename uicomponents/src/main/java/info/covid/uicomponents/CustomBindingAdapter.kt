@@ -1,5 +1,6 @@
 package info.covid.uicomponents
 
+import android.text.Html
 import android.text.format.DateUtils
 import android.view.View
 import android.widget.TextView
@@ -51,7 +52,6 @@ fun setFirstText(rings: Rings, death: Int = 0, recovered: Int = 0, active: Int =
 }
 
 
-
 @BindingAdapter("number")
 fun setNumber(tv: TextView, amount: String? = null) {
     tv.text = if (amount.isNullOrEmpty().not()) {
@@ -91,4 +91,10 @@ fun setProgress(
         r.toNumber().times(100f).div(c.toNumber()).div(100),
         d.toNumber().times(100f).div(c.toNumber()).div(100)
     )
+}
+
+
+@BindingAdapter("htmlText")
+fun setHtmlText(tv: TextView, str: String? = null) {
+    tv.text = Html.fromHtml(str ?: "")
 }
