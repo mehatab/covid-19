@@ -34,19 +34,19 @@ class StateDetailsFragment : Fragment(R.layout.fragment_statewise_info) {
         })
 
         stateViewModel.recoversMapData.observe(viewLifecycleOwner, Observer {
-            binding.recoveredGraph.addDataPoints(it.removeLast(), stateViewModel.maxNumber)
+            binding.recoveredGraph.addDataPoints(it, stateViewModel.maxNumber)
         })
 
         stateViewModel.confirmedMapData.observe(viewLifecycleOwner, Observer {
-            binding.confirmedGraph.addDataPoints(it.removeLast(), stateViewModel.maxNumber)
+            binding.confirmedGraph.addDataPoints(it, stateViewModel.maxNumber)
         })
 
         stateViewModel.deceasedMapData.observe(viewLifecycleOwner, Observer {
-            binding.deceasedGraph.addDataPoints(it.removeLast(), stateViewModel.maxNumber)
+            binding.deceasedGraph.addDataPoints(it, stateViewModel.maxNumber)
         })
 
         stateViewModel.activeMapData.observe(viewLifecycleOwner, Observer {
-            binding.activeGraph.addDataPoints(it.removeLast(), it.maxBy { it.amount }?.amount ?: 0f)
+            binding.activeGraph.addDataPoints(it, it.maxBy { it.amount }?.amount ?: 0f)
         })
 
     }
