@@ -19,5 +19,7 @@ jobs:
         java-version: 1.8
     - name: Make gradlew executable
       run: chmod +x ./gradlew  
+    - name: Create fake local.properties
+      run: touch local.properties
     - name: Build with Gradle
       run: ./gradlew build
