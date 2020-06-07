@@ -48,4 +48,8 @@ dependencies {
     implementation Deps.room
     kapt Deps.room_compiler
     implementation Deps.room_ktx
+
+    testImplementation Deps.junit
+    androidTestImplementation Deps.test_ext
+    androidTestImplementation Deps.espresso
 }

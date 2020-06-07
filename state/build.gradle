@@ -56,4 +56,8 @@ dependencies {
     implementation Deps.fragment_ktx
 
     implementation Deps.navigation
+
+    testImplementation Deps.junit
+    androidTestImplementation Deps.test_ext
+    androidTestImplementation Deps.espresso
 }

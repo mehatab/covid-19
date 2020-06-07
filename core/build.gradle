@@ -18,4 +18,8 @@ dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.preference
     implementation Deps.fragment_ktx
+
+    testImplementation Deps.junit
+    androidTestImplementation Deps.test_ext
+    androidTestImplementation Deps.espresso
 }

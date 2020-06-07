@@ -55,4 +55,8 @@ dependencies {
     implementation Deps.koin
 
     implementation Deps.fragment_ktx
+
+    testImplementation Deps.junit
+    androidTestImplementation Deps.test_ext
+    androidTestImplementation Deps.espresso
 }

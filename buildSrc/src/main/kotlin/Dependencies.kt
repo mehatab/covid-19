@@ -31,37 +31,45 @@ object Versions {
     const val preference = "1.1.0"
     const val koin = "2.0.1"
     const val bugsnag = "4.11.0"
+
+    const val espresso = "3.2.0"
+    const val test_ext = "1.1.1"
+    const val junit = "4.12"
 }
 
 object Deps {
-    const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin_stdlib}"
+    val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin_stdlib}"
 
-    const val material = "com.google.android.material:material:${Versions.material}"
+    val material = "com.google.android.material:material:${Versions.material}"
 
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.moshi}"
+    val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.moshi}"
 
 
-    const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragment_ktx}"
+    val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragment_ktx}"
 
-    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.liveData}"
+    val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.liveData}"
 
-    const val navigation = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
-    const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
+    val navigation = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+    val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
 
-    const val MPAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.MPAndroidChart}"
+    val MPAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.MPAndroidChart}"
 
-    const val sdp = "com.intuit.sdp:sdp-android:${Versions.dime}"
-    const val ssp = "com.intuit.ssp:ssp-android:${Versions.dime}"
+    val sdp = "com.intuit.sdp:sdp-android:${Versions.dime}"
+    val ssp = "com.intuit.ssp:ssp-android:${Versions.dime}"
 
-    const val room = "androidx.room:room-runtime:${Versions.room}"
-    const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
-    const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
+    val room = "androidx.room:room-runtime:${Versions.room}"
+    val room_compiler = "androidx.room:room-compiler:${Versions.room}"
+    val room_ktx = "androidx.room:room-ktx:${Versions.room}"
 
     const val preference = "androidx.preference:preference:${Versions.preference}"
     val koin = "org.koin:koin-android-viewmodel:${Versions.koin}"
     val bugsnag = "com.bugsnag:bugsnag-android:${Versions.bugsnag}"
+
+    val junit = "junit:junit:${Versions.junit}"
+    val test_ext = "androidx.test.ext:junit:${Versions.test_ext}"
+    val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
 
 }
