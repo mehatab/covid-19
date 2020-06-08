@@ -13,6 +13,10 @@ private suspend fun <T : Any> persistenceApiCall(
 ) = flow {
     emit(Result.Loading(true))
     try {
+        if (fetchFromLocal != null) {
+            emit(fetchFromLocal())
+            emit(Result.Loading(false))
+        }
         val response = fetchFromRemote()
         if (response.isSuccessful) {
             val body = response.body()
@@ -27,7 +31,7 @@ private suspend fun <T : Any> persistenceApiCall(
         } else
             emit(Result.Error(IOException("$errorMessage ${response.code()} ${response.message()}")))
     } catch (e: Exception) {
-        emit(Result.Error(IOException(errorMessage, e)))
+        emit(Result.Error(IOException("$errorMessage: ${e.localizedMessage}")))
     }
     if (fetchFromLocal != null) {
         emit(fetchFromLocal())

@@ -50,8 +50,6 @@ class HomeRepository(
                     date = todayDate
                 }
 
-
-
                 insert(it.result ?: emptyList())
                 insert(today)
                 if (!it.key_values.isNullOrEmpty()) {

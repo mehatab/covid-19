@@ -5,7 +5,7 @@ object Config {
     val minSdk = 21
     val targetSdk = 29
     val versionCode = 19
-    val versionName = "1.5.9"
+    val versionName = "1.6.0"
 }
 
 
@@ -64,9 +64,8 @@ object Deps {
     val room_compiler = "androidx.room:room-compiler:${Versions.room}"
     val room_ktx = "androidx.room:room-ktx:${Versions.room}"
 
-    const val preference = "androidx.preference:preference:${Versions.preference}"
+    val preference = "androidx.preference:preference:${Versions.preference}"
     val koin = "org.koin:koin-android-viewmodel:${Versions.koin}"
-    val bugsnag = "com.bugsnag:bugsnag-android:${Versions.bugsnag}"
 
     val junit = "junit:junit:${Versions.junit}"
     val test_ext = "androidx.test.ext:junit:${Versions.test_ext}"

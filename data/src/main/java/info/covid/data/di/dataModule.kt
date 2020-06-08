@@ -1,14 +1,10 @@
 package info.covid.data.di
 
 import androidx.room.Room
-import info.covid.data.CovidDb
-import info.covid.data.MIGRATION_1_2
-import info.covid.data.MIGRATION_2_3
-import info.covid.data.MIGRATION_3_4
-import info.covid.data.network.CovidApiService
-import info.covid.data.network.EssentialsApiService
-import info.covid.data.network.RetrofitClient
-import info.covid.data.network.StateAPIService
+import info.covid.data.*
+import info.covid.data.network.*
+import info.covid.data.network.RetrofitClient.BASE_URL
+import info.covid.data.network.RetrofitClient.GLOBAL_BASE_URL
 import info.covid.data.repositories.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -23,6 +19,7 @@ val dataModule = module {
     factory { StateRepository(get()) }
     factory { EssentialsRepository(get(), get(), get()) }
     single { StateDetailsRepository(get()) }
+    single { GlobalStatusRepository(get(), get()) }
 
 
     //Retrofit api service
@@ -30,18 +27,21 @@ val dataModule = module {
     factory { provideCovidApi(get()) }
     factory { provideEssentialsApi(get()) }
     factory { provideStateApi(get()) }
+    factory { provideGlobalApi(provideGlobalRetrofit()) }
 
 
     //Local database
     single { get<CovidDb>().getCovidDao() }
     single { get<CovidDb>().getFilterDao() }
     single { get<CovidDb>().getResourcesDao() }
+    single { get<CovidDb>().getGlobalDao() }
 
     single {
         Room.databaseBuilder(androidContext(), CovidDb::class.java, "coviddb.db")
             .addMigrations(MIGRATION_2_3)
             .addMigrations(MIGRATION_1_2)
             .addMigrations(MIGRATION_3_4)
+            .addMigrations(MIGRATION_4_5)
             .build()
 
     }
@@ -50,8 +50,12 @@ val dataModule = module {
 
 private fun provideRetrofit() = RetrofitClient.get()
 
+private fun provideGlobalRetrofit() = RetrofitClient.get(GLOBAL_BASE_URL)
+
 private fun provideCovidApi(retrofit: Retrofit) = retrofit.create(CovidApiService::class.java)
 
 private fun provideEssentialsApi(retrofit: Retrofit) = retrofit.create(EssentialsApiService::class.java)
 
 private fun provideStateApi(retrofit: Retrofit) = retrofit.create(StateAPIService::class.java)
+
+private fun provideGlobalApi(retrofit: Retrofit) = retrofit.create(GlobalApiService::class.java)

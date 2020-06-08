@@ -1,7 +1,6 @@
 package info.covid
 
 import android.app.Application
-import com.bugsnag.android.Bugsnag
 import info.covid.dashboard.di.dashboardModule
 import info.covid.data.di.dataModule
 import info.covid.essentials.di.essentialsModule
@@ -16,15 +15,6 @@ class CovidApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        if (BuildConfig.DEBUG.not()) {
-            with(Bugsnag.init(this, BuildConfig.BUGSNAG_API_KEY)){
-                setReleaseStage(BuildConfig.BUILD_TYPE)
-                setProjectPackages("info.covid")
-            }
-        }
-
-
         startKoin {
             androidContext(this@CovidApp)
             modules(

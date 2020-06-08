@@ -8,8 +8,6 @@ android {
     compileSdkVersion Config.compileSdk
     buildToolsVersion Config.buildTools
 
-    def localProperties = new Properties()
-    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
     defaultConfig {
         applicationId Config.applicationId
@@ -19,8 +17,6 @@ android {
         versionName Config.versionName
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField "String", 'BUGSNAG_API_KEY', "\"${localProperties['bugsnagKey']}\""
     }
 
     signingConfigs {
@@ -93,8 +89,6 @@ dependencies {
 
     implementation Deps.preference
     implementation Deps.koin
-
-    implementation Deps.bugsnag
 
     implementation Deps.room
     kapt Deps.room_compiler
