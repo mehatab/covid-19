@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="info.covid.state.country.CountryDetailsViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="?defaultMargin">
+
+            <TextView
+                android:id="@+id/country"
+                style="?textAppearanceHeadline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.country.country}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="?defaultMargin"
+                android:textSize="25sp"
+                app:layout_constraintLeft_toRightOf="@id/country"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@{viewModel.country.countryInfo.iso2.flag}" />
+
+
+            <TextView
+                android:id="@+id/confirmed_lbl"
+                style="?textAppearanceHeadline6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="@string/confirmed"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country"
+                app:layout_constraintWidth_percent="0.40" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/confirmed_delta"
+                style="?textAppearanceSubtitle3"
+                deltaNumber="@{viewModel.country.todayCases.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_up_arrow"
+                android:textColor="@color/confirmed"
+                app:drawableTint="@color/confirmed"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/confirmed_lbl" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/confirmed"
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.cases.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="?defaultMarginMin"
+                app:layout_constraintRight_toLeftOf="@id/confirmed_delta"
+                app:layout_constraintTop_toTopOf="@id/confirmed_delta" />
+
+
+            <TextView
+                android:id="@+id/recovered_lbl"
+                style="?textAppearanceHeadline6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="@string/recovered"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/confirmed_lbl"
+                app:layout_constraintWidth_percent="0.40" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/recovered_delta"
+                style="?textAppearanceSubtitle3"
+                deltaNumber="@{viewModel.country.todayRecovered.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_up_arrow"
+                android:textColor="@color/recovered"
+                app:drawableTint="@color/recovered"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/recovered_lbl" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/recovered"
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.recovered.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="?defaultMarginMin"
+                app:layout_constraintRight_toLeftOf="@id/recovered_delta"
+                app:layout_constraintTop_toTopOf="@id/recovered_delta" />
+
+            <TextView
+                android:id="@+id/active_lbl"
+                style="?textAppearanceHeadline6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="@string/active"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recovered_delta"
+                app:layout_constraintWidth_percent="0.40" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/active"
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.active.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="?defaultMarginMin"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/active_lbl" />
+
+            <TextView
+                android:id="@+id/deaths_lbl"
+                style="?textAppearanceHeadline6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="@string/deaths"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/active_lbl"
+                app:layout_constraintWidth_percent="0.40" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/deaths_delta"
+                style="?textAppearanceSubtitle3"
+                deltaNumber="@{viewModel.country.todayDeaths.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_up_arrow"
+                android:textColor="@color/deaths"
+                app:drawableTint="@color/deaths"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/deaths_lbl" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/deaths"
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.deaths.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="?defaultMarginMin"
+                app:layout_constraintRight_toLeftOf="@id/deaths_delta"
+                app:layout_constraintTop_toTopOf="@id/deaths_lbl" />
+
+            <TextView
+                android:id="@+id/tests_lbl"
+                style="?textAppearanceHeadline6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="@string/tests"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deaths_lbl"
+                app:layout_constraintWidth_percent="0.40" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tests"
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.tests.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tests_lbl" />
+
+            <View
+                android:id="@+id/total_divider"
+                style="?dividerHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="?defaultMarginMax"
+                android:background="@color/divider"
+                app:layout_constraintTop_toBottomOf="@id/tests_lbl" />
+
+            <TextView
+                android:id="@+id/population"
+                style="?textAppearanceHeadline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="Population"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/total_divider" />
+
+            <TextView
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.population.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/population" />
+
+            <TextView
+                android:id="@+id/case_per_people"
+                style="?textAppearanceHeadline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="One Case Per People"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/population" />
+
+            <TextView
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.oneCasePerPeople.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/case_per_people" />
+
+            <TextView
+                android:id="@+id/oneTestPerPeople"
+                style="?textAppearanceHeadline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="One Test Per People"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/case_per_people" />
+
+            <TextView
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.oneTestPerPeople.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/oneTestPerPeople" />
+
+            <TextView
+                android:id="@+id/oneDeathPerPeople"
+                style="?textAppearanceHeadline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="One Death Per People"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/oneTestPerPeople" />
+
+            <TextView
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.oneDeathPerPeople.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/oneDeathPerPeople" />
+
+            <TextView
+                android:id="@+id/casesPerOneMillion"
+                style="?textAppearanceHeadline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="Cases Per One Million"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/oneDeathPerPeople" />
+
+            <TextView
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.casesPerOneMillion.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/casesPerOneMillion" />
+
+            <TextView
+                android:id="@+id/deathsPerOneMillion"
+                style="?textAppearanceHeadline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="Deaths Per One Million"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/casesPerOneMillion" />
+
+            <TextView
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.deathsPerOneMillion.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/deathsPerOneMillion" />
+
+            <TextView
+                android:id="@+id/testsPerOneMillion"
+                style="?textAppearanceHeadline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="Tests Per One Million"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deathsPerOneMillion" />
+
+            <TextView
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.testsPerOneMillion.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/testsPerOneMillion" />
+
+            <TextView
+                android:id="@+id/activePerOneMillion"
+                style="?textAppearanceHeadline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?defaultMarginMax"
+                android:text="Active Per One Million"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/testsPerOneMillion" />
+
+            <TextView
+                style="?textAppearanceHeadline5"
+                number="@{viewModel.country.activePerOneMillion.toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/activePerOneMillion" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

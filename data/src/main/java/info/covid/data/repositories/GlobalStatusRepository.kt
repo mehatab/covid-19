@@ -22,4 +22,6 @@ class GlobalStatusRepository(
         fetchFromLocal = { Result.Success(globalDao.getAllCountryData()) },
         errorMessage = "Error getting data"
     )
+
+    fun getCountry(countryName : String) = globalDao.getCountry(countryName)
 }

@@ -41,6 +41,12 @@
         android:label="@string/about" />
 
     <fragment
+        android:id="@+id/country"
+        android:name="info.covid.state.country.CountryDetailsFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_country_details" />
+
+    <fragment
         android:id="@+id/state_wise_info"
         android:name="info.covid.state.StateDetailsFragment"
         android:label="{title}"

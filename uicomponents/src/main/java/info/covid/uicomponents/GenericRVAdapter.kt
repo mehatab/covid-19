@@ -53,7 +53,7 @@ class GenericRVAdapter(private val layoutId: Int = 0) : Adapter<RecyclerView.Vie
         maxCount = count
     }
 
-    fun getItem(position: Int) = itemList[position]
+    fun <T> getItem(position: Int) = itemList[position] as T
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
         if (::inflater.isInitialized.not())

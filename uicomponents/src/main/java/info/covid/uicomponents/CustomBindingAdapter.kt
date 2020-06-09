@@ -9,7 +9,9 @@ import com.google.android.material.chip.ChipGroup
 import info.covid.data.utils.toNumber
 import info.covid.uicomponents.customview.rings.Rings
 import info.covid.uicomponents.customview.sectionbar.SectionProgressBar
+import java.lang.NumberFormatException
 import java.text.NumberFormat
+import java.util.*
 
 @BindingAdapter("relativeTime")
 fun setRelativeTime(tv: TextView, time: Long? = 0) {
@@ -51,12 +53,14 @@ fun setFirstText(rings: Rings, death: Int = 0, recovered: Int = 0, active: Int =
     rings.invalidate()
 }
 
-
+val nf =NumberFormat.getNumberInstance(Locale("en", "In"))
 @BindingAdapter("number")
 fun setNumber(tv: TextView, amount: String? = null) {
     tv.text = if (amount.isNullOrEmpty().not()) {
         try {
-            NumberFormat.getNumberInstance().format(amount.toNumber())
+            nf.format((amount ?: "0").toInt())
+        } catch (e: NumberFormatException) {
+            nf.format((amount ?: "0").toFloat())
         } catch (e: Exception) {
             amount
         }

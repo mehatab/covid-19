@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="state_details" type="id"/>
+    <item name="country" type="id"/>
 </resources>

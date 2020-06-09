@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,6 +14,10 @@
         <variable
             name="adapterPosition"
             type="Integer" />
+
+        <variable
+            name="listener"
+            type="info.covid.uicomponents.OnItemClickListener" />
 
         <variable
             name="viewModel"
@@ -28,22 +33,21 @@
         android:layout_marginVertical="?defaultMarginMin"
         android:background="@drawable/state_item_bg"
         android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{(v) -> listener.onItemClick(v, adapterPosition)}"
         android:padding="?defaultMarginMed">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/state"
-            style="?textAppearanceHeadline5"
-            android:layout_width="match_parent"
+            style="?textAppearanceHeadline4"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="?defaultMargin"
             android:paddingTop="?defaultMarginMed"
             android:paddingBottom="?defaultMarginMax"
             android:text="@{viewModel.country}"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="1" />
-
 
         <TextView
             android:id="@+id/confirmed_lbl"

@@ -3,6 +3,7 @@ package info.covid.data.models.global
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
+import info.covid.data.models.Currency
 
 @Entity
 data class CountryInfo(
@@ -10,7 +11,7 @@ data class CountryInfo(
     @field:Json(name = "_id")
     var infoId: Long? = null,
     @field:Json(name = "iso2")
-    var iso2: String? = null,
+    var iso2: Currency? = null,
     @field:Json(name = "iso3")
     var iso3: String? = null,
     @field:Json(name = "flag")

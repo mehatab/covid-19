@@ -69,7 +69,7 @@ class StateListFragment : Fragment(R.layout.fragment_states_ut_list) {
         when (view.id) {
             R.id.state_item -> {
                 findNavController().navigate(R.id.state_details, Bundle().apply {
-                    val state = adapter.getItem(position.minus(1)) as State
+                    val state = adapter.getItem<State>(position.minus(1))
                     putString(Const.TITLE, state.state)
                     putString(STATE, state.state)
                 })

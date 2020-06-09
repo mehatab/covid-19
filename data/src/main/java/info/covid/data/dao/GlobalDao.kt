@@ -1,5 +1,6 @@
 package info.covid.data.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -15,4 +16,7 @@ interface GlobalDao {
 
     @Query("DELETE FROM Country")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM Country WHERE country=:countryName")
+    fun getCountry(countryName : String): LiveData<Country>
 }

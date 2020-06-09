@@ -7,4 +7,5 @@
     <string name="state_ut">State/UT</string>
     <string name="state_percentage"><![CDATA[<b>%.2f\%%</b> of india]]></string>
     <string name="district_percentage"><![CDATA[<b>%.2f\%%</b> of state]]></string>
+    <string name="tests">Tests</string>
 </resources>

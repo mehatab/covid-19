@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottom_nav.visibility = when (destination.id) {
-                R.id.state_wise_info -> View.GONE
+                R.id.state_wise_info, R.id.country -> View.GONE
                 else -> View.VISIBLE
             }
         }
