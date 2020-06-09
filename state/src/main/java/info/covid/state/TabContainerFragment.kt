@@ -16,7 +16,7 @@ class TabContainerFragment : Fragment(R.layout.fragment_tab_container) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewPager.adapter = adapter
+        setupAdapter()
 
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             tab.text = when (position) {
@@ -26,8 +26,8 @@ class TabContainerFragment : Fragment(R.layout.fragment_tab_container) {
         }.attach()
     }
 
-    private val adapter: FragmentStateAdapter by lazy {
-        object : FragmentStateAdapter(this) {
+    private fun setupAdapter() {
+        binding.viewPager.adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount() = 2
             override fun createFragment(position: Int) = when (position) {
                 0 -> StateListFragment()
