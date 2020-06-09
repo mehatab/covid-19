@@ -5,7 +5,7 @@ object Config {
     val minSdk = 21
     val targetSdk = 29
     val versionCode = 20
-    val versionName = "1.6.1"
+    val versionName = "1.6.2"
 }
 
 
