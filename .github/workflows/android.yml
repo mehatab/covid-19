@@ -27,7 +27,7 @@ jobs:
     - name: Artifacts
       run: |
           mkdir -p apks
-          cp /*.apk apks
+          cp /app/release/*.apk apks
     - name: Upload Artifacts
       uses: actions/upload-artifact@v1
       with:
