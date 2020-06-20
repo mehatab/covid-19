@@ -23,13 +23,3 @@ jobs:
       run: ./gradlew build
     - name: Build APK
       run: bash ./gradlew assembleRelease --stacktrace
- 
-    - name: Artifacts
-      run: |
-          mkdir -p apks
-          cp /app/release/*.apk apks
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v1
-      with:
-        name: apks
-        path: apks
