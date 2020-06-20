@@ -23,8 +23,7 @@ jobs:
       run: ./gradlew build
     - name: Build APK
       run: bash ./gradlew assembleRelease --stacktrace
-    - name: Building APK
-      uses: ./action
+ 
     - name: Artifacts
       run: |
           mkdir -p apks
