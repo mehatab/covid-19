@@ -70,8 +70,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })
 
-        viewModel.dayList.observe(viewLifecycleOwner, Observer {
-            adapter.setList(it.reversed(), it.maxWith(Comparator { o1, o2 ->
+        viewModel.dayList.observe(viewLifecycleOwner, Observer { list ->
+
+            list.forEachIndexed { index, item ->
+                if (index > 0 && list.size > 1 && list[index.minus(1)].dailyconfirmed.toNumber() > 0) {
+                    item.percentage = (item.dailyconfirmed.toNumber() * 100).div(list[index.minus(1)].dailyconfirmed.toNumber())
+                }
+            }
+
+            adapter.setList(list.reversed(), list.maxWith(Comparator { o1, o2 ->
                 o1.dailyconfirmed.toNumber().compareTo(o2.dailyconfirmed.toNumber())
             })?.dailyconfirmed.toNumber())
 

@@ -98,7 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="?textAppearanceSubtitle2"
-        android:text="@{Html.fromHtml(@string/day_confirm_count(ExtensionsKt.toNumber(viewModel.totalconfirmed), ExtensionsKt.toNumber(viewModel.dailyconfirmed)))}"
+        android:text="@{Html.fromHtml(@string/day_confirm_count(ExtensionsKt.toNumber(viewModel.totalconfirmed), ExtensionsKt.toNumber(viewModel.dailyconfirmed), viewModel.percentage))}"
         app:layout_constraintLeft_toLeftOf="@id/progress"
         app:layout_constraintTop_toBottomOf="@id/active" />
 
