@@ -1,5 +1,6 @@
 package info.covid.data.enities
 
+import android.view.ViewDebug
 import androidx.room.*
 import com.squareup.moshi.Json
 import info.covid.data.DiffItem
@@ -35,7 +36,7 @@ data class CovidDayInfo(
     @field:Json(name = "totalrecovered")
     var totalrecovered: String? = null,
     @Ignore
-    var percentage: Int? = 0
+    var percentage: String? = null
 ) : DiffItem {
     override fun getId() = dayId ?: 0
     override fun getContent() = toString()

@@ -23,6 +23,8 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import info.covid.dashboard.databinding.FragmentHomeBinding
 import info.covid.data.utils.Const.pieChartColors
+import info.covid.data.utils.format
+import info.covid.data.utils.toFloatNumber
 import info.covid.data.utils.toNumber
 import info.covid.uicomponents.GenericRVAdapter
 import info.covid.uicomponents.bind
@@ -30,6 +32,7 @@ import info.covid.uicomponents.getTextColorPrimary
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import kotlin.math.absoluteValue
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -73,8 +76,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewModel.dayList.observe(viewLifecycleOwner, Observer { list ->
 
             list.forEachIndexed { index, item ->
-                if (index > 0 && list.size > 1 && list[index.minus(1)].dailyconfirmed.toNumber() > 0) {
-                    item.percentage = (item.dailyconfirmed.toNumber() * 100).div(list[index.minus(1)].dailyconfirmed.toNumber())
+
+                if (index > 0) {
+                    val prevDay = list[index.minus(1)].dailyconfirmed.toFloatNumber()
+                    if (prevDay > 0) {
+
+                        val per = ((item.dailyconfirmed.toFloatNumber()).minus(prevDay).times(100f)).div(prevDay)
+
+                        item.percentage =
+                            if (per < 0f)
+                                per.absoluteValue.format("%.2f") + "% decrease in cases"
+                            else
+                                per.absoluteValue.format("%.2f") + "% increase in cases"
+                    }
                 }
             }
 

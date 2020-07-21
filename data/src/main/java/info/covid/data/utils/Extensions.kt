@@ -8,6 +8,18 @@ fun String?.toNumber(): Int {
     }
 }
 
+fun String?.toFloatNumber(): Float {
+    return try {
+        if (isNullOrEmpty()) 0f else if (this!!.toFloat() < 0f) 0f else this.toFloat()
+    } catch (e: Exception) {
+        0f
+    }
+}
+
+fun Float?.format(frm: String): String {
+    return String.format(frm, this)
+}
+
 
 fun <T> List<T>.removeLast(): List<T> {
     return if (isNullOrEmpty()) this else {

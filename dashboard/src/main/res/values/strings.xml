@@ -16,7 +16,7 @@
     <string name="death_count"><![CDATA[<b>%s</b>  Deaths]]></string>
     <string name="recovered_count"><![CDATA[<b>%s</b>  Recovered]]></string>
     <string name="day_active_count"><![CDATA[<b>%s</b>  Active (<b>%s</b> New)]]></string>
-    <string name="day_confirm_count"><![CDATA[<b>%s</b>  Confirmed (<b>%s</b> New %s\%% increase)]]></string>
+    <string name="day_confirm_count"><![CDATA[<b>%s</b>  Confirmed (<b>%s</b> New)]]></string>
     <string name="day_death_count"><![CDATA[<b>%s</b>  Deaths (<b>%s</b> New)]]></string>
     <string name="day_recovered_count"><![CDATA[<b>%s</b>  Recovered (<b>%s</b> New)]]></string>
 
