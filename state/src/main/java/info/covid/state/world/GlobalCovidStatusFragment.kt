@@ -3,6 +3,7 @@ package info.covid.state.world
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -25,6 +26,7 @@ class GlobalCovidStatusFragment : Fragment(R.layout.fragment_gloabal_covid_statu
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = vm
         binding.rv.adapter = adapter
+
         vm.countries.observe(viewLifecycleOwner, Observer {
             adapter.setList(it)
         })
@@ -37,6 +39,10 @@ class GlobalCovidStatusFragment : Fragment(R.layout.fragment_gloabal_covid_statu
             findNavController().navigate(R.id.country, Bundle().apply {
                 putString(TITLE, adapter.getItem<Country>(index.minus(1)).country)
             })
+        }
+
+        binding.searchQuery.doAfterTextChanged { str ->
+
         }
     }
 }
