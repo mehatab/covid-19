@@ -24,4 +24,6 @@ class GlobalStatusRepository(
     )
 
     fun getCountry(countryName : String) = globalDao.getCountry(countryName)
+
+    suspend fun getAllCountry(query : String) = globalDao.getAllCountryData(query)
 }

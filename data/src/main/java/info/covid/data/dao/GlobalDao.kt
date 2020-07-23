@@ -11,6 +11,9 @@ interface GlobalDao {
     @Query("SELECT * FROM Country")
     suspend fun getAllCountryData(): List<Country>
 
+    @Query("SELECT * FROM Country Where country LIKE :query")
+    suspend fun getAllCountryData(query : String): List<Country>
+
     @Insert
     suspend fun insert(list : List<Country>)
 

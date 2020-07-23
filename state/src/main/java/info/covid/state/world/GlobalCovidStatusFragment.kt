@@ -42,7 +42,7 @@ class GlobalCovidStatusFragment : Fragment(R.layout.fragment_gloabal_covid_statu
         }
 
         binding.searchQuery.doAfterTextChanged { str ->
-
+            vm.filter(str.toString())
         }
     }
 }

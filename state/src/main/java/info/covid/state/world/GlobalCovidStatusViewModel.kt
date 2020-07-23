@@ -17,6 +17,7 @@ class GlobalCovidStatusViewModel(private val repo: GlobalStatusRepository) : Vie
     val loader = ObservableField(View.VISIBLE)
     val error = MutableLiveData<String>()
     private val _countries = MutableLiveData<List<Country>>()
+
     val countries: LiveData<List<Country>>
         get() = _countries
 
@@ -32,13 +33,19 @@ class GlobalCovidStatusViewModel(private val repo: GlobalStatusRepository) : Vie
                         _countries.postValue(it.data)
                     }
                     is Result.Error -> {
-                       error.postValue(it.exception.localizedMessage)
+                        error.postValue(it.exception.localizedMessage)
                     }
                     is Result.Loading -> {
                         loader.set(if (it.isLoading) View.VISIBLE else View.GONE)
                     }
                 }
             }
+        }
+    }
+
+    fun filter(query: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _countries.postValue(repo.getAllCountry("%$query%"))
         }
     }
 }
