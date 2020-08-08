@@ -74,24 +74,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         })
 
         viewModel.dayList.observe(viewLifecycleOwner, Observer { list ->
-
-            list.forEachIndexed { index, item ->
-
-                if (index > 0) {
-                    val prevDay = list[index.minus(1)].dailyconfirmed.toFloatNumber()
-                    if (prevDay > 0) {
-
-                        val per = ((item.dailyconfirmed.toFloatNumber()).minus(prevDay).times(100f)).div(prevDay)
-
-                        item.percentage =
-                            if (per < 0f)
-                                per.absoluteValue.format("%.2f") + "% decrease in cases"
-                            else
-                                per.absoluteValue.format("%.2f") + "% increase in cases"
-                    }
-                }
-            }
-
             adapter.setList(list.reversed(), list.maxWith(Comparator { o1, o2 ->
                 o1.dailyconfirmed.toNumber().compareTo(o2.dailyconfirmed.toNumber())
             })?.dailyconfirmed.toNumber())

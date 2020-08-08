@@ -104,17 +104,6 @@
         app:layout_constraintTop_toBottomOf="@id/active" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/percentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="?defaultMargin"
-        android:drawablePadding="?defaultMarginMin"
-        style="?textAppearanceSubtitle2"
-        android:text="@{viewModel.percentage}"
-        app:layout_constraintLeft_toLeftOf="@id/confirmed"
-        app:layout_constraintTop_toBottomOf="@id/confirmed" />
-
-    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/recovered"
         android:layout_width="wrap_content"
         android:layout_marginTop="?defaultMarginMin"
@@ -125,7 +114,7 @@
         android:text="@{Html.fromHtml(@string/day_recovered_count(ExtensionsKt.toNumber(viewModel.totalrecovered), ExtensionsKt.toNumber(viewModel.dailyrecovered)))}"
         app:drawableTint="@color/recovered"
         app:layout_constraintLeft_toLeftOf="@id/progress"
-        app:layout_constraintTop_toBottomOf="@id/percentage" />
+        app:layout_constraintTop_toBottomOf="@id/confirmed" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/deaths"

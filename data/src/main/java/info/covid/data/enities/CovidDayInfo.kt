@@ -34,9 +34,7 @@ data class CovidDayInfo(
     var totaldeceased: String? = null,
     @ColumnInfo(name = "totalrecovered")
     @field:Json(name = "totalrecovered")
-    var totalrecovered: String? = null,
-    @Ignore
-    var percentage: String? = null
+    var totalrecovered: String? = null
 ) : DiffItem {
     override fun getId() = dayId ?: 0
     override fun getContent() = toString()
