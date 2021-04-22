@@ -8,16 +8,16 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import info.covid.data.enities.Tag
 
-
 fun ChipGroup.addChips(list: List<Tag>, tag: String? = null) {
     removeAllViews()
     list.forEachIndexed { index, s ->
-        val chip = Chip(context)
-        chip.text = s.name
-        chip.isCheckable = true
-        chip.id = index
-        chip.isChecked = tag == s.name
-        addView(chip)
+        Chip(context).apply {
+            text = s.name
+            isCheckable = true
+            id = index
+            isChecked = tag == s.name
+            addView(this)
+        }
         invalidate()
     }
 }
