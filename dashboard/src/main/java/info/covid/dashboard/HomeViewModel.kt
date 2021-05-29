@@ -92,7 +92,7 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
                     dailyDeceasedList.add(Entry(time, it.dailydeceased.toNumber().toFloat()))
 
                     dailyRecoveredList.add(Entry(time, it.dailyrecovered.toNumber().toFloat()))
-                }
+               }
             }
         }
     }

@@ -29,7 +29,7 @@ class NotificationViewModel(private val repo: NotificationRepository) : ViewMode
             repo.getNotifications().collect {
                 when (it) {
                     is Result.Success -> {
-                        _notifications.value = it.data
+                        _notifications.value = it.data.reversed()
                     }
                     is Result.Error -> {
                         error.value = it.exception.localizedMessage

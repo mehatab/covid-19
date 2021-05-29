@@ -1,6 +1,7 @@
 package info.covid.uicomponents
 
 import android.text.format.DateUtils
+import android.util.Log
 import org.jetbrains.annotations.NotNull
 import java.lang.Exception
 import java.text.SimpleDateFormat
